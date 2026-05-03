@@ -1,0 +1,106 @@
+.contacto {
+  padding: 140px 40px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: var(--font-c);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray3);
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-c);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+.title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gray1);
+  display: block;
+}
+
+.sub {
+  font-family: var(--font-b);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray2);
+  margin-bottom: 52px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 64px;
+}
+
+.infoLinks {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.link {
+  font-family: var(--font-c);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--gray2);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s;
+}
+.link:hover {
+  color: var(--white);
+}
+.link svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .contacto {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .infoLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}

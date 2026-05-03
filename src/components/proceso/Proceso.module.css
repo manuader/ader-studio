@@ -1,0 +1,134 @@
+.proceso {
+  padding: 100px 40px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.header {
+  margin-bottom: 72px;
+}
+
+.layers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.diagram {
+  position: relative;
+  height: 560px;
+  background: var(--bg2);
+  overflow: hidden;
+}
+
+.layerStack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layerItem {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.layerItemVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--bg2);
+  padding: 0 48px;
+  justify-content: center;
+}
+
+.step {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.step:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.stepNum {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gray3);
+  margin-bottom: 8px;
+}
+
+.stepTitle {
+  font-family: var(--font-c);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray1);
+  margin-bottom: 10px;
+  transition: color 0.25s;
+}
+
+.stepActive .stepTitle {
+  color: var(--white);
+}
+
+.stepDesc {
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gray2);
+  line-height: 1.65;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+.stepActive .stepDesc {
+  max-height: 80px;
+  opacity: 1;
+}
+
+.stepBarWrap {
+  height: 1px;
+  background: var(--border);
+  margin-top: 12px;
+  overflow: hidden;
+}
+.stepBar {
+  height: 100%;
+  width: 0;
+  background: var(--gray2);
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stepActive .stepBar {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .layers {
+    grid-template-columns: 1fr;
+  }
+  .diagram {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .proceso {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

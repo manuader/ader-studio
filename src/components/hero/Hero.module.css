@@ -1,0 +1,133 @@
+.hero {
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 40px 72px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14, 14, 14, 0.95) 0%, rgba(14, 14, 14, 0.3) 50%, rgba(14, 14, 14, 0.6) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: var(--font-c);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gray2);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gray3);
+}
+
+.headline {
+  font-family: var(--font-c);
+  font-size: clamp(56px, 8vw, 112px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+.headline em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gray1);
+}
+
+.sub {
+  font-family: var(--font-b);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray1);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 48px;
+}
+
+.cta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.scroll {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+.scroll span {
+  font-family: var(--font-c);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray3);
+  writing-mode: vertical-rl;
+}
+.scrollLine {
+  width: 1px;
+  height: 48px;
+  background: var(--gray3);
+  overflow: hidden;
+  position: relative;
+}
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gray2);
+  animation: hintScroll 2s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

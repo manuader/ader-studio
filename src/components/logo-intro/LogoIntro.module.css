@@ -1,0 +1,117 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 1s ease, opacity 0.8s ease;
+}
+
+.fadeDark {
+  background: #000000;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.spinWrap {
+  width: min(360px, 72vw);
+  height: min(360px, 72vw);
+  position: relative;
+  border-radius: 50%;
+  transition: transform 0.85s cubic-bezier(0.6, 0, 0.2, 1);
+}
+
+.ringFixed {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 26px solid black;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.markRotating {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  background: white;
+}
+
+.markImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+}
+
+.logoFullWrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0 round 50%);
+}
+
+.logoFullImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hintText {
+  font-family: var(--font-c);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #999;
+  transition: opacity 0.5s;
+}
+
+.hintLine {
+  width: 1px;
+  height: 40px;
+  background: #ddd;
+  position: relative;
+  overflow: hidden;
+}
+
+.hintLine::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #999;
+  animation: hintScroll 1.6s ease-in-out infinite;
+}

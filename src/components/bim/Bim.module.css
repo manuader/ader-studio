@@ -1,0 +1,153 @@
+.bim {
+  padding: 100px 40px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 72px;
+}
+
+.desc {
+  font-family: var(--font-b);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray1);
+  line-height: 1.75;
+}
+
+.diagramGrid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2px;
+}
+
+.diagram {
+  position: relative;
+  height: 480px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.layer svg {
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.btn {
+  flex: 1;
+  padding: 16px 20px;
+  background: var(--bg);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.2s;
+  text-align: left;
+}
+.btn:hover,
+.btnActive {
+  background: var(--bg3);
+}
+.btnActive .btnLabel {
+  color: var(--white);
+}
+
+.btnNum {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gray3);
+}
+.btnLabel {
+  font-family: var(--font-c);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray1);
+  transition: color 0.2s;
+}
+.btnSub {
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gray2);
+  line-height: 1.4;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 48px;
+}
+
+.stat {
+  padding: 32px 28px;
+  background: var(--bg);
+  border-top: 2px solid var(--border);
+  transition: border-color 0.25s;
+}
+.stat:hover {
+  border-color: var(--gray2);
+}
+
+.statNum {
+  font-family: var(--font-c);
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.statLabel {
+  font-family: var(--font-c);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray2);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+  .diagramGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .bim {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
