@@ -48,7 +48,7 @@ export function Hero() {
       <div className={styles.content}>
         <div className={`${styles.eyebrow} reveal`}>Ader Studio — Buenos Aires, Argentina</div>
         <h1 className={`${styles.headline} reveal rd1`}>
-          Arquitectura<br /><em>que responde</em><br />al contexto.
+          Arquitectura argentina 🇦🇷
         </h1>
         <p className={`${styles.sub} reveal rd2`}>
           Aportando valor arquitectónico a través del diseño contextual, la honestidad material y la precisión tecnológica.
