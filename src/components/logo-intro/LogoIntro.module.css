@@ -1,16 +1,12 @@
 .intro {
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: #FAFAF7;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 1s ease, opacity 0.8s ease;
-}
-
-.fadeDark {
-  background: #000000;
+  transition: opacity 0.8s ease;
 }
 
 .fadeOut {
@@ -41,7 +37,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 26px solid black;
+  border: 26px solid #1A1917;
   z-index: 3;
   pointer-events: none;
 }
@@ -52,7 +48,7 @@
   border-radius: 50%;
   overflow: hidden;
   z-index: 1;
-  background: white;
+  background: #FAFAF7;
 }
 
 .markImg {
@@ -93,14 +89,14 @@
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #999;
+  color: #8A857D;
   transition: opacity 0.5s;
 }
 
 .hintLine {
   width: 1px;
   height: 40px;
-  background: #ddd;
+  background: #E2DED6;
   position: relative;
   overflow: hidden;
 }
@@ -112,6 +108,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #999;
+  background: #8A857D;
   animation: hintScroll 1.6s ease-in-out infinite;
 }

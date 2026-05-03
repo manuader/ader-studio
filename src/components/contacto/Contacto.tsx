@@ -6,7 +6,7 @@ export function Contacto() {
       <svg className={styles.bg} viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
         <defs>
           <pattern id="grid2" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" strokeWidth="0.5" />
+            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#1A1917" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid2)" />

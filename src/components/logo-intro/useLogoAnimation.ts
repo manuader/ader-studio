@@ -76,9 +76,6 @@ export function useLogoAnimation({
         if (hintTextRef.current) hintTextRef.current.style.opacity = '0';
         if (hintLineRef.current) hintLineRef.current.style.opacity = '0';
 
-        if (introRef.current) introRef.current.classList.add('fadeDark');
-        // Also add data attribute for the CSS module class
-        if (introRef.current) introRef.current.style.background = '#000000';
 
         setTimeout(() => {
           // Fly circle to navbar
@@ -93,6 +90,9 @@ export function useLogoAnimation({
             spinWrapRef.current.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
           }
 
+          // Show nav logo immediately (hidden behind intro overlay z-index)
+          window.dispatchEvent(new Event('show-nav-logo'));
+
           setTimeout(() => {
             if (introRef.current) {
               introRef.current.style.opacity = '0';
@@ -103,6 +103,8 @@ export function useLogoAnimation({
                 introRef.current.style.display = 'none';
               }
               document.body.style.overflow = '';
+              document.documentElement.classList.add('cursor-ready');
+              window.dispatchEvent(new Event('intro-complete'));
             }, 850);
           }, 900);
         }, 1100);

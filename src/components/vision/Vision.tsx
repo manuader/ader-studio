@@ -13,7 +13,7 @@ export function Vision() {
       <svg className={styles.bgGrid} viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
         <defs>
           <pattern id="grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="0.5" />
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1A1917" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />

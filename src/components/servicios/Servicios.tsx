@@ -6,7 +6,7 @@ const SERVICES = [
     name: 'Arquitectura',
     desc: 'Diseño integral de proyectos nuevos y renovaciones en tipologías residenciales, comerciales y culturales. Respuesta precisa al contexto y el programa.',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" stroke="white" strokeWidth="1">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#1A1917" strokeWidth="1">
         <rect x="6" y="8" width="28" height="24" strokeOpacity="0.6" />
         <line x1="6" y1="18" x2="34" y2="18" strokeOpacity="0.4" />
         <line x1="20" y1="8" x2="20" y2="32" strokeOpacity="0.4" />
@@ -19,7 +19,7 @@ const SERVICES = [
     name: 'Anteproyecto',
     desc: 'Desarrollo de la idea arquitectónica: plantas, cortes, fachadas y volumetrías que definen la esencia del proyecto antes de la documentación técnica.',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" stroke="white" strokeWidth="1">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#1A1917" strokeWidth="1">
         <polygon points="20,4 36,32 4,32" strokeOpacity="0.6" />
         <line x1="12" y1="22" x2="28" y2="22" strokeOpacity="0.4" />
       </svg>
@@ -30,7 +30,7 @@ const SERVICES = [
     name: 'Proyecto Ejecutivo',
     desc: 'Documentación técnica completa en BIM: planos de arquitectura, estructura, instalaciones y legajo municipal. Todo coordinado en un modelo único.',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" stroke="white" strokeWidth="1">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#1A1917" strokeWidth="1">
         <rect x="5" y="5" width="30" height="30" strokeOpacity="0.6" />
         <line x1="5" y1="15" x2="35" y2="15" strokeOpacity="0.4" />
         <line x1="5" y1="25" x2="35" y2="25" strokeOpacity="0.4" />
@@ -44,7 +44,7 @@ const SERVICES = [
     name: 'Dirección de Obra',
     desc: 'Supervisión y conducción técnica durante la construcción. Garantizamos que el proyecto construido sea fiel a la intención del diseño, hasta el último detalle.',
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" stroke="white" strokeWidth="1">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#1A1917" strokeWidth="1">
         <circle cx="20" cy="20" r="14" strokeOpacity="0.6" />
         <line x1="20" y1="6" x2="20" y2="14" strokeOpacity="0.5" />
         <line x1="20" y1="26" x2="20" y2="34" strokeOpacity="0.5" />

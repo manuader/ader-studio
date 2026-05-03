@@ -1,18 +1,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:       #0e0e0e;
-  --bg2:      #111111;
-  --bg3:      #161616;
-  --white:    #f0eeeb;
-  --gray1:    #aaaaaa;
-  --gray2:    #666666;
-  --gray3:    #333333;
-  --border:   #222222;
+  --bg:       #FAFAF7;
+  --bg2:      #F2EFE9;
+  --bg3:      #EBE7E0;
+  --white:    #1A1917;
+  --gray1:    #5A5852;
+  --gray2:    #8A857D;
+  --gray3:    #C8C3BB;
+  --border:   #E2DED6;
   --nav-h:    64px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; cursor: none; }
+html.cursor-ready { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext x='12' y='18' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='16' fill='%231A1917'%3EN%3C/text%3E%3C/svg%3E") 12 12, default !important; }
+html.cursor-ready * { cursor: inherit !important; }
 
 body {
   font-family: var(--font-b);

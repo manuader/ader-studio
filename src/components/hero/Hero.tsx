@@ -5,43 +5,43 @@ export function Hero() {
     <section id="hero" className={styles.hero}>
       <div className={styles.canvas}>
         <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="0" y1="820" x2="1440" y2="820" stroke="white" strokeWidth="0.6" />
-          <rect x="160" y="200" width="380" height="620" stroke="white" strokeWidth="0.7" />
-          <rect x="200" y="160" width="280" height="40" stroke="white" strokeWidth="0.5" />
-          <line x1="160" y1="350" x2="540" y2="350" stroke="white" strokeWidth="0.3" />
-          <line x1="160" y1="500" x2="540" y2="500" stroke="white" strokeWidth="0.3" />
-          <line x1="160" y1="650" x2="540" y2="650" stroke="white" strokeWidth="0.3" />
-          <line x1="320" y1="200" x2="320" y2="820" stroke="white" strokeWidth="0.3" />
-          <line x1="420" y1="200" x2="420" y2="820" stroke="white" strokeWidth="0.3" />
-          <rect x="180" y="220" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="260" y="220" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="340" y="220" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="430" y="220" width="80" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="180" y="370" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="260" y="370" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="340" y="370" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="430" y="370" width="80" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="180" y="520" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="260" y="520" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="340" y="520" width="60" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="430" y="520" width="80" height="45" stroke="white" strokeWidth="0.4" />
-          <rect x="240" y="720" width="80" height="100" stroke="white" strokeWidth="0.5" />
-          <rect x="620" y="120" width="520" height="700" stroke="white" strokeWidth="0.7" />
-          <line x1="620" y1="280" x2="1140" y2="280" stroke="white" strokeWidth="0.3" />
-          <line x1="620" y1="440" x2="1140" y2="440" stroke="white" strokeWidth="0.3" />
-          <line x1="620" y1="600" x2="1140" y2="600" stroke="white" strokeWidth="0.3" />
-          <line x1="620" y1="700" x2="1140" y2="700" stroke="white" strokeWidth="0.3" />
-          <line x1="750" y1="120" x2="750" y2="820" stroke="white" strokeWidth="0.3" />
-          <line x1="880" y1="120" x2="880" y2="820" stroke="white" strokeWidth="0.3" />
-          <line x1="1010" y1="120" x2="1010" y2="820" stroke="white" strokeWidth="0.3" />
-          <line x1="160" y1="860" x2="540" y2="860" stroke="white" strokeWidth="0.4" />
-          <line x1="160" y1="855" x2="160" y2="865" stroke="white" strokeWidth="0.4" />
-          <line x1="540" y1="855" x2="540" y2="865" stroke="white" strokeWidth="0.4" />
-          <line x1="620" y1="860" x2="1140" y2="860" stroke="white" strokeWidth="0.4" />
-          <line x1="620" y1="855" x2="620" y2="865" stroke="white" strokeWidth="0.4" />
-          <line x1="1140" y1="855" x2="1140" y2="865" stroke="white" strokeWidth="0.4" />
-          <line x1="0" y1="820" x2="720" y2="80" stroke="white" strokeWidth="0.15" opacity="0.4" />
-          <line x1="1440" y1="820" x2="720" y2="80" stroke="white" strokeWidth="0.15" opacity="0.4" />
+          <line x1="0" y1="820" x2="1440" y2="820" stroke="#1A1917" strokeWidth="0.6" />
+          <rect x="160" y="200" width="380" height="620" stroke="#1A1917" strokeWidth="0.7" />
+          <rect x="200" y="160" width="280" height="40" stroke="#1A1917" strokeWidth="0.5" />
+          <line x1="160" y1="350" x2="540" y2="350" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="160" y1="500" x2="540" y2="500" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="160" y1="650" x2="540" y2="650" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="320" y1="200" x2="320" y2="820" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="420" y1="200" x2="420" y2="820" stroke="#1A1917" strokeWidth="0.3" />
+          <rect x="180" y="220" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="260" y="220" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="340" y="220" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="430" y="220" width="80" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="180" y="370" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="260" y="370" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="340" y="370" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="430" y="370" width="80" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="180" y="520" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="260" y="520" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="340" y="520" width="60" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="430" y="520" width="80" height="45" stroke="#1A1917" strokeWidth="0.4" />
+          <rect x="240" y="720" width="80" height="100" stroke="#1A1917" strokeWidth="0.5" />
+          <rect x="620" y="120" width="520" height="700" stroke="#1A1917" strokeWidth="0.7" />
+          <line x1="620" y1="280" x2="1140" y2="280" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="620" y1="440" x2="1140" y2="440" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="620" y1="600" x2="1140" y2="600" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="620" y1="700" x2="1140" y2="700" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="750" y1="120" x2="750" y2="820" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="880" y1="120" x2="880" y2="820" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="1010" y1="120" x2="1010" y2="820" stroke="#1A1917" strokeWidth="0.3" />
+          <line x1="160" y1="860" x2="540" y2="860" stroke="#1A1917" strokeWidth="0.4" />
+          <line x1="160" y1="855" x2="160" y2="865" stroke="#1A1917" strokeWidth="0.4" />
+          <line x1="540" y1="855" x2="540" y2="865" stroke="#1A1917" strokeWidth="0.4" />
+          <line x1="620" y1="860" x2="1140" y2="860" stroke="#1A1917" strokeWidth="0.4" />
+          <line x1="620" y1="855" x2="620" y2="865" stroke="#1A1917" strokeWidth="0.4" />
+          <line x1="1140" y1="855" x2="1140" y2="865" stroke="#1A1917" strokeWidth="0.4" />
+          <line x1="0" y1="820" x2="720" y2="80" stroke="#1A1917" strokeWidth="0.15" opacity="0.4" />
+          <line x1="1440" y1="820" x2="720" y2="80" stroke="#1A1917" strokeWidth="0.15" opacity="0.4" />
         </svg>
       </div>
       <div className={styles.overlay} />
