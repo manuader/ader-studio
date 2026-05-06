@@ -13,7 +13,7 @@ const ITEMS: GalleryItem[] = [
   { type: 'image', src: '/images/renders/Etoneo Facade Render.png', alt: 'Fachada Etoneo', height: '50vh', top: '40vh', width: '40vw', gap: '6vw' },
   { type: 'text', text: 'Cada render explora materialidad, luz y contexto.', top: '12vh', gap: '10vw' },
   { type: 'image', src: '/images/renders/Pasillo Render.png', alt: 'Pasillo interior', height: '34vh', top: '40vh', width: '24vw', gap: '5vw' },
-  { type: 'image', src: '/images/renders/AI Comedor Render.png', alt: 'Comedor', height: '44vh', top: '10vh', width: '35vw', gap: '12vw' },
+  { type: 'image', src: '/images/renders/AI Comedor Render.png', alt: 'Comedor', height: '44vh', top: '10vh', width: '35vw', gap: '8vw' },
   { type: 'image', src: '/images/renders/Cocina Render.png', alt: 'Cocina', height: '38vh', top: '54vh', width: '28vw', gap: '4vw' },
   { type: 'text', text: 'Luz natural como material de proyecto.', sub: 'Visualización fotorrealista', top: '14vh', gap: '8vw' },
   { type: 'image', src: '/images/renders/Penelope Facade Render.png', alt: 'Fachada Penelope', height: '48vh', top: '10vh', width: '38vw', gap: '6vw' },

@@ -11,8 +11,8 @@ interface LogoAnimationRefs {
   hintLineRef: React.RefObject<HTMLDivElement | null>;
 }
 
-const TOTAL_DURATION = 10000;
-const TOTAL_ROTATIONS = 10;
+const TOTAL_DURATION = 6000;
+const TOTAL_ROTATIONS = 5;
 const TOTAL_DEGREES = TOTAL_ROTATIONS * 360;
 
 function easeOutQuint(t: number): number {

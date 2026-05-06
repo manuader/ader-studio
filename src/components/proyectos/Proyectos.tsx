@@ -58,9 +58,9 @@ export function Proyectos() {
             </svg>
           </div>
           <div className={styles.info}>
-            <div className={styles.tag}>Próximamente</div>
-            <div className={styles.name}>Proyecto 02</div>
-            <div className={styles.meta}><span>Buenos Aires</span><span>—</span><span>2025</span></div>
+            <div className={styles.tag}>Reforma y modernizacion</div>
+            <div className={styles.name}>Oficina Urbetrack</div>
+            <div className={styles.meta}><span>Av. Rivadavia 4260, CABA</span><span>—</span><span>2025</span></div>
           </div>
           <div className={styles.hoverLine} />
         </div>
