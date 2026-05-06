@@ -10,29 +10,52 @@
   background: var(--bg);
 }
 
-.canvas {
+/* ─── IMAGE LAYERS ───────────────────────────────── */
+.imageLayer,
+.colorLayer {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 0;
 }
 
-.canvas svg {
-  width: 100%;
-  height: 100%;
-  opacity: 0.35;
+.heroImage {
+  object-fit: cover;
+  object-position: center 60%;
 }
+
+.bynImage {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.colorImage {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.colorLayer {
+  z-index: 1;
+  will-change: mask-image;
+  mask-image: radial-gradient(circle 0px at 50% 50%, black 0%, transparent 0%);
+  -webkit-mask-image: radial-gradient(circle 0px at 50% 50%, black 0%, transparent 0%);
+}
+
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(250, 250, 247, 0.9) 0%, rgba(250, 250, 247, 0.05) 50%, rgba(250, 250, 247, 0.3) 100%);
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(250, 250, 247, 0.6) 0%,
+    transparent 15%
+  );
+  pointer-events: none;
 }
 
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 900px;
 }
 
@@ -97,7 +120,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  z-index: 2;
+  z-index: 3;
 }
 .scroll span {
   font-family: var(--font-c);
