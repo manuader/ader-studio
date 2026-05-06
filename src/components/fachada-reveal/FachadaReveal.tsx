@@ -21,6 +21,8 @@ function createBrushTexture(size: number): HTMLCanvasElement {
   return canvas;
 }
 
+const TRAIL_DURATION = 600;
+
 export function FachadaReveal() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,7 +32,9 @@ export function FachadaReveal() {
     brushTexture: HTMLCanvasElement | null;
     colorImage: HTMLImageElement | null;
     colorLoaded: boolean;
+    mousePos: { x: number; y: number } | null;
     lastPos: { x: number; y: number } | null;
+    trail: { x: number; y: number; time: number }[];
     isActive: boolean;
     rafId: number | null;
     targetBrushSize: number;
@@ -43,7 +47,9 @@ export function FachadaReveal() {
     brushTexture: null,
     colorImage: null,
     colorLoaded: false,
+    mousePos: null,
     lastPos: null,
+    trail: [],
     isActive: false,
     rafId: null,
     targetBrushSize: 0,
@@ -60,43 +66,28 @@ export function FachadaReveal() {
     const ctx = canvas.getContext('2d')!;
     const s = stateRef.current;
 
-    // Create brush texture (once)
     s.brushTexture = createBrushTexture(128);
 
-    // Setup canvas dimensions
     function resize() {
       const rect = section!.getBoundingClientRect();
       const newW = Math.round(rect.width);
       const newH = Math.round(rect.height);
       if (newW === s.w && newH === s.h) return;
 
-      const oldMask = s.maskCanvas;
-      const oldW = s.w;
-      const oldH = s.h;
-
       s.w = newW;
       s.h = newH;
       canvas!.width = newW;
       canvas!.height = newH;
 
-      // Create new mask canvas
       const mc = document.createElement('canvas');
       mc.width = newW;
       mc.height = newH;
-      const mctx = mc.getContext('2d')!;
-
-      // Preserve existing strokes (scaled)
-      if (oldMask && oldW > 0 && oldH > 0) {
-        mctx.drawImage(oldMask, 0, 0, oldW, oldH, 0, 0, newW, newH);
-      }
-
       s.maskCanvas = mc;
-      s.maskCtx = mctx;
+      s.maskCtx = mc.getContext('2d')!;
     }
 
     resize();
 
-    // Load color image
     const img = new window.Image();
     img.src = '/images/hero/fachada.png';
     img.onload = () => {
@@ -104,44 +95,36 @@ export function FachadaReveal() {
       s.colorLoaded = true;
     };
 
-    // Paint stroke on mask canvas
-    function paintStroke(x: number, y: number) {
-      const mctx = s.maskCtx;
-      const brush = s.brushTexture;
-      if (!mctx || !brush) return;
-
+    function addTrailPoints(x: number, y: number) {
+      const now = performance.now();
       const radius = s.currentBrushSize;
       if (radius < 1) return;
 
-      const diameter = radius * 2;
-
       if (!s.lastPos) {
-        // First point - just stamp
-        mctx.drawImage(brush, x - radius, y - radius, diameter, diameter);
+        s.trail.push({ x, y, time: now });
         s.lastPos = { x, y };
         return;
       }
 
-      // Interpolate between last position and current
       const dx = x - s.lastPos.x;
       const dy = y - s.lastPos.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const spacing = radius * 0.25;
+      const spacing = radius * 0.3;
       const steps = Math.max(1, Math.ceil(dist / spacing));
 
-      for (let i = 0; i <= steps; i++) {
+      for (let i = 1; i <= steps; i++) {
         const t = i / steps;
-        const px = s.lastPos.x + dx * t;
-        const py = s.lastPos.y + dy * t;
-        mctx.drawImage(brush, px - radius, py - radius, diameter, diameter);
+        s.trail.push({
+          x: s.lastPos.x + dx * t,
+          y: s.lastPos.y + dy * t,
+          time: now,
+        });
       }
 
       s.lastPos = { x, y };
     }
 
-    // Render loop
     function renderFrame() {
-      // Animate brush size
       if (s.currentBrushSize < s.targetBrushSize) {
         s.currentBrushSize += (s.targetBrushSize - s.currentBrushSize) * 0.2;
         if (s.targetBrushSize - s.currentBrushSize < 0.5) {
@@ -149,22 +132,40 @@ export function FachadaReveal() {
         }
       }
 
-      if (s.colorLoaded && s.maskCanvas && s.maskCtx) {
-        // Fade the mask canvas each frame
-        s.maskCtx.globalCompositeOperation = 'destination-out';
-        s.maskCtx.fillStyle = 'rgba(0,0,0,0.035)';
-        s.maskCtx.fillRect(0, 0, s.w, s.h);
-        s.maskCtx.globalCompositeOperation = 'source-over';
+      if (s.colorLoaded && s.maskCanvas && s.maskCtx && s.brushTexture) {
+        const now = performance.now();
 
-        // Re-stamp at current mouse position to keep cursor area bright
-        if (s.isActive && s.lastPos && s.brushTexture && s.currentBrushSize > 1) {
-          const r = s.currentBrushSize;
-          const d = r * 2;
-          s.maskCtx.drawImage(s.brushTexture, s.lastPos.x - r, s.lastPos.y - r, d, d);
+        // Remove expired trail points
+        while (s.trail.length > 0 && now - s.trail[0].time > TRAIL_DURATION) {
+          s.trail.shift();
         }
 
-        // Composite: color image masked by brush strokes
-        // Replicate object-fit: cover to match the B&W layer
+        // Clear mask completely each frame (no residual stain)
+        s.maskCtx.clearRect(0, 0, s.w, s.h);
+
+        const radius = s.currentBrushSize;
+        if (radius > 1) {
+          // Draw trail: oldest to newest, tapering size and opacity
+          for (const point of s.trail) {
+            const age = (now - point.time) / TRAIL_DURATION;
+            const sizeFactor = 1 - age * 0.7;
+            const r = radius * sizeFactor;
+            const d = r * 2;
+            s.maskCtx.globalAlpha = 1 - age;
+            s.maskCtx.drawImage(s.brushTexture!, point.x - r, point.y - r, d, d);
+          }
+
+          // Keep cursor area fully bright while active
+          if (s.isActive && s.mousePos) {
+            s.maskCtx.globalAlpha = 1;
+            const d = radius * 2;
+            s.maskCtx.drawImage(s.brushTexture!, s.mousePos.x - radius, s.mousePos.y - radius, d, d);
+          }
+
+          s.maskCtx.globalAlpha = 1;
+        }
+
+        // Composite: color image (object-fit: cover) masked by trail
         const imgW = s.colorImage!.naturalWidth;
         const imgH = s.colorImage!.naturalHeight;
         const scale = Math.max(s.w / imgW, s.h / imgH);
@@ -185,11 +186,12 @@ export function FachadaReveal() {
 
     s.rafId = requestAnimationFrame(renderFrame);
 
-    // Mouse handlers
     function onMouseMove(e: MouseEvent) {
       const rect = section!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+
+      s.mousePos = { x, y };
 
       if (!s.isActive) {
         s.isActive = true;
@@ -198,18 +200,18 @@ export function FachadaReveal() {
         s.currentBrushSize = s.targetBrushSize * 0.3;
       }
 
-      paintStroke(x, y);
+      addTrailPoints(x, y);
     }
 
     function onMouseLeave() {
       s.isActive = false;
       s.lastPos = null;
+      s.mousePos = null;
     }
 
     section.addEventListener('mousemove', onMouseMove);
     section.addEventListener('mouseleave', onMouseLeave);
 
-    // Resize observer
     let resizeTimeout: ReturnType<typeof setTimeout>;
     const ro = new ResizeObserver(() => {
       clearTimeout(resizeTimeout);
@@ -217,14 +219,20 @@ export function FachadaReveal() {
     });
     ro.observe(section);
 
-    // Mobile: show color image directly via canvas
     const isCoarse = window.matchMedia('(pointer: coarse)').matches;
     if (isCoarse) {
       const showColor = () => {
         if (s.colorLoaded) {
+          const imgW = s.colorImage!.naturalWidth;
+          const imgH = s.colorImage!.naturalHeight;
+          const scale = Math.max(s.w / imgW, s.h / imgH);
+          const drawW = imgW * scale;
+          const drawH = imgH * scale;
+          const drawX = (s.w - drawW) / 2;
+          const drawY = (s.h - drawH) / 2;
           ctx.clearRect(0, 0, s.w, s.h);
           ctx.globalAlpha = 0.6;
-          ctx.drawImage(s.colorImage!, 0, 0, s.w, s.h);
+          ctx.drawImage(s.colorImage!, drawX, drawY, drawW, drawH);
           ctx.globalAlpha = 1;
         } else {
           setTimeout(showColor, 100);
