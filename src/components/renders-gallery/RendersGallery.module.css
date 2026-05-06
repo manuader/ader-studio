@@ -1,0 +1,196 @@
+/* ─── DESKTOP: HORIZONTAL SCROLL GALLERY ─────────── */
+.scrollSection {
+  position: relative;
+  height: 1200vh;
+}
+
+.pinContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  position: relative;
+}
+
+/* ─── DECORATIVE LINES (animated via SVG <animate>) ─ */
+.decorLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600vw;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── TRACK ──────────────────────────────────────── */
+.track {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  padding: 0 40px;
+}
+
+/* ─── INTRO PANEL ─────────────────────────────────── */
+.intro {
+  flex-shrink: 0;
+  width: 40vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 80px;
+}
+
+.introLabel {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray2);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.introLabel::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gray3);
+}
+
+.introTitle {
+  font-family: var(--font-c);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.introTitle em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gray1);
+}
+
+.introSub {
+  font-family: var(--font-b);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray2);
+  line-height: 1.6;
+  margin-top: 24px;
+  max-width: 320px;
+}
+
+/* ─── IMAGE ITEMS ─────────────────────────────────── */
+.item {
+  position: relative;
+  overflow: hidden;
+}
+
+.itemImg {
+  object-fit: cover;
+}
+
+.itemCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px 12px;
+  background: linear-gradient(to top, rgba(26, 25, 23, 0.5) 0%, transparent 100%);
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 247, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.item:hover .itemCaption {
+  opacity: 1;
+}
+
+/* ─── TEXT BLOCKS ─────────────────────────────────── */
+.textBlock {
+  flex-shrink: 0;
+  width: 22vw;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textLabel {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray3);
+}
+
+.textContent {
+  font-family: var(--font-c);
+  font-size: clamp(20px, 2.2vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--gray1);
+}
+
+.textContent em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ─── END SPACER ──────────────────────────────────── */
+.endSpacer {
+  flex-shrink: 0;
+  width: 40vw;
+}
+
+/* ─── MOBILE ──────────────────────────────────────── */
+.mobileGallery {
+  padding: 80px 20px 60px;
+  background: var(--bg);
+}
+
+.mobileHeader {
+  margin-bottom: 40px;
+}
+
+.mobileGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.mobileItem {
+  overflow: hidden;
+}
+
+.mobileItem:nth-child(3n+1) {
+  grid-column: span 2;
+}
+
+.mobileImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}

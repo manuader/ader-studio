@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './Bim.module.css';
 
 const LAYERS = [
@@ -16,8 +16,75 @@ const STATS = [
   { num: 'BIM', label: 'Metodología en todos los proyectos' },
 ];
 
+const SHUFFLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const ANIM_DURATION = 1500;
+
+function easeOutQuint(t: number): number {
+  return 1 - Math.pow(1 - t, 5);
+}
+
+function shuffleBIM(t: number): string {
+  const target = 'BIM';
+  let result = '';
+  for (let i = 0; i < 3; i++) {
+    const lockAt = 0.5 + i * 0.2; // B locks at 0.5, I at 0.7, M at 0.9
+    if (t >= lockAt) {
+      result += target[i];
+    } else {
+      result += SHUFFLE_CHARS[Math.floor(Math.random() * SHUFFLE_CHARS.length)];
+    }
+  }
+  return result;
+}
+
 export function Bim() {
   const [activeLayer, setActiveLayer] = useState(0);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [animStarted, setAnimStarted] = useState(false);
+  const [displayValues, setDisplayValues] = useState(['0%', '0%', '---']);
+
+  // Trigger animation when stats enter viewport
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setAnimStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Run counting + shuffle animation
+  useEffect(() => {
+    if (!animStarted) return;
+    let start: number | null = null;
+    let rafId: number;
+
+    function tick(ts: number) {
+      if (!start) start = ts;
+      const t = Math.min((ts - start) / ANIM_DURATION, 1);
+      const eased = easeOutQuint(t);
+
+      setDisplayValues([
+        Math.round(eased * 30) + '%',
+        Math.round(eased * 100) + '%',
+        t >= 1 ? 'BIM' : shuffleBIM(t),
+      ]);
+
+      if (t < 1) {
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [animStarted]);
 
   return (
     <section id="bim" className={styles.bim}>
@@ -125,10 +192,10 @@ export function Bim() {
         </div>
       </div>
 
-      <div className={styles.stats}>
+      <div ref={statsRef} className={styles.stats}>
         {STATS.map((stat, i) => (
           <div key={stat.label} className={`${styles.stat} reveal rd${i + 1}`}>
-            <div className={styles.statNum}>{stat.num}</div>
+            <div className={styles.statNum}>{displayValues[i]}</div>
             <div className={styles.statLabel}>{stat.label}</div>
           </div>
         ))}

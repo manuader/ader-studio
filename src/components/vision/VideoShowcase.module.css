@@ -1,7 +1,7 @@
 /* ─── DESKTOP: SCROLL-DRIVEN FULLSCREEN ──────────── */
 .scrollSection {
   position: relative;
-  height: 600vh;
+  height: 800vh;
 }
 
 .pinContainer {

@@ -4,6 +4,7 @@ import { Hero } from '@/components/hero/Hero';
 import { Vision } from '@/components/vision/Vision';
 import { VideoShowcase } from '@/components/vision/VideoShowcase';
 import { Bim } from '@/components/bim/Bim';
+import { RendersGallery } from '@/components/renders-gallery/RendersGallery';
 import { Proceso } from '@/components/proceso/Proceso';
 import { Proyectos } from '@/components/proyectos/Proyectos';
 import { Servicios } from '@/components/servicios/Servicios';
@@ -21,6 +22,7 @@ export default function Home() {
         <Vision />
         <VideoShowcase />
         <Bim />
+        <RendersGallery />
         <Proceso />
         <Proyectos />
         <Servicios />
