@@ -46,7 +46,7 @@ export function LogoIntro() {
         </div>
         <div className={styles.hint}>
           <span ref={hintTextRef} className={styles.hintText}>
-            Scroll para comenzar
+            Click para comenzar
           </span>
           <div ref={hintLineRef} className={styles.hintLine} />
         </div>

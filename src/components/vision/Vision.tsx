@@ -4,7 +4,7 @@ const PILLARS = [
   { num: '01', title: 'Diseño Contextual', desc: 'Cada proyecto responde al sitio, el clima, los materiales disponibles y el contexto cultural. No existe una forma predeterminada — existe una respuesta específica.' },
   { num: '02', title: 'Honestidad Material', desc: 'Los materiales se usan por lo que son, no por lo que parecen. La estructura se expresa, la textura se celebra, el detalle se cuida.' },
   { num: '03', title: 'Tecnología + Diseño', desc: 'La metodología BIM no es solo un software — es una forma de pensar. Integramos inteligencia tecnológica en cada etapa del proceso de diseño.' },
-  { num: '04', title: 'Ezequiel Ader', desc: 'Arquitecto formado en FADU UBA, con experiencia en Bauhaus-Universität Weimar. 8 años de formación integrando diseño académico, tecnología y práctica profesional.' },
+  { num: '04', title: 'Ezequiel Ader', desc: 'Arquitecto formado en FADU UBA, con experiencia en Bauhaus-Universität Weimar. Tambien Maestro Mayor de Obras de la Escuela Tecnica ORT. 8 años de formación integrando diseño académico, tecnología y práctica profesional.' },
 ];
 
 export function Vision() {

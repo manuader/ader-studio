@@ -1,0 +1,155 @@
+.metodologia {
+  padding: 100px 40px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.card {
+  padding: 40px 32px 44px;
+  background: var(--bg2);
+  border-top: 2px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+  cursor: default;
+}
+
+.card:hover {
+  border-color: var(--white);
+  background: var(--bg3);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 28px;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.num {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--gray3);
+  margin-bottom: 16px;
+}
+
+.name {
+  font-family: var(--font-c);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.desc {
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gray2);
+  line-height: 1.65;
+}
+
+/* ─── CAROUSEL ────────────────────────────────────── */
+.carousel {
+  margin-top: 72px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  overflow: hidden;
+}
+
+.carouselLabel {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray2);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.carouselLabel::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gray3);
+}
+
+.carouselTrack {
+  display: flex;
+  width: max-content;
+  animation: scrollCarousel 30s linear infinite;
+}
+
+.carouselSlide {
+  display: flex;
+  align-items: center;
+  gap: 140px;
+  padding-right: 140px;
+}
+
+.carouselItem {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+}
+
+.carouselImg {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  transition: opacity 0.3s, filter 0.3s;
+}
+
+.carouselImg:hover {
+  opacity: 0.85;
+  filter: grayscale(0%);
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .metodologia {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

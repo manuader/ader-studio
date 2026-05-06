@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './VideoShowcase.module.css';
 
 const OVERLAYS = [
-  { start: 0.05, end: 0.30, label: 'Visualización 3D', title: 'Materialidad y luz natural' },
-  { start: 0.35, end: 0.60, label: 'Diseño contextual', title: 'Cada proyecto responde al sitio' },
+  { start: 0.05, end: 0.30, label: 'Diseño contextual', title: 'Cada proyecto responde al sitio' },
+  { start: 0.35, end: 0.60, label: 'Visualización 3D', title: 'Materialidad y luz natural' },
   { start: 0.65, end: 0.85, label: 'Render fotorrealista', title: 'IA aplicada al diseño' },
 ];
 

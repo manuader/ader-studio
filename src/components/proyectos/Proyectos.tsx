@@ -35,7 +35,7 @@ export function Proyectos() {
           <div className={styles.info}>
             <div className={styles.tag}>Residencial Privado</div>
             <div className={styles.name}>Casa Angel</div>
-            <div className={styles.meta}><span>Pinamar, Argentina</span><span>—</span><span>2024–2025</span></div>
+            <div className={styles.meta}><span>Pinamar, Argentina</span><span>—</span><span>2025–2026</span></div>
           </div>
           <div className={styles.hoverLine} />
         </div>
@@ -60,7 +60,7 @@ export function Proyectos() {
           <div className={styles.info}>
             <div className={styles.tag}>Reforma y modernizacion</div>
             <div className={styles.name}>Oficina Urbetrack</div>
-            <div className={styles.meta}><span>Av. Rivadavia 4260, CABA</span><span>—</span><span>2025</span></div>
+            <div className={styles.meta}><span>Av. Rivadavia 4260, CABA</span><span>—</span><span>2026</span></div>
           </div>
           <div className={styles.hoverLine} />
         </div>

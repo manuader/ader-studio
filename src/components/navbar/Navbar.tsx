@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { href: '#proyectos', label: 'Proyectos' },
   { href: '#vision', label: 'Estudio' },
   { href: '#bim', label: 'BIM' },
-  { href: '#servicios', label: 'Servicios' },
+  { href: '#metodologia', label: 'Metodologia' },
   { href: '#contacto', label: 'Contacto' },
 ];
 

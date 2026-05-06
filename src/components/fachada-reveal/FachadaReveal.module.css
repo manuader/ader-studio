@@ -1,0 +1,70 @@
+.section {
+  position: relative;
+  height: 85vh;
+  min-height: 500px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.imageLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.revealCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.content {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 2;
+}
+
+.label {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray2);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gray3);
+}
+
+.hint {
+  font-family: var(--font-b);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gray2);
+}
+
+@media (max-width: 768px) {
+  .section {
+    height: 60vh;
+  }
+  .content {
+    left: 20px;
+    bottom: 20px;
+  }
+}

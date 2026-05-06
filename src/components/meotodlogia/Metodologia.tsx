@@ -1,6 +1,17 @@
-import styles from './Servicios.module.css';
+import Image from 'next/image';
+import styles from './Metodologia.module.css';
 
-const SERVICES = [
+const TOOLS = [
+  { src: '/images/carrousel/Carrousel Software Logo.png', alt: 'Software' },
+  { src: '/images/carrousel/Gemini Logo.png', alt: 'Gemini' },
+  { src: '/images/carrousel/Carrousel Software Logo (1).png', alt: 'Software' },
+  { src: '/images/carrousel/OpenAI Logo.png', alt: 'OpenAI' },
+  { src: '/images/carrousel/Carrousel Software Logo (2).png', alt: 'Software' },
+  { src: '/images/carrousel/Carrousel Software Logo 5.png', alt: 'Software' },
+  { src: '/images/carrousel/Carrousel Software Logo 6.png', alt: 'Software' },
+];
+
+const STAGES = [
   {
     num: '01',
     name: 'Arquitectura',
@@ -55,20 +66,40 @@ const SERVICES = [
   },
 ];
 
-export function Servicios() {
+export function Metodologia() {
   return (
-    <section id="servicios" className={styles.servicios}>
+    <section id="metodologia" className={styles.metodologia}>
       <div className="sec-label reveal">Lo que hacemos</div>
-      <div className="sec-title reveal rd1" style={{ marginBottom: 0 }}>Servicios</div>
+      <div className="sec-title reveal rd1" style={{ marginBottom: 0 }}>Metodologia de trabajo</div>
       <div className={styles.grid}>
-        {SERVICES.map((service, i) => (
-          <div key={service.num} className={`${styles.card} reveal rd${i + 1}`}>
-            <div className={styles.icon}>{service.icon}</div>
-            <div className={styles.num}>{service.num}</div>
-            <div className={styles.name}>{service.name}</div>
-            <p className={styles.desc}>{service.desc}</p>
+        {STAGES.map((stage, i) => (
+          <div key={stage.num} className={`${styles.card} reveal rd${i + 1}`}>
+            <div className={styles.icon}>{stage.icon}</div>
+            <div className={styles.num}>{stage.num}</div>
+            <div className={styles.name}>{stage.name}</div>
+            <p className={styles.desc}>{stage.desc}</p>
           </div>
         ))}
+      </div>
+
+      <div className={`${styles.carousel} reveal`}>
+        <div className={styles.carouselLabel}>Herramientas de trabajo</div>
+        <div className={styles.carouselTrack}>
+          <div className={styles.carouselSlide}>
+            {TOOLS.map((logo, i) => (
+              <div key={i} className={styles.carouselItem}>
+                <Image src={logo.src} alt={logo.alt} width={180} height={72} className={styles.carouselImg} />
+              </div>
+            ))}
+          </div>
+          <div className={styles.carouselSlide} aria-hidden="true">
+            {TOOLS.map((logo, i) => (
+              <div key={`dup-${i}`} className={styles.carouselItem}>
+                <Image src={logo.src} alt={logo.alt} width={180} height={72} className={styles.carouselImg} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
