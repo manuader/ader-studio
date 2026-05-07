@@ -196,7 +196,7 @@ export function FachadaReveal() {
       if (!s.isActive) {
         s.isActive = true;
         s.lastPos = { x, y };
-        s.targetBrushSize = Math.min(s.w, s.h) * 0.09;
+        s.targetBrushSize = Math.min(s.w, s.h) * 0.14;
         s.currentBrushSize = s.targetBrushSize * 0.3;
       }
 
