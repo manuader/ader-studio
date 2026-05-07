@@ -14,6 +14,16 @@
   pointer-events: none;
 }
 
+.decorLines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .eyebrow {
   font-family: var(--font-c);
   font-size: 11px;
