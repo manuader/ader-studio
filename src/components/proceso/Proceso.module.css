@@ -8,57 +8,21 @@
   margin-bottom: 72px;
 }
 
-.layers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.diagram {
-  position: relative;
-  height: 560px;
-  background: var(--bg2);
-  overflow: hidden;
-}
-
-.layerStack {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.layerItem {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.layerItemVisible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .steps {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  background: var(--bg2);
-  padding: 0 48px;
-  justify-content: center;
+  margin-bottom: 40px;
 }
 
 .step {
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 24px 24px 20px;
+  border-left: 1px solid var(--border);
   cursor: pointer;
   transition: all 0.25s;
 }
-.step:first-child {
-  border-top: 1px solid var(--border);
+.step:last-child {
+  border-right: 1px solid var(--border);
 }
 
 .stepNum {
@@ -72,12 +36,12 @@
 
 .stepTitle {
   font-family: var(--font-c);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--gray1);
-  margin-bottom: 10px;
+  color: var(--gray2);
+  margin-bottom: 8px;
   transition: color 0.25s;
 }
 
@@ -109,20 +73,32 @@
 }
 .stepBar {
   height: 100%;
-  width: 0;
   background: var(--gray2);
-  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.stepActive .stepBar {
+
+.videoWrap {
   width: 100%;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 @media (max-width: 1024px) {
-  .layers {
-    grid-template-columns: 1fr;
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .diagram {
-    height: 280px;
+  .step:nth-child(2) {
+    border-right: 1px solid var(--border);
+  }
+  .step:nth-child(3) {
+    border-top: 1px solid var(--border);
+  }
+  .step:nth-child(4) {
+    border-top: 1px solid var(--border);
   }
 }
 
@@ -130,5 +106,21 @@
   .proceso {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .step {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .step:last-child {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:nth-child(2) {
+    border-right: none;
   }
 }
