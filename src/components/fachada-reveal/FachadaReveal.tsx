@@ -36,6 +36,7 @@ export function FachadaReveal() {
     lastPos: { x: number; y: number } | null;
     trail: { x: number; y: number; time: number }[];
     isActive: boolean;
+    isClicking: boolean;
     rafId: number | null;
     targetBrushSize: number;
     currentBrushSize: number;
@@ -51,6 +52,7 @@ export function FachadaReveal() {
     lastPos: null,
     trail: [],
     isActive: false,
+    isClicking: false,
     rafId: null,
     targetBrushSize: 0,
     currentBrushSize: 0,
@@ -165,7 +167,7 @@ export function FachadaReveal() {
           s.maskCtx.globalAlpha = 1;
         }
 
-        // Composite: color image (object-fit: cover) masked by trail
+        // Composite: color image (object-fit: cover)
         const imgW = s.colorImage!.naturalWidth;
         const imgH = s.colorImage!.naturalHeight;
         const scale = Math.max(s.w / imgW, s.h / imgH);
@@ -176,9 +178,13 @@ export function FachadaReveal() {
 
         ctx.clearRect(0, 0, s.w, s.h);
         ctx.drawImage(s.colorImage!, drawX, drawY, drawW, drawH);
-        ctx.globalCompositeOperation = 'destination-in';
-        ctx.drawImage(s.maskCanvas, 0, 0);
-        ctx.globalCompositeOperation = 'source-over';
+
+        // If clicking, show full color; otherwise mask by trail
+        if (!s.isClicking) {
+          ctx.globalCompositeOperation = 'destination-in';
+          ctx.drawImage(s.maskCanvas, 0, 0);
+          ctx.globalCompositeOperation = 'source-over';
+        }
       }
 
       s.rafId = requestAnimationFrame(renderFrame);
@@ -203,14 +209,25 @@ export function FachadaReveal() {
       addTrailPoints(x, y);
     }
 
+    function onMouseDown() {
+      s.isClicking = true;
+    }
+
+    function onMouseUp() {
+      s.isClicking = false;
+    }
+
     function onMouseLeave() {
       s.isActive = false;
+      s.isClicking = false;
       s.lastPos = null;
       s.mousePos = null;
     }
 
     section.addEventListener('mousemove', onMouseMove);
+    section.addEventListener('mousedown', onMouseDown);
     section.addEventListener('mouseleave', onMouseLeave);
+    window.addEventListener('mouseup', onMouseUp);
 
     let resizeTimeout: ReturnType<typeof setTimeout>;
     const ro = new ResizeObserver(() => {
@@ -243,7 +260,9 @@ export function FachadaReveal() {
 
     return () => {
       section.removeEventListener('mousemove', onMouseMove);
+      section.removeEventListener('mousedown', onMouseDown);
       section.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('mouseup', onMouseUp);
       if (s.rafId !== null) cancelAnimationFrame(s.rafId);
       ro.disconnect();
       clearTimeout(resizeTimeout);
