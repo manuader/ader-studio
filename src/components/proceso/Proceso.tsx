@@ -69,36 +69,38 @@ export function Proceso() {
         <div className="sec-title reveal rd1">Arquitectura<br /><em>que emerge</em><br />del lugar.</div>
       </div>
 
-      <div className={styles.steps}>
-        {STEPS.map((step, i) => (
-          <div
-            key={step.num}
-            className={`${styles.step} ${activeStep === i ? styles.stepActive : ''}`}
-            onClick={() => handleStepClick(i)}
-          >
-            <div className={styles.stepNum}>{step.num}</div>
-            <div className={styles.stepTitle}>{step.title}</div>
-            <div className={styles.stepDesc}>{step.desc}</div>
-            <div className={styles.stepBarWrap}>
-              <div
-                className={styles.stepBar}
-                style={{ width: activeStep === i ? `${progress * 100}%` : '0%' }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className={`${styles.diagramGrid} reveal`}>
+        <div className={styles.controls}>
+          {STEPS.map((step, i) => (
+            <button
+              key={step.num}
+              className={`${styles.btn} ${activeStep === i ? styles.btnActive : ''}`}
+              onClick={() => handleStepClick(i)}
+            >
+              <span className={styles.btnNum}>{step.num}</span>
+              <span className={styles.btnLabel}>{step.title}</span>
+              <span className={styles.btnSub}>{step.desc}</span>
+              <div className={styles.stepBarWrap}>
+                <div
+                  className={styles.stepBar}
+                  style={{ width: activeStep === i ? `${progress * 100}%` : '0%' }}
+                />
+              </div>
+            </button>
+          ))}
+        </div>
 
-      <div className={styles.videoWrap}>
-        <video
-          ref={videoRef}
-          src="/videos/terereno-ai.mp4"
-          muted
-          playsInline
-          loop
-          preload="metadata"
-          className={styles.video}
-        />
+        <div className={styles.videoWrap}>
+          <video
+            ref={videoRef}
+            src="/videos/terereno-ai.mp4"
+            muted
+            playsInline
+            loop
+            preload="metadata"
+            className={styles.video}
+          />
+        </div>
       </div>
     </section>
   );

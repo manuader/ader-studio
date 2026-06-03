@@ -8,67 +8,81 @@
   margin-bottom: 72px;
 }
 
-.steps {
+.diagramGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin-bottom: 40px;
+  grid-template-columns: 320px 1fr;
+  gap: 2px;
 }
 
-.step {
-  padding: 24px 24px 20px;
-  border-left: 1px solid var(--border);
+.videoWrap {
+  position: relative;
+  height: 480px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.btn {
+  flex: 1;
+  padding: 16px 20px;
+  background: var(--bg);
+  border: none;
   cursor: pointer;
-  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.2s;
+  text-align: left;
 }
-.step:last-child {
-  border-right: 1px solid var(--border);
+.btn:hover,
+.btnActive {
+  background: var(--bg3);
+}
+.btnActive .btnLabel {
+  color: var(--white);
 }
 
-.stepNum {
+.btnNum {
   font-family: var(--font-c);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;
   color: var(--gray3);
-  margin-bottom: 8px;
 }
-
-.stepTitle {
+.btnLabel {
   font-family: var(--font-c);
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gray2);
-  margin-bottom: 8px;
-  transition: color 0.25s;
+  color: var(--gray1);
+  transition: color 0.2s;
 }
-
-.stepActive .stepTitle {
-  color: var(--white);
-}
-
-.stepDesc {
+.btnSub {
   font-family: var(--font-b);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 300;
   color: var(--gray2);
-  line-height: 1.65;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-.stepActive .stepDesc {
-  max-height: 80px;
-  opacity: 1;
+  line-height: 1.4;
 }
 
 .stepBarWrap {
   height: 1px;
   background: var(--border);
-  margin-top: 12px;
+  margin-top: 8px;
   overflow: hidden;
 }
 .stepBar {
@@ -76,29 +90,12 @@
   background: var(--gray2);
 }
 
-.videoWrap {
-  width: 100%;
-  overflow: hidden;
-}
-
-.video {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 @media (max-width: 1024px) {
-  .steps {
-    grid-template-columns: repeat(2, 1fr);
+  .diagramGrid {
+    grid-template-columns: 1fr;
   }
-  .step:nth-child(2) {
-    border-right: 1px solid var(--border);
-  }
-  .step:nth-child(3) {
-    border-top: 1px solid var(--border);
-  }
-  .step:nth-child(4) {
-    border-top: 1px solid var(--border);
+  .videoWrap {
+    height: 280px;
   }
 }
 
@@ -106,21 +103,5 @@
   .proceso {
     padding-left: 20px;
     padding-right: 20px;
-  }
-  .steps {
-    grid-template-columns: 1fr;
-  }
-  .step {
-    border-left: none;
-    border-top: 1px solid var(--border);
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .step:last-child {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-  .step:nth-child(2) {
-    border-right: none;
   }
 }
