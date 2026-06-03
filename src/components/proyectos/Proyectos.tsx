@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './Proyectos.module.css';
 
 export function Proyectos() {
@@ -47,16 +46,12 @@ export function Proyectos() {
       <div className={styles.grid}>
         {/* Proyecto 1: Casa Angel */}
         <div className={`${styles.card} reveal rd1`}>
-          <div className={styles.placeholder}>
-            <Image
-              src="/images/projects/CASA ANGEL.png"
-              alt="Casa Angel"
-              width={1536}
-              height={1024}
-              className={styles.cardImg}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
+          <img
+            src="/images/projects/CASA ANGEL.png"
+            alt="Casa Angel"
+            className={styles.cardImg}
+            draggable={false}
+          />
           <div className={styles.info}>
             <div className={styles.tag}>Residencial Privado</div>
             <div className={styles.name}>Casa Angel</div>
@@ -67,16 +62,12 @@ export function Proyectos() {
 
         {/* Proyecto 2: Urbetrack */}
         <div className={`${styles.card} reveal rd2`}>
-          <div className={styles.placeholder}>
-            <Image
-              src="/images/projects/URBETRACK.png"
-              alt="Oficina Urbetrack"
-              width={1491}
-              height={1055}
-              className={styles.cardImg}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
+          <img
+            src="/images/projects/URBETRACK.png"
+            alt="Oficina Urbetrack"
+            className={styles.cardImg}
+            draggable={false}
+          />
           <div className={styles.info}>
             <div className={styles.tag}>Reforma y modernizacion</div>
             <div className={styles.name}>Oficina Urbetrack</div>
