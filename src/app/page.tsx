@@ -20,13 +20,13 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <VideoShowcase />
         <Vision />
-        <FachadaReveal />
-        <Bim />
-        <RendersGallery />
         <Proceso />
+        <VideoShowcase />
+        <Bim />
+        <FachadaReveal />
         <Proyectos />
+        <RendersGallery />
         <Metodologia />
         <Contacto />
       </main>
