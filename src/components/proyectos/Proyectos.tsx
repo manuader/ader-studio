@@ -45,35 +45,39 @@ export function Proyectos() {
       </div>
       <div className={styles.grid}>
         {/* Proyecto 1: Casa Angel */}
-        <div className={`${styles.card} reveal rd1`}>
-          <img
-            src="/images/projects/CASA ANGEL.png"
-            alt="Casa Angel"
-            className={styles.cardImg}
-            draggable={false}
-          />
+        <div className={`${styles.cardWrap} reveal rd1`}>
+          <div className={styles.card}>
+            <img
+              src="/images/projects/CASA ANGEL.png"
+              alt="Casa Angel"
+              className={styles.cardImg}
+              draggable={false}
+            />
+            <div className={styles.hoverLine} />
+          </div>
           <div className={styles.info}>
             <div className={styles.tag}>Residencial Privado</div>
             <div className={styles.name}>Casa Angel</div>
             <div className={styles.meta}><span>Pinamar, Argentina</span><span>—</span><span>2025–2026</span></div>
           </div>
-          <div className={styles.hoverLine} />
         </div>
 
         {/* Proyecto 2: Urbetrack */}
-        <div className={`${styles.card} reveal rd2`}>
-          <img
-            src="/images/projects/URBETRACK.png"
-            alt="Oficina Urbetrack"
-            className={styles.cardImg}
-            draggable={false}
-          />
+        <div className={`${styles.cardWrap} reveal rd2`}>
+          <div className={styles.card}>
+            <img
+              src="/images/projects/URBETRACK.png"
+              alt="Oficina Urbetrack"
+              className={styles.cardImg}
+              draggable={false}
+            />
+            <div className={styles.hoverLine} />
+          </div>
           <div className={styles.info}>
             <div className={styles.tag}>Reforma y modernizacion</div>
             <div className={styles.name}>Oficina Urbetrack</div>
             <div className={styles.meta}><span>Av. Rivadavia 4260, CABA</span><span>—</span><span>2026</span></div>
           </div>
-          <div className={styles.hoverLine} />
         </div>
       </div>
       <div className={`${styles.footer} reveal`}>
