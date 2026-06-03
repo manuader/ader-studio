@@ -49,6 +49,19 @@
   display: block;
 }
 
+.cardImg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card:hover .cardImg {
+  transform: scale(1.03);
+}
+
 .info {
   position: absolute;
   bottom: 0;
