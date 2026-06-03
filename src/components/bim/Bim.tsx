@@ -18,6 +18,8 @@ const STATS = [
 
 const SHUFFLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 const ANIM_DURATION = 1500;
+const AUTO_ADVANCE_MS = 3000;
+const TICK_MS = 50;
 
 function easeOutQuint(t: number): number {
   return 1 - Math.pow(1 - t, 5);
@@ -39,9 +41,12 @@ function shuffleBIM(t: number): string {
 
 export function Bim() {
   const [activeLayer, setActiveLayer] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [animStarted, setAnimStarted] = useState(false);
   const [displayValues, setDisplayValues] = useState(['0%', '0%', '---']);
+  const [inView, setInView] = useState(false);
 
   // Trigger animation when stats enter viewport
   useEffect(() => {
@@ -59,6 +64,37 @@ export function Bim() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Track whether the section is on screen — drives the auto-advance carousel
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Auto-advance layers every AUTO_ADVANCE_MS when section is on screen.
+  // Re-runs on every activeLayer change (auto or manual click), which naturally
+  // resets the progress bar and timer.
+  useEffect(() => {
+    if (!inView) return;
+    setProgress(0);
+    let startTime = performance.now();
+    const id = setInterval(() => {
+      const elapsed = performance.now() - startTime;
+      const p = Math.min(elapsed / AUTO_ADVANCE_MS, 1);
+      setProgress(p);
+      if (p >= 1) {
+        setActiveLayer((prev) => (prev + 1) % LAYERS.length);
+        startTime = performance.now();
+      }
+    }, TICK_MS);
+    return () => clearInterval(id);
+  }, [inView, activeLayer]);
 
   // Run counting + shuffle animation
   useEffect(() => {
@@ -87,7 +123,7 @@ export function Bim() {
   }, [animStarted]);
 
   return (
-    <section id="bim" className={styles.bim}>
+    <section id="bim" ref={sectionRef} className={styles.bim}>
       <div className={styles.header}>
         <div>
           <div className="sec-label reveal">Metodología</div>
@@ -122,6 +158,12 @@ export function Bim() {
               <span className={styles.btnNum}>{layer.num}</span>
               <span className={styles.btnLabel}>{layer.label}</span>
               <span className={styles.btnSub}>{layer.sub}</span>
+              <div className={styles.stepBarWrap}>
+                <div
+                  className={styles.stepBar}
+                  style={{ width: activeLayer === i ? `${progress * 100}%` : '0%' }}
+                />
+              </div>
             </button>
           ))}
         </div>

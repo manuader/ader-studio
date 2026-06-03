@@ -101,6 +101,17 @@
   line-height: 1.4;
 }
 
+.stepBarWrap {
+  height: 1px;
+  background: var(--border);
+  margin-top: 8px;
+  overflow: hidden;
+}
+.stepBar {
+  height: 100%;
+  background: var(--gray2);
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
