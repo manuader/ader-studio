@@ -47,7 +47,7 @@ export function useLogoAnimation({
         wipeTriggeredRef.current = true;
         if (logoFullWrapRef.current) {
           logoFullWrapRef.current.style.opacity = '1';
-          logoFullWrapRef.current.style.transition = 'clip-path 2.4s cubic-bezier(0.22,1,0.36,1)';
+          logoFullWrapRef.current.style.transition = 'clip-path 1.2s cubic-bezier(0.22,1,0.36,1)';
           logoFullWrapRef.current.style.clipPath = 'inset(0 0% 0 0 round 50%)';
         }
       }
@@ -67,7 +67,7 @@ export function useLogoAnimation({
         wipeTriggeredRef.current = true;
         if (logoFullWrapRef.current) {
           logoFullWrapRef.current.style.opacity = '1';
-          logoFullWrapRef.current.style.transition = 'clip-path 2.4s cubic-bezier(0.22,1,0.36,1)';
+          logoFullWrapRef.current.style.transition = 'clip-path 1.2s cubic-bezier(0.22,1,0.36,1)';
           logoFullWrapRef.current.style.clipPath = 'inset(0 0% 0 0 round 50%)';
         }
       }
@@ -86,7 +86,7 @@ export function useLogoAnimation({
             const dx = (navRect.left + navRect.width / 2) - (wrapRect.left + wrapRect.width / 2);
             const dy = (navRect.top + navRect.height / 2) - (wrapRect.top + wrapRect.height / 2);
             const scale = navRect.width / wrapRect.width;
-            spinWrapRef.current.style.transition = 'transform 0.85s cubic-bezier(0.6,0,0.2,1)';
+            spinWrapRef.current.style.transition = 'transform 0.7s cubic-bezier(0.6,0,0.2,1)';
             spinWrapRef.current.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
           }
 
@@ -105,10 +105,10 @@ export function useLogoAnimation({
               document.body.style.overflow = '';
               document.documentElement.classList.add('cursor-ready');
               window.dispatchEvent(new Event('intro-complete'));
-            }, 850);
-          }, 900);
-        }, 1100);
-      }, 1800);
+            }, 400);
+          }, 400);
+        }, 300);
+      }, 600);
     }
 
     function startAnimation() {
