@@ -28,7 +28,7 @@
 
 .diagram {
   position: relative;
-  height: 480px;
+  aspect-ratio: 4961 / 3508;
   background: var(--bg);
   border: 1px solid var(--border);
   overflow: hidden;
@@ -38,15 +38,17 @@
 .layer {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: opacity 0.5s ease;
 }
 
-.layer svg {
+.layerImg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .controls {
