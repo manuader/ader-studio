@@ -1,7 +1,7 @@
 /* ─── DESKTOP: HORIZONTAL SCROLL GALLERY ─────────── */
 .scrollSection {
   position: relative;
-  height: 1200vh;
+  height: 1800vh;
 }
 
 .pinContainer {
@@ -96,11 +96,17 @@
 /* ─── IMAGE ITEMS ─────────────────────────────────── */
 .item {
   position: relative;
+  flex-shrink: 0;
   overflow: hidden;
 }
 
 .itemImg {
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .itemCaption {
@@ -127,8 +133,9 @@
 /* ─── TEXT BLOCKS ─────────────────────────────────── */
 .textBlock {
   flex-shrink: 0;
-  width: 22vw;
-  padding: 0 40px;
+  width: 26vw;
+  align-self: flex-start;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -175,22 +182,18 @@
 }
 
 .mobileGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  column-count: 2;
+  column-gap: 8px;
 }
 
 .mobileItem {
+  break-inside: avoid;
+  margin-bottom: 8px;
   overflow: hidden;
-}
-
-.mobileItem:nth-child(3n+1) {
-  grid-column: span 2;
 }
 
 .mobileImg {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
 }
