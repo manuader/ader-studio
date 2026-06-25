@@ -55,7 +55,6 @@ export function Proyectos() {
           <div className="sec-label reveal">Portfolio</div>
           <div className="sec-title reveal rd1">Proyectos<br /><em>Destacados</em></div>
         </div>
-        <a href="#fadu" className="btn-text reveal rd2">Ver todos los proyectos →</a>
       </div>
       <div className={`${styles.carousel} reveal`}>
         <button
@@ -98,12 +97,6 @@ export function Proyectos() {
         >
           <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><polyline points="5,2 10,7 5,12" stroke="currentColor" strokeWidth="1.2" fill="none" /></svg>
         </button>
-      </div>
-      <div className={`${styles.footer} reveal`}>
-        <a href="#fadu" className="btn-ghost">
-          Ver todos los proyectos
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1" /><polyline points="8,2 13,7 8,12" stroke="currentColor" strokeWidth="1" fill="none" /></svg>
-        </a>
       </div>
     </section>
   );

@@ -4,63 +4,83 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './Proceso.module.css';
 
 const STEPS = [
-  { num: '01 —', title: 'Terreno y Sitio', desc: 'Análisis topográfico, orientación, vistas, accesos y condicionantes del entorno inmediato.' },
-  { num: '02 —', title: 'Clima y Energía', desc: 'Estudio solar, vientos dominantes, humedad y estrategias bioclimáticas pasivas.' },
-  { num: '03 —', title: 'Materialidad', desc: 'Selección de materiales en diálogo con el sitio, el programa y la capacidad constructiva local.' },
-  { num: '04 —', title: 'La Arquitectura', desc: 'La forma emerge de la síntesis de todos los factores anteriores. No se impone — se descubre.' },
+  {
+    num: '01',
+    title: 'Terreno Base',
+    desc: 'Relevamiento del terreno existente: límites, dimensiones y condicionantes del sitio.',
+    img: '/images/process/01. TERRENO BASE ANGEL.png',
+  },
+  {
+    num: '02',
+    title: 'Grilla y Trazado',
+    desc: 'Estructuración del terreno mediante una grilla que ordena el trazado y las proporciones.',
+    img: '/images/process/02. TERRENO ANGEL GRILLA.png',
+  },
+  {
+    num: '03',
+    title: 'Análisis con IA',
+    desc: 'Estudio del plano del terreno asistido por inteligencia artificial para explorar alternativas.',
+    img: '/images/process/03. PLANO TERRENO IA.png',
+  },
+  {
+    num: '04',
+    title: 'Composición de la Forma',
+    desc: 'Generación de la composición volumétrica a partir de los datos del sitio y el programa.',
+    img: '/images/process/04. COMPOSICION FORMA IA.png',
+  },
+  {
+    num: '05',
+    title: 'Morfología',
+    desc: 'Definición de la morfología del proyecto: la forma emerge de la síntesis del proceso.',
+    img: '/images/process/05. MORFOLOGIA.png',
+  },
+  {
+    num: '06',
+    title: 'Planta Baja',
+    desc: 'Resolución de la planta baja: distribución funcional y relaciones espaciales finales.',
+    img: '/images/process/06. PB.png',
+  },
 ];
+
+const AUTO_ADVANCE_MS = 3000;
+const TICK_MS = 50;
 
 export function Proceso() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [inView, setInView] = useState(false);
 
+  // Track whether the section is on screen — drives the auto-advance carousel
   useEffect(() => {
-    const section = sectionRef.current;
-    const video = videoRef.current;
-    if (!section || !video) return;
-
-    // Auto-play when in viewport
+    const el = sectionRef.current;
+    if (!el) return;
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.5 }
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 }
     );
-    io.observe(section);
-
-    // Sync steps with video time
-    function onTimeUpdate() {
-      const v = videoRef.current;
-      if (!v || !v.duration) return;
-      const segmentDuration = v.duration / STEPS.length;
-      const step = Math.min(Math.floor(v.currentTime / segmentDuration), STEPS.length - 1);
-      const segProgress = (v.currentTime - step * segmentDuration) / segmentDuration;
-      setActiveStep(step);
-      setProgress(segProgress);
-    }
-
-    video.addEventListener('timeupdate', onTimeUpdate);
-
-    return () => {
-      io.disconnect();
-      video.removeEventListener('timeupdate', onTimeUpdate);
-    };
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
-  function handleStepClick(i: number) {
-    const video = videoRef.current;
-    if (!video || !video.duration) return;
-    const segmentDuration = video.duration / STEPS.length;
-    video.currentTime = i * segmentDuration;
-    setActiveStep(i);
+  // Auto-advance steps every AUTO_ADVANCE_MS when section is on screen.
+  // Re-runs on every activeStep change (auto or manual click), which naturally
+  // resets the progress bar and timer.
+  useEffect(() => {
+    if (!inView) return;
     setProgress(0);
-  }
+    let startTime = performance.now();
+    const id = setInterval(() => {
+      const elapsed = performance.now() - startTime;
+      const p = Math.min(elapsed / AUTO_ADVANCE_MS, 1);
+      setProgress(p);
+      if (p >= 1) {
+        setActiveStep((prev) => (prev + 1) % STEPS.length);
+        startTime = performance.now();
+      }
+    }, TICK_MS);
+    return () => clearInterval(id);
+  }, [inView, activeStep]);
 
   return (
     <section id="proceso" ref={sectionRef} className={styles.proceso}>
@@ -75,9 +95,9 @@ export function Proceso() {
             <button
               key={step.num}
               className={`${styles.btn} ${activeStep === i ? styles.btnActive : ''}`}
-              onClick={() => handleStepClick(i)}
+              onClick={() => setActiveStep(i)}
             >
-              <span className={styles.btnNum}>{step.num}</span>
+              <span className={styles.btnNum}>{step.num} —</span>
               <span className={styles.btnLabel}>{step.title}</span>
               <span className={styles.btnSub}>{step.desc}</span>
               <div className={styles.stepBarWrap}>
@@ -90,16 +110,17 @@ export function Proceso() {
           ))}
         </div>
 
-        <div className={styles.videoWrap}>
-          <video
-            ref={videoRef}
-            src="/videos/terereno-ai.mp4"
-            muted
-            playsInline
-            loop
-            preload="metadata"
-            className={styles.video}
-          />
+        <div className={styles.imageWrap}>
+          {STEPS.map((step, i) => (
+            <img
+              key={step.num}
+              src={step.img}
+              alt={step.title}
+              className={styles.image}
+              style={{ opacity: activeStep === i ? 1 : 0 }}
+              draggable={false}
+            />
+          ))}
         </div>
       </div>
     </section>

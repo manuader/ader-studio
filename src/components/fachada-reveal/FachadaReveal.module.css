@@ -34,29 +34,31 @@
 
 .label {
   font-family: var(--font-c);
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--gray2);
+  color: var(--white);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 10px;
+  gap: 16px;
+  margin-bottom: 14px;
 }
 .label::before {
   content: '';
   display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--gray3);
+  width: 36px;
+  height: 2px;
+  background: var(--white);
 }
 
 .hint {
   font-family: var(--font-b);
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--gray2);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--white);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {

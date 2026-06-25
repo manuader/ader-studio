@@ -25,4 +25,12 @@ export const projects: Project[] = [
     location: 'Av. Rivadavia 4260, CABA',
     year: '2026',
   },
+  // {
+  //   image: '/images/projects/URBETRACK.png',
+  //   alt: 'Casa Piaggio',
+  //   tag: 'Residencial Privado',
+  //   name: 'Casa Piaggio',
+  //   location: 'San Vicente, Buenos Aires',
+  //   year: '2026–2027',
+  // },
 ];
