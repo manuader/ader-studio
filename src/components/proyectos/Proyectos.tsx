@@ -1,6 +1,20 @@
+'use client';
+
+import { useRef } from 'react';
 import styles from './Proyectos.module.css';
+import { projects } from './projects';
 
 export function Proyectos() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector(`.${styles.cardWrap}`) as HTMLElement | null;
+    const amount = card ? card.offsetWidth + 24 : track.clientWidth * 0.8;
+    track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  };
+
   return (
     <section id="proyectos" className={styles.proyectos}>
       <svg className={styles.decorLines} viewBox="0 0 2000 1000" preserveAspectRatio="none" fill="none">
@@ -43,42 +57,47 @@ export function Proyectos() {
         </div>
         <a href="#fadu" className="btn-text reveal rd2">Ver todos los proyectos →</a>
       </div>
-      <div className={styles.grid}>
-        {/* Proyecto 1: Casa Angel */}
-        <div className={`${styles.cardWrap} reveal rd1`}>
-          <div className={styles.card}>
-            <img
-              src="/images/projects/CASA ANGEL.png"
-              alt="Casa Angel"
-              className={styles.cardImg}
-              draggable={false}
-            />
-            <div className={styles.hoverLine} />
-          </div>
-          <div className={styles.info}>
-            <div className={styles.tag}>Residencial Privado</div>
-            <div className={styles.name}>Casa Angel</div>
-            <div className={styles.meta}><span>Pinamar, Argentina</span><span>—</span><span>2025–2026</span></div>
-          </div>
+      <div className={`${styles.carousel} reveal`}>
+        <button
+          type="button"
+          className={`${styles.navBtn} ${styles.navPrev}`}
+          aria-label="Proyecto anterior"
+          onClick={() => scrollByCard(-1)}
+        >
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><polyline points="9,2 4,7 9,12" stroke="currentColor" strokeWidth="1.2" fill="none" /></svg>
+        </button>
+
+        <div className={styles.track} ref={trackRef}>
+          {projects.map((project) => (
+            <div className={styles.cardWrap} key={project.name}>
+              <div className={styles.card}>
+                <img
+                  src={project.image}
+                  alt={project.alt}
+                  className={styles.cardImg}
+                  draggable={false}
+                />
+                <div className={styles.hoverLine} />
+              </div>
+              <div className={styles.info}>
+                <div className={styles.tag}>{project.tag}</div>
+                <div className={styles.name}>{project.name}</div>
+                <div className={styles.meta}>
+                  <span>{project.location}</span><span>—</span><span>{project.year}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Proyecto 2: Urbetrack */}
-        <div className={`${styles.cardWrap} reveal rd2`}>
-          <div className={styles.card}>
-            <img
-              src="/images/projects/URBETRACK.png"
-              alt="Oficina Urbetrack"
-              className={styles.cardImg}
-              draggable={false}
-            />
-            <div className={styles.hoverLine} />
-          </div>
-          <div className={styles.info}>
-            <div className={styles.tag}>Reforma y modernizacion</div>
-            <div className={styles.name}>Oficina Urbetrack</div>
-            <div className={styles.meta}><span>Av. Rivadavia 4260, CABA</span><span>—</span><span>2026</span></div>
-          </div>
-        </div>
+        <button
+          type="button"
+          className={`${styles.navBtn} ${styles.navNext}`}
+          aria-label="Proyecto siguiente"
+          onClick={() => scrollByCard(1)}
+        >
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><polyline points="5,2 10,7 5,12" stroke="currentColor" strokeWidth="1.2" fill="none" /></svg>
+        </button>
       </div>
       <div className={`${styles.footer} reveal`}>
         <a href="#fadu" className="btn-ghost">
