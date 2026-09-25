@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import styles from './Proyectos.module.css';
 import { projects } from './projects';
 
@@ -67,8 +68,9 @@ export function Proyectos() {
         </button>
 
         <div className={styles.track} ref={trackRef}>
-          {projects.map((project) => (
-            <div className={styles.cardWrap} key={project.name}>
+          {projects.map((project) => {
+            const content = (
+              <>
               <div className={styles.card}>
                 <img
                   src={project.image}
@@ -85,8 +87,16 @@ export function Proyectos() {
                   <span>{project.location}</span><span>—</span><span>{project.year}</span>
                 </div>
               </div>
-            </div>
-          ))}
+              </>
+            );
+            return project.href ? (
+              <Link href={project.href} className={`${styles.cardWrap} ${styles.cardLink}`} key={project.name}>
+                {content}
+              </Link>
+            ) : (
+              <div className={styles.cardWrap} key={project.name}>{content}</div>
+            );
+          })}
         </div>
 
         <button

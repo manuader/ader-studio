@@ -5,6 +5,8 @@ export interface Project {
   name: string;
   location: string;
   year: string;
+  /** Página del caso de estudio, si existe. */
+  href?: string;
 }
 
 // Para agregar un nuevo proyecto, simplemente añade un objeto a esta lista.
@@ -24,6 +26,7 @@ export const projects: Project[] = [
     name: 'Oficina Urbetrack',
     location: 'Av. Rivadavia 4260, CABA',
     year: '2026',
+    href: '/proyectos/urbetrack',
   },
   // {
   //   image: '/images/projects/URBETRACK.png',
