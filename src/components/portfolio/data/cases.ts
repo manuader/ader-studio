@@ -31,7 +31,7 @@ export const casaAngel: CaseStudy = {
   "title": "Casa Angel",
   "tag": "Residencial Privado",
   "location": "Pinamar, Argentina",
-  "years": "2024–2025",
+  "years": "2024–2026",
   "lede": "Un refugio elevado en el bosque de Pinamar, contado en las cuatro etapas del proyecto: del estudio del sitio a la representación final.",
   "hero": {
     "src": "/images/portfolio/casa-angel/hero.webp",

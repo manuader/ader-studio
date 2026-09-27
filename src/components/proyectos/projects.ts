@@ -17,7 +17,7 @@ export const projects: Project[] = [
     tag: 'Residencial Privado',
     name: 'Casa Angel',
     location: 'Pinamar, Argentina',
-    year: '2025–2026',
+    year: '2024–2026',
     href: '/proyectos/casa-angel',
   },
   {
