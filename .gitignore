@@ -25,3 +25,12 @@ npm-debug.log*
 .claude
 
 /progress
+
+# brag video renders (heavy outputs stay local)
+brag-output/**/*.mp4
+brag-output/**/*.wav
+brag-output/work/assets/
+brag-output/work/stills/
+brag-output/work/node_modules
+brag-output/work/log_*.txt
+brag-output/work/*.png
