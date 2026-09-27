@@ -222,7 +222,7 @@ export const RECORRIDO = [
     num: '04',
     title: 'Acceso',
     text: 'Un umbral de vidrio con el isotipo de la marca. Simple, reconocible y preciso.',
-    img: '/images/projects/URBETRACK.webp',
+    img: '/images/projects/urbetrack-acceso.webp',
     alt: 'Dibujo del acceso a Urbetrack',
     drawing: true,
   },

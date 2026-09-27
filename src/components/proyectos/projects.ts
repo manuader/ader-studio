@@ -16,9 +16,9 @@ export interface Project {
 // Para agregar un nuevo proyecto, simplemente añade un objeto a esta lista.
 export const projects: Project[] = [
   {
-    image: '/images/projects/CASA ANGEL.webp',
-    w: 1536,
-    h: 1024,
+    image: '/images/projects/casa-angel-dibujo.webp',
+    w: 1882,
+    h: 1412,
     alt: 'Casa Angel',
     tag: 'Residencial Privado',
     name: 'Casa Angel',
@@ -27,9 +27,9 @@ export const projects: Project[] = [
     href: '/proyectos/casa-angel',
   },
   {
-    image: '/images/projects/URBETRACK.webp',
-    w: 1491,
-    h: 1055,
+    image: '/images/projects/urbetrack-dibujo.webp',
+    w: 1604,
+    h: 1203,
     alt: 'Oficina Urbetrack',
     tag: 'Reforma y modernizacion',
     name: 'Oficina Urbetrack',
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     href: '/proyectos/bauhaus-weimar',
   },
   // {
-  //   image: '/images/projects/URBETRACK.webp',
+  //   image: '/images/projects/urbetrack-dibujo.webp',
   //   alt: 'Casa Piaggio',
   //   tag: 'Residencial Privado',
   //   name: 'Casa Piaggio',
