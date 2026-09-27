@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { projects } from '@/components/proyectos/projects';
 import { useCompassLogo } from '@/components/portfolio/shared/useCompassLogo';
+import { REPLAY_EVENT, SKIP_CLASS, requestIntroReplay } from '@/components/logo-intro/introState';
 import s from './SiteNav.module.css';
 
 type Group = 'proyectos' | 'estudio' | 'fotografia' | 'contacto';
@@ -68,9 +69,16 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
       document.documentElement.classList.add('cursor-ready');
       return;
     }
+    // Intro salteada (ya vista): el logo está en su lugar desde el arranque.
+    if (document.documentElement.classList.contains(SKIP_CLASS)) setLogoVisible(true);
     const show = () => setLogoVisible(true);
+    const hide = () => setLogoVisible(false);
     window.addEventListener('show-nav-logo', show);
-    return () => window.removeEventListener('show-nav-logo', show);
+    window.addEventListener(REPLAY_EVENT, hide);
+    return () => {
+      window.removeEventListener('show-nav-logo', show);
+      window.removeEventListener(REPLAY_EVENT, hide);
+    };
   }, [home]);
 
   // Progreso de lectura + indicador de contexto.
@@ -156,6 +164,23 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
     [pathname]
   );
 
+  /** Logo: vuelve a la home y reproduce la intro (la única forma de verla de nuevo). */
+  const onLogo = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      setOpen(null);
+      setMobileOpen(false);
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      if (pathname === '/') {
+        e.preventDefault();
+        history.replaceState(null, '', '/');
+        window.dispatchEvent(new Event(REPLAY_EVENT));
+      } else {
+        requestIntroReplay();
+      }
+    },
+    [pathname]
+  );
+
   const enter = (menu: 'proyectos' | 'estudio') => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
     setOpen(menu);
@@ -191,7 +216,7 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
   return (
     <>
       <nav className={s.nav} aria-label="Principal" onMouseLeave={leave}>
-        <Link href="/" className={s.brand} onClick={onNavigate} aria-label="Ader Studio — inicio">
+        <Link href="/" className={s.brand} onClick={onLogo} aria-label="Ader Studio — inicio">
           <Image
             ref={logoRef}
             src="/images/logo.jpeg"

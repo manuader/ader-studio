@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
+import { introSkipScript } from "@/components/logo-intro/introState";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -29,8 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${barlowCondensed.variable} ${barlow.variable}`}>
+    <html lang="es" className={`${barlowCondensed.variable} ${barlow.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: introSkipScript }} />
         <link rel="preload" href="/images/logo-mark.webp" as="image" />
         <link rel="preload" href="/images/logo-full.webp" as="image" />
       </head>

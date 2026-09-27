@@ -9,6 +9,8 @@ interface LogoAnimationRefs {
   spinWrapRef: React.RefObject<HTMLDivElement | null>;
   hintTextRef: React.RefObject<HTMLSpanElement | null>;
   hintLineRef: React.RefObject<HTMLDivElement | null>;
+  /** Replay desde el logo de la navbar: arranca sin esperar interacción. */
+  autoStart?: boolean;
 }
 
 const TOTAL_DURATION = 6000;
@@ -26,6 +28,7 @@ export function useLogoAnimation({
   spinWrapRef,
   hintTextRef,
   hintLineRef,
+  autoStart = false,
 }: LogoAnimationRefs) {
   const startedRef = useRef(false);
   const startTimeRef = useRef<number | null>(null);
@@ -134,6 +137,7 @@ export function useLogoAnimation({
     if (introEl) {
       introEl.addEventListener('click', onScrollTrigger);
     }
+    if (autoStart) onScrollTrigger();
 
     return () => {
       window.removeEventListener('wheel', onScrollTrigger);
@@ -145,6 +149,9 @@ export function useLogoAnimation({
       if (rafIdRef.current !== null) {
         cancelAnimationFrame(rafIdRef.current);
       }
+      // Permite volver a arrancar si el efecto se remonta (StrictMode, autoStart).
+      startedRef.current = false;
+      document.body.style.overflow = '';
     };
-  }, [introRef, markImgRef, logoFullWrapRef, spinWrapRef, hintTextRef, hintLineRef]);
+  }, [introRef, markImgRef, logoFullWrapRef, spinWrapRef, hintTextRef, hintLineRef, autoStart]);
 }
