@@ -59,7 +59,7 @@ export const COMPARE = {
 
 /** Recortes de la lámina "Image to image" (Fig. 3.1) + imagen final (Fig. 3.2). */
 export const ITERATIONS: { src: string; w: number; h: number; label: string; alt: string; big?: boolean }[] = [
-  { src: `${D}/iteracion-00.webp`, w: 522, h: 522, label: 'Imagen base', alt: 'Imagen base del mueble generada con IA', big: true },
+  { src: `${D}/iteracion-00.webp`, w: 522, h: 522, label: 'Punto de partida', alt: 'Primera imagen del mueble, punto de partida de las iteraciones', big: true },
   { src: `${D}/iteracion-01.webp`, w: 198, h: 198, label: 'Iteración 01', alt: 'Iteración 01 del mueble (image to image)' },
   { src: `${D}/iteracion-02.webp`, w: 198, h: 198, label: 'Iteración 02', alt: 'Iteración 02 del mueble (image to image)' },
   { src: `${D}/iteracion-03.webp`, w: 198, h: 198, label: 'Iteración 03', alt: 'Iteración 03 del mueble (image to image)' },
