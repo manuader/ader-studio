@@ -6,6 +6,7 @@ import { Vision } from '@/components/vision/Vision';
 import { VideoShowcase } from '@/components/vision/VideoShowcase';
 import { Bim } from '@/components/bim/Bim';
 import { RendersGallery } from '@/components/renders-gallery/RendersGallery';
+import { Fotografia } from '@/components/fotografia/Fotografia';
 import { Proceso } from '@/components/proceso/Proceso';
 import { Proyectos } from '@/components/proyectos/Proyectos';
 import { Metodologia } from '@/components/meotodlogia/Metodologia';
@@ -27,6 +28,7 @@ export default function Home() {
         <Bim />
         <Proyectos />
         <RendersGallery />
+        <Fotografia />
         <Metodologia />
         <Contacto />
       </main>
