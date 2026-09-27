@@ -47,3 +47,4 @@ brag-output/work/list.txt
 brag-films/*/assets/
 brag-films/*/out/
 brag-films/*/node_modules
+brag-films/*/poster-*.png
