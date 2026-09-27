@@ -8,14 +8,15 @@ const NAV_ITEMS = [
   { href: '#proyectos', label: 'Proyectos' },
   { href: '#vision', label: 'Estudio' },
   { href: '#bim', label: 'BIM' },
+  { href: '#fotografia', label: 'Fotografía' },
   { href: '#metodologia', label: 'Metodologia' },
   { href: '#contacto', label: 'Contacto' },
 ];
 
 const NAV_SECONDARY = [
-  { href: '#fadu', label: 'FADU' },
-  { href: '#bauhaus', label: 'Bauhaus' },
-  { href: '#casa-angel', label: 'Casa Angel' },
+  { href: '/proyectos/fadu', label: 'FADU' },
+  { href: '/proyectos/bauhaus-weimar', label: 'Bauhaus' },
+  { href: '/proyectos/casa-angel', label: 'Casa Angel' },
 ];
 
 export function Navbar() {

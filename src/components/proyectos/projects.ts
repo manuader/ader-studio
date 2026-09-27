@@ -18,6 +18,7 @@ export const projects: Project[] = [
     name: 'Casa Angel',
     location: 'Pinamar, Argentina',
     year: '2025–2026',
+    href: '/proyectos/casa-angel',
   },
   {
     image: '/images/projects/URBETRACK.png',
@@ -27,6 +28,24 @@ export const projects: Project[] = [
     location: 'Av. Rivadavia 4260, CABA',
     year: '2026',
     href: '/proyectos/urbetrack',
+  },
+  {
+    image: '/images/projects/fadu.webp',
+    alt: 'FADU – UBA: render de un proyecto de taller',
+    tag: 'Formación Académica',
+    name: 'FADU – UBA',
+    location: 'Buenos Aires, Argentina',
+    year: '2020–2024',
+    href: '/proyectos/fadu',
+  },
+  {
+    image: '/images/projects/bauhaus-weimar.webp',
+    alt: 'Bauhaus-Universität Weimar: render de la plaza del mercado de tierra apisonada',
+    tag: 'Intercambio Académico',
+    name: 'Bauhaus-Universität Weimar',
+    location: 'Weimar, Alemania',
+    year: '2024',
+    href: '/proyectos/bauhaus-weimar',
   },
   // {
   //   image: '/images/projects/URBETRACK.png',

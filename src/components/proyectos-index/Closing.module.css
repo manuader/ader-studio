@@ -1,0 +1,24 @@
+.closing {
+  padding: 120px 40px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: 64px;
+  align-items: end;
+}
+
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; justify-self: end; }
+.actions a:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
+
+.photo { display: inline-flex; align-items: center; gap: 10px; }
+.photo svg { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.photo:hover svg { transform: translateX(4px); }
+
+@media (max-width: 1024px) {
+  .closing { grid-template-columns: 1fr; row-gap: 40px; }
+  .actions { justify-self: start; }
+}
+@media (max-width: 768px) {
+  .closing { padding: 80px 20px; }
+}
