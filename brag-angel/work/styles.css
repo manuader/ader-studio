@@ -74,8 +74,9 @@ em { font-style: italic; font-weight: 300; }
 .panel img { position: absolute; display: block; }
 #s5a { left: 0; right: 0; top: 0; height: 1920px; }
 #s5vid { height: 1920px; top: 0; left: 50%; }
-#s5b, #s5c { inset: 0; }
+#s5b, #s5c, #s5l { inset: 0; }
 #s5b img, #s5c img { width: 1080px; height: 1920px; left: 0; top: 0; }
+#s5l img { width: 1440px; height: 1920px; left: -180px; top: 0; }
 #s5shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,17,15,.85) 0%, rgba(18,17,15,.25) 38%, rgba(18,17,15,0) 55%); z-index: 3; }
 .cap { left: 60px; right: 0; top: 1300px; white-space: nowrap; font-family: var(--C); font-weight: 800; font-size: 112px; line-height: 1; color: var(--cream); z-index: 5; }
 #s5name { left: 60px; top: 1300px; font-family: var(--C); font-weight: 800; font-size: 176px; line-height: 1; letter-spacing: .02em; color: var(--cream); z-index: 5; }

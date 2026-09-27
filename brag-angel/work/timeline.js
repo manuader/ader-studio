@@ -277,8 +277,8 @@ function s5(t) {
   if (t < 23.9 || t >= 30.2) return;
   const rise = E.inOutQuart(P(t, 23.9, 24.3));
   $('s5').style.clipPath = `inset(${(1 - rise) * 100}% 0 0 0)`;
-  seq($('s5vid'), 'rv', 122, 24, pw(t, [[24.0, 0], [27.0, 5.05]]));
-  $('s5vid').style.transform = `translateX(calc(-50% + ${tw(t, 24, 27.2, 260, -180, E.inOutSine)}px)) scale(${tw(t, 24, 27.2, 1.12, 1.0, E.outCubic)})`;
+  seq($('s5vid'), 'rv', 122, 24, pw(t, [[24.0, 0], [26.6, 5.05]]));
+  $('s5vid').style.transform = `translateX(calc(-50% + ${tw(t, 24, 26.8, 260, -180, E.inOutSine)}px)) scale(${tw(t, 24, 26.8, 1.12, 1.0, E.outCubic)})`;
   const wipe = (id, a) => {
     const e = E.inOutQuart(P(t, a, a + 0.4));
     const el = $(id);
@@ -286,12 +286,13 @@ function s5(t) {
     el.style.visibility = t >= a ? 'visible' : 'hidden';
     el.firstElementChild.style.transform = `translateX(${(1 - e) * 200}px) scale(${tw(t, a, a + 2.2, 1.14, 1.0, E.outCubic)})`;
   };
-  wipe('s5b', 27.0);
-  wipe('s5c', 28.45);
-  reveal($('s5t1'), t, 24.45, 26.75);
-  reveal($('s5t2'), t, 27.25, 28.3);
-  reveal($('s5name'), t, 28.7, 29.75);
-  reveal($('s5loc'), t, 28.9, 29.8);
+  wipe('s5b', 26.6);
+  wipe('s5l', 27.7);
+  wipe('s5c', 28.8);
+  reveal($('s5t1'), t, 24.45, 26.35);
+  reveal($('s5t2'), t, 26.85, 28.55);
+  reveal($('s5name'), t, 29.0, 29.8);
+  reveal($('s5loc'), t, 29.15, 29.85);
 }
 
 // ─── S6 · norte ──────────────────────────────────────────────────
