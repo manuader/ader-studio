@@ -1,5 +1,5 @@
 import { LogoIntro } from '@/components/logo-intro/LogoIntro';
-import { Navbar } from '@/components/navbar/Navbar';
+import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Hero } from '@/components/hero/Hero';
 import { FachadaReveal } from '@/components/fachada-reveal/FachadaReveal';
 import { Vision } from '@/components/vision/Vision';
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <LogoIntro />
-      <Navbar />
+      <SiteNav home />
       <main>
         <Hero />
         <FachadaReveal />

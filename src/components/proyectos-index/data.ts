@@ -5,7 +5,7 @@ export type Category = 'obra' | 'formacion';
 export type IndexEntry = Project & {
   href: string;
   category: Category;
-  /** Portada del índice (dimensiones reales para evitar saltos). */
+  /** Portada del índice: la misma imagen del carrusel de la home (dimensiones reales). */
   cover: { src: string; w: number; h: number };
 };
 
@@ -13,7 +13,7 @@ export type IndexEntry = Project & {
 const EXTRA: Record<string, { category: Category; cover: IndexEntry['cover'] }> = {
   '/proyectos/casa-angel': {
     category: 'obra',
-    cover: { src: '/images/portfolio/casa-angel/cover.webp', w: 1440, h: 1169 },
+    cover: { src: '/images/projects/CASA ANGEL.webp', w: 1536, h: 1024 },
   },
   '/proyectos/urbetrack': {
     category: 'obra',
@@ -21,11 +21,11 @@ const EXTRA: Record<string, { category: Category; cover: IndexEntry['cover'] }> 
   },
   '/proyectos/fadu': {
     category: 'formacion',
-    cover: { src: '/images/projects/fadu.webp', w: 1713, h: 1285 },
+    cover: { src: '/images/projects/fadu-dibujo.webp', w: 1800, h: 1350 },
   },
   '/proyectos/bauhaus-weimar': {
     category: 'formacion',
-    cover: { src: '/images/projects/bauhaus-weimar.webp', w: 1059, h: 794 },
+    cover: { src: '/images/projects/bauhaus-weimar-dibujo.webp', w: 1800, h: 1350 },
   },
 };
 

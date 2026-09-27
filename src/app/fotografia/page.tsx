@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { PortfolioNav } from '@/components/portfolio/shared/PortfolioNav';
+import { SiteNav } from '@/components/site-nav/SiteNav';
 import { FotografiaPage } from '@/components/fotografia/FotografiaPage';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <PortfolioNav initialChapter="Fotografía" />
+      <SiteNav initialContext="Fotografía" />
       <main>
         <FotografiaPage />
       </main>

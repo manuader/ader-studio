@@ -1,4 +1,4 @@
-import { PortfolioNav } from '@/components/portfolio/shared/PortfolioNav';
+import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Hero } from './sections/Hero';
@@ -13,7 +13,7 @@ import s from './CasaAngel.module.css';
 export function CasaAngelCase() {
   return (
     <>
-      <PortfolioNav initialChapter="Casa Angel" />
+      <SiteNav initialContext="Casa Angel" />
       <main className={s.page}>
         <Hero />
         <Indice />

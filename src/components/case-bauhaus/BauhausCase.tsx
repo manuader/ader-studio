@@ -3,7 +3,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PortfolioNav } from '@/components/portfolio/shared/PortfolioNav';
+import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Lightbox, type LightboxItem } from '@/components/portfolio/shared/Lightbox';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -71,7 +71,7 @@ export function BauhausCase() {
 
   return (
     <ViewerContext.Provider value={open}>
-      <PortfolioNav initialChapter={CASE.title} />
+      <SiteNav initialContext={CASE.title} />
       <main className={s.page}>
         {/* ─── HERO ─────────────────────────────── */}
         <header className={s.hero} data-chapter={CASE.title}>

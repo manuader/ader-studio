@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from 're
 import Image from 'next/image';
 import Link from 'next/link';
 import s from './FaduCase.module.css';
-import { PortfolioNav } from '@/components/portfolio/shared/PortfolioNav';
+import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Lightbox, type LightboxItem } from '@/components/portfolio/shared/Lightbox';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -291,7 +291,7 @@ export function FaduCase() {
 
   return (
     <>
-      <PortfolioNav initialChapter="FADU – UBA" />
+      <SiteNav initialContext="FADU – UBA" />
       <main ref={rootRef} className={s.page}>
         {/* ─── Hero ─── */}
         <section className={s.hero} data-chapter="FADU – UBA">
