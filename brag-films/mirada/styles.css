@@ -1,0 +1,68 @@
+:root {
+  --ink: #1A1917;
+  --cream: #FAFAF7;
+  --g1: #5A5852;
+  --g2: #8A857D;
+  --g3: #C8C3BB;
+  --border: #E2DED6;
+  --C: 'Barlow Condensed', sans-serif;
+  --B: 'Barlow', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow: hidden; background: var(--cream); }
+body { -webkit-font-smoothing: antialiased; }
+#stage { position: relative; overflow: hidden; background: var(--cream); font-family: var(--B); color: var(--ink); }
+body.h #stage, body.h { width: 1920px; height: 1080px; }
+body.v #stage, body.v { width: 1080px; height: 1920px; }
+
+.win { position: absolute; left: 0; top: 0; overflow: hidden; z-index: 2; background: var(--cream); }
+.win img { position: absolute; left: 0; top: 0; transform-origin: 0 0; display: block; }
+
+#marks { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; }
+#mInk { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+#mCream { fill: none; stroke: var(--cream); stroke-width: 1.5; }
+
+.mask { position: absolute; overflow: hidden; z-index: 5; }
+.mask > div { will-change: transform; white-space: nowrap; }
+em { font-style: italic; font-weight: 300; }
+
+/* museum labels */
+.mlab { font-family: var(--C); font-weight: 600; font-size: 19px; letter-spacing: .3em; text-transform: uppercase; color: var(--g2); line-height: 1.5; }
+.mlab i { font-style: italic; font-weight: 300; letter-spacing: .04em; color: var(--ink); font-size: 21px; margin-right: 14px; }
+
+/* hero title (over the photograph) */
+.title { font-family: var(--C); color: var(--cream); line-height: 1.02; padding-bottom: .06em; }
+#t1 { font-weight: 800; font-size: 168px; letter-spacing: -0.005em; line-height: .92; }
+#t2 em { font-size: 92px; letter-spacing: .005em; }
+.cap { font-family: var(--B); font-weight: 300; font-size: 22px; color: var(--cream); line-height: 1.6; }
+.cap b { font-family: var(--C); font-weight: 600; font-size: 18px; letter-spacing: .3em; text-transform: uppercase; margin-left: 18px; }
+
+/* rhythm */
+.small { font-family: var(--C); font-weight: 600; font-size: 19px; letter-spacing: .3em; color: var(--g2); }
+#rName { font-family: var(--C); font-weight: 800; font-size: 104px; line-height: 1.08; text-transform: uppercase; letter-spacing: -0.005em; height: 1.08em; width: 1000px; }
+#rName > div { position: absolute; left: 0; top: 0; }
+#rCount { position: absolute; z-index: 5; display: flex; align-items: flex-end; font-family: var(--C); }
+#rNum { position: relative; font-weight: 300; font-style: italic; font-size: 120px; line-height: 1.05; height: 1.05em; width: 1.12em; }
+#rNum > div { position: absolute; right: 0; top: 0; }
+#rTot { position: relative; font-weight: 300; font-style: italic; font-size: 40px; color: var(--g2); margin-left: 10px; margin-bottom: 14px; line-height: 1.2; }
+#ticks { position: absolute; z-index: 5; height: 12px; display: flex; justify-content: space-between; }
+#ticks i { display: block; width: 1.5px; height: 12px; background: var(--g3); }
+#ticks i.on { background: var(--ink); }
+
+/* closing */
+.end { font-family: var(--C); line-height: 1.02; padding-bottom: .06em; }
+#e1 { font-weight: 800; font-size: 72px; letter-spacing: -0.005em; }
+#e2 em { font-size: 60px; color: var(--g1); }
+
+/* vertical overrides */
+body.v #t1 { font-size: 150px; }
+body.v #t2 em { font-size: 80px; }
+body.v .cap { font-family: var(--B); color: var(--g1); font-size: 26px; }
+body.v .cap b { color: var(--g2); font-size: 20px; }
+body.v #rName { font-size: 96px; }
+body.v #rNum { font-size: 96px; }
+body.v #rTot { font-size: 34px; margin-bottom: 12px; }
+body.v #e1 { font-size: 104px; }
+body.v #e2 em { font-size: 84px; }
+body.v .mlab { font-size: 19px; letter-spacing: .28em; }
+body.v .mlab i { font-size: 21px; margin-right: 12px; }
