@@ -33,20 +33,24 @@ export function Plantas() {
             </button>
           ))}
         </div>
-        <ul className={`${s.roomList} reveal rd3`} onMouseLeave={() => setRoom(null)} key={floor.id}>
-          {floor.rooms.map((r, i) => (
-            <li
-              key={`${r.name}-${i}`}
-              className={room === i ? s.roomOn : ''}
-              onMouseEnter={() => setRoom(i)}
-              style={{ ['--d' as string]: `${i * 40}ms` }}
-            >
-              <span className={s.roomIdx}>{String(i + 1).padStart(2, '0')}</span>
-              <span className={s.roomName}>{r.name}</span>
-              <span className={s.roomArea}>{r.area}</span>
-            </li>
-          ))}
-        </ul>
+        {/* El reveal va en un contenedor estable: la lista se remonta al cambiar de
+            piso (para reanimar las filas) y un .reveal nuevo nacería invisible. */}
+        <div className="reveal rd3">
+          <ul className={s.roomList} onMouseLeave={() => setRoom(null)} key={floor.id}>
+            {floor.rooms.map((r, i) => (
+              <li
+                key={`${r.name}-${i}`}
+                className={room === i ? s.roomOn : ''}
+                onMouseEnter={() => setRoom(i)}
+                style={{ ['--d' as string]: `${i * 40}ms` }}
+              >
+                <span className={s.roomIdx}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={s.roomName}>{r.name}</span>
+                <span className={s.roomArea}>{r.area}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className={s.planViewer}>
