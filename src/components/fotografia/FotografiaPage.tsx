@@ -33,24 +33,8 @@ const Arrow = () => (
   </svg>
 );
 
-/**
- * El film de la cabecera lo produce otro proceso: mientras su poster no exista
- * se muestra un plano sereno del mismo tamaño (sin íconos rotos ni saltos).
- */
 function HeroFilm() {
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    let alive = true;
-    fetch('/videos/portfolio/mirada-poster.jpg', { method: 'HEAD' })
-      .then((r) => { if (alive && r.ok) setReady(true); })
-      .catch(() => {});
-    return () => { alive = false; };
-  }, []);
-  return ready ? (
-    <Film name="mirada" label="Film de fotografía de arquitectura de Ader Studio" className={s.film} />
-  ) : (
-    <div className={s.filmEmpty} aria-hidden="true" />
-  );
+  return <Film name="mirada" label="Film de fotografía de arquitectura de Ader Studio" className={s.film} />;
 }
 
 export function FotografiaPage() {
