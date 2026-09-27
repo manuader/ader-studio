@@ -1682,6 +1682,91 @@
   flex-wrap: wrap;
 }
 
+/* ─── OTROS PROYECTOS ──────────────────────────────── */
+.others {
+  padding: 120px 40px;
+  border-bottom: 1px solid var(--border);
+}
+.othersHead {
+  margin-bottom: 56px;
+}
+.othersList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+.otherCard {
+  position: relative;
+  display: block;
+  color: var(--white);
+  text-decoration: none;
+}
+.otherCard:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 6px;
+}
+.otherImg {
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+}
+.otherImg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.otherCard:hover .otherImg img {
+  transform: scale(1.03);
+}
+.otherMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 48px 0 0;
+}
+.otherTag {
+  font-family: var(--font-c);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray2);
+}
+.otherName {
+  font-family: var(--font-c);
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.otherPlace {
+  font-family: var(--font-b);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray1);
+}
+.otherArrow {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--gray3);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.otherCard:hover .otherArrow {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--bg);
+}
+
 /* ─── RESPONSIVE ───────────────────────────────────── */
 @media (max-width: 1024px) {
   .memoriaGrid,
@@ -1798,8 +1883,13 @@
   .capas,
   .materiales,
   .recorrido,
+  .others,
   .cta {
     padding: 80px 20px;
+  }
+  .othersList {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
   .docs {
     padding: 80px 0;
@@ -1844,5 +1934,12 @@
   }
   .markU {
     stroke-dashoffset: 0;
+  }
+  .otherImg img,
+  .otherArrow {
+    transition: none;
+  }
+  .otherCard:hover .otherImg img {
+    transform: none;
   }
 }
