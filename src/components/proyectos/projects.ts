@@ -30,7 +30,7 @@ export const projects: Project[] = [
     href: '/proyectos/urbetrack',
   },
   {
-    image: '/images/projects/fadu.webp',
+    image: '/images/projects/fadu-dibujo.webp',
     alt: 'FADU – UBA: render de un proyecto de taller',
     tag: 'Formación Académica',
     name: 'FADU – UBA',
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     href: '/proyectos/fadu',
   },
   {
-    image: '/images/projects/bauhaus-weimar.webp',
+    image: '/images/projects/bauhaus-weimar-dibujo.webp',
     alt: 'Bauhaus-Universität Weimar: render de la plaza del mercado de tierra apisonada',
     tag: 'Intercambio Académico',
     name: 'Bauhaus-Universität Weimar',
