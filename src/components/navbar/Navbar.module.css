@@ -92,3 +92,30 @@
     display: none;
   }
 }
+
+/* Ítems agregados (Fotografía + rutas de casos): evitar cortes de línea en anchos intermedios */
+.navLink,
+.navStudioName {
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .navbar > .navLinks {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLeft {
+    gap: 16px;
+    min-width: 0;
+  }
+  .navLeft .navLinks {
+    overflow-x: auto;
+    scrollbar-width: none;
+    min-width: 0;
+  }
+  .navLeft .navLinks::-webkit-scrollbar {
+    display: none;
+  }
+}
