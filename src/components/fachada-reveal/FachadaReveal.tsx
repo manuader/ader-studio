@@ -91,7 +91,7 @@ export function FachadaReveal() {
     resize();
 
     const img = new window.Image();
-    img.src = '/images/hero/fachada.png';
+    img.src = '/images/hero/fachada.webp';
     img.onload = () => {
       s.colorImage = img;
       s.colorLoaded = true;
@@ -273,7 +273,7 @@ export function FachadaReveal() {
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.imageLayer}>
         <Image
-          src="/images/hero/fachada byn.png"
+          src="/images/hero/fachada byn.webp"
           alt="Plano arquitectónico"
           fill
           className={styles.image}

@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import styles from './Bim.module.css';
 
 const LAYERS = [
-  { num: '01', label: 'Estructura', sub: 'Muros portantes de hormigón armado.', img: '/images/bim/BIM 01 ESTRUCTURA.png' },
-  { num: '02', label: 'Cerramientos', sub: 'Mampostería de construcción en seco y aventanamientos de piso a techo.', img: '/images/bim/BIM 02 MAMPOSTERIA.png' },
-  { num: '03', label: 'Arquitectura', sub: 'Configuración espacial y relaciones funcionales.', img: '/images/bim/BIM 03 ARQUITECTURA.png' },
-  { num: '04', label: 'Instalaciones', sub: 'Coordinación integral de instalaciones sanitarias, cloacales y termomecánicas.', img: '/images/bim/BIM 04 INSTALACIONES.png' },
+  { num: '01', label: 'Estructura', sub: 'Muros portantes de hormigón armado.', img: '/images/bim/BIM 01 ESTRUCTURA.webp' },
+  { num: '02', label: 'Cerramientos', sub: 'Mampostería de construcción en seco y aventanamientos de piso a techo.', img: '/images/bim/BIM 02 MAMPOSTERIA.webp' },
+  { num: '03', label: 'Arquitectura', sub: 'Configuración espacial y relaciones funcionales.', img: '/images/bim/BIM 03 ARQUITECTURA.webp' },
+  { num: '04', label: 'Instalaciones', sub: 'Coordinación integral de instalaciones sanitarias, cloacales y termomecánicas.', img: '/images/bim/BIM 04 INSTALACIONES.webp' },
 ];
 
 const STATS = [
@@ -142,6 +142,8 @@ export function Bim() {
                 src={layer.img}
                 alt={layer.label}
                 className={styles.layerImg}
+                loading="lazy"
+                decoding="async"
                 draggable={false}
               />
             </div>

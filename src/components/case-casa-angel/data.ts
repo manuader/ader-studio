@@ -43,12 +43,12 @@ export const PLAN_VIEWS = [
 const site = (src: string, w: number, h: number, alt: string): PImage => ({ src, w, h, alt, kind: 'render' });
 export const RENDERS: PImage[] = [
   img(E4, 1),
-  site('/images/renders/03 - Acceso.png', 941, 1672, 'Render: acceso'),
+  site('/images/renders/03 - Acceso.webp', 941, 1672, 'Render: acceso'),
   img(E4, 2),
   img(E4, 3),
-  site('/images/renders/01 - Living.png', 1086, 1448, 'Render interior: living'),
+  site('/images/renders/01 - Living.webp', 1086, 1448, 'Render interior: living'),
   img(E4, 4),
-  site('/images/renders/14 - Estructura.png', 941, 1672, 'Render: estructura'),
+  site('/images/renders/14 - Estructura.webp', 941, 1672, 'Render: estructura'),
   img(E4, 5),
 ];
 

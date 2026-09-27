@@ -76,6 +76,8 @@ export function Proyectos() {
                   src={project.image}
                   alt={project.alt}
                   className={styles.cardImg}
+                  loading="lazy"
+                  decoding="async"
                   draggable={false}
                 />
                 <div className={styles.hoverLine} />

@@ -31,8 +31,8 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${barlowCondensed.variable} ${barlow.variable}`}>
       <head>
-        <link rel="preload" href="/images/logo-mark.jpg" as="image" />
-        <link rel="preload" href="/images/logo-full.jpg" as="image" />
+        <link rel="preload" href="/images/logo-mark.webp" as="image" />
+        <link rel="preload" href="/images/logo-full.webp" as="image" />
       </head>
       <body>{children}</body>
     </html>

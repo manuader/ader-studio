@@ -10,7 +10,7 @@ const OTHERS = [
     tag: 'Reforma y modernización',
     name: 'Oficina Urbetrack',
     place: 'Av. Rivadavia 4260, CABA',
-    img: { src: '/images/projects/URBETRACK.png', w: 1491, h: 1055, alt: 'Oficina Urbetrack' },
+    img: { src: '/images/projects/URBETRACK.webp', w: 1491, h: 1055, alt: 'Oficina Urbetrack' },
   },
   {
     href: '/proyectos/fadu',

@@ -17,7 +17,7 @@ const EXTRA: Record<string, { category: Category; cover: IndexEntry['cover'] }> 
   },
   '/proyectos/urbetrack': {
     category: 'obra',
-    cover: { src: '/images/projects/URBETRACK.png', w: 1491, h: 1055 },
+    cover: { src: '/images/projects/URBETRACK.webp', w: 1491, h: 1055 },
   },
   '/proyectos/fadu': {
     category: 'formacion',

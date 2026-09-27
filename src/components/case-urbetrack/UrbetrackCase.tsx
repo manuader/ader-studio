@@ -93,7 +93,7 @@ export function UrbetrackCase() {
 
         <section className={s.cierre} data-chapter="Oficinas Urbetrack">
           <Image
-            src="/images/renders/02 - Oficina.png"
+            src="/images/renders/02 - Oficina.webp"
             alt="Planta de trabajo de Urbetrack"
             fill
             sizes="100vw"

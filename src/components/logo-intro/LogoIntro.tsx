@@ -30,7 +30,7 @@ export function LogoIntro() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               ref={markImgRef}
-              src="/images/logo-mark.jpg"
+              src="/images/logo-mark.webp"
               alt=""
               className={styles.markImg}
             />
@@ -38,7 +38,7 @@ export function LogoIntro() {
           <div ref={logoFullWrapRef} className={styles.logoFullWrap}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/logo-full.jpg"
+              src="/images/logo-full.webp"
               alt="Ader Studio"
               className={styles.logoFullImg}
             />

@@ -8,37 +8,37 @@ const STEPS = [
     num: '01',
     title: 'Terreno Base',
     desc: 'Relevamiento del terreno existente: límites, dimensiones y condicionantes del sitio.',
-    img: '/images/process/01. TERRENO BASE ANGEL.png',
+    img: '/images/process/01. TERRENO BASE ANGEL.webp',
   },
   {
     num: '02',
     title: 'Grilla y Trazado',
     desc: 'Estructuración del terreno mediante una grilla que ordena el trazado y las proporciones.',
-    img: '/images/process/02. TERRENO ANGEL GRILLA.png',
+    img: '/images/process/02. TERRENO ANGEL GRILLA.webp',
   },
   {
     num: '03',
     title: 'Análisis con IA',
     desc: 'Estudio del plano del terreno asistido por inteligencia artificial para explorar alternativas.',
-    img: '/images/process/03. PLANO TERRENO IA.png',
+    img: '/images/process/03. PLANO TERRENO IA.webp',
   },
   {
     num: '04',
     title: 'Composición de la Forma',
     desc: 'Generación de la composición volumétrica a partir de los datos del sitio y el programa.',
-    img: '/images/process/04. COMPOSICION FORMA IA.png',
+    img: '/images/process/04. COMPOSICION FORMA IA.webp',
   },
   {
     num: '05',
     title: 'Morfología',
     desc: 'Definición de la morfología del proyecto: la forma emerge de la síntesis del proceso.',
-    img: '/images/process/05. MORFOLOGIA.png',
+    img: '/images/process/05. MORFOLOGIA.webp',
   },
   {
     num: '06',
     title: 'Planta Baja',
     desc: 'Resolución de la planta baja: distribución funcional y relaciones espaciales finales.',
-    img: '/images/process/06. PB.png',
+    img: '/images/process/06. PB.webp',
   },
 ];
 
@@ -117,6 +117,8 @@ export function Proceso() {
               src={step.img}
               alt={step.title}
               className={styles.image}
+              loading="lazy"
+              decoding="async"
               style={{ opacity: activeStep === i ? 1 : 0 }}
               draggable={false}
             />

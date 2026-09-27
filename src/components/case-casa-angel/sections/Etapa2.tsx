@@ -11,7 +11,7 @@ import s from '../CasaAngel.module.css';
 const SKETCH = E2.images[0];
 const DIAGRAMS = E2.images.slice(1);
 /** Primer cuadro del proceso (terreno base), servido por el optimizador de imágenes. */
-const POSTER = `/_next/image?url=${encodeURIComponent('/images/process/01. TERRENO BASE ANGEL.png')}&w=1920&q=75`;
+const POSTER = `/_next/image?url=${encodeURIComponent('/images/process/01. TERRENO BASE ANGEL.webp')}&w=1920&q=75`;
 
 /** Etapa 2: el croquis del refugio elevado, el proceso de forma y el ordenamiento del programa. */
 export function Etapa2() {
