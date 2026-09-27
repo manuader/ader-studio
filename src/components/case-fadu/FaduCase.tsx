@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { lineCover } from '@/components/proyectos/projects';
 import s from './FaduCase.module.css';
 import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Lightbox, type LightboxItem } from '@/components/portfolio/shared/Lightbox';
@@ -391,30 +392,33 @@ export function FaduCase() {
         <section className={s.more} data-chapter="Otros proyectos">
           <div className="sec-label reveal">Seguir recorriendo</div>
           <div className={s.moreGrid}>
-            {[bauhausWeimar, casaAngel].map((c, i) => (
-              <Link key={c.slug} href={`/proyectos/${c.slug}`} className={`${s.card} reveal rd${i + 1}`}>
-                <span className={s.cardMedia}>
-                  <Image
-                    src={c.cover.src}
-                    alt={c.title}
-                    width={c.cover.w}
-                    height={c.cover.h}
-                    sizes="(max-width: 768px) calc(100vw - 40px), 50vw"
-                    loading="lazy"
-                    className={s.cardImg}
-                  />
-                </span>
-                <span className={s.cardMeta}>
-                  <span>{c.tag}</span>
-                  <span>{c.years}</span>
-                </span>
-                <span className={s.cardTitle}>
-                  {c.title}
-                  <Arrow />
-                </span>
-                <span className={s.cardLoc}>{c.location}</span>
-              </Link>
-            ))}
+            {[bauhausWeimar, casaAngel].map((c, i) => {
+              const cover = lineCover(`/proyectos/${c.slug}`);
+              return (
+                <Link key={c.slug} href={`/proyectos/${c.slug}`} className={`${s.card} reveal rd${i + 1}`}>
+                  <span className={s.cardMedia}>
+                    <Image
+                      src={cover.src}
+                      alt={c.title}
+                      width={cover.w}
+                      height={cover.h}
+                      sizes="(max-width: 768px) calc(100vw - 40px), 50vw"
+                      loading="lazy"
+                      className={s.cardImg}
+                    />
+                  </span>
+                  <span className={s.cardMeta}>
+                    <span>{c.tag}</span>
+                    <span>{c.years}</span>
+                  </span>
+                  <span className={s.cardTitle}>
+                    {c.title}
+                    <Arrow />
+                  </span>
+                  <span className={s.cardLoc}>{c.location}</span>
+                </Link>
+              );
+            })}
           </div>
         </section>
 

@@ -5,33 +5,23 @@ export type Category = 'obra' | 'formacion';
 export type IndexEntry = Project & {
   href: string;
   category: Category;
-  /** Portada del índice: la misma imagen del carrusel de la home (dimensiones reales). */
+  /** Portada del índice: el mismo dibujo de líneas del carrusel de la home. */
   cover: { src: string; w: number; h: number };
 };
 
 /** Datos propios del índice que no viven en projects.ts. */
-const EXTRA: Record<string, { category: Category; cover: IndexEntry['cover'] }> = {
-  '/proyectos/casa-angel': {
-    category: 'obra',
-    cover: { src: '/images/projects/CASA ANGEL.webp', w: 1536, h: 1024 },
-  },
-  '/proyectos/urbetrack': {
-    category: 'obra',
-    cover: { src: '/images/projects/URBETRACK.webp', w: 1491, h: 1055 },
-  },
-  '/proyectos/fadu': {
-    category: 'formacion',
-    cover: { src: '/images/projects/fadu-dibujo.webp', w: 1800, h: 1350 },
-  },
-  '/proyectos/bauhaus-weimar': {
-    category: 'formacion',
-    cover: { src: '/images/projects/bauhaus-weimar-dibujo.webp', w: 1800, h: 1350 },
-  },
+const CATEGORY: Record<string, Category> = {
+  '/proyectos/casa-angel': 'obra',
+  '/proyectos/urbetrack': 'obra',
+  '/proyectos/fadu': 'formacion',
+  '/proyectos/bauhaus-weimar': 'formacion',
 };
 
 export const entries: IndexEntry[] = projects.flatMap((p) => {
-  const extra = p.href ? EXTRA[p.href] : undefined;
-  return p.href && extra ? [{ ...p, href: p.href, ...extra }] : [];
+  const category = p.href ? CATEGORY[p.href] : undefined;
+  return p.href && category
+    ? [{ ...p, href: p.href, category, cover: { src: p.image, w: p.w, h: p.h } }]
+    : [];
 });
 
 export const FILTERS: { key: 'all' | Category; label: string }[] = [

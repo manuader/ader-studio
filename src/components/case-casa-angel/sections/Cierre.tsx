@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CASE } from '../data';
 import { fadu } from '@/components/portfolio/data/cases';
+import { lineCover } from '@/components/proyectos/projects';
 import s from '../CasaAngel.module.css';
 
 const OTHERS = [
@@ -10,14 +11,14 @@ const OTHERS = [
     tag: 'Reforma y modernización',
     name: 'Oficina Urbetrack',
     place: 'Av. Rivadavia 4260, CABA',
-    img: { src: '/images/projects/URBETRACK.webp', w: 1491, h: 1055, alt: 'Oficina Urbetrack' },
+    img: lineCover('/proyectos/urbetrack'),
   },
   {
     href: '/proyectos/fadu',
     tag: fadu.tag,
     name: fadu.title,
     place: fadu.location,
-    img: { src: fadu.cover.src, w: fadu.cover.w, h: fadu.cover.h, alt: fadu.cover.alt },
+    img: lineCover('/proyectos/fadu'),
   },
 ];
 

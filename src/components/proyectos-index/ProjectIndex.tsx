@@ -198,7 +198,9 @@ export function ProjectIndex() {
               sizes="420px"
               className={s.previewImg}
               data-state={shown === i ? 'on' : under === i ? 'under' : undefined}
-              loading="lazy"
+              // Precargadas: si esperan al primer hover, la máscara revela un cuadro
+              // vacío y queda a la vista la portada del proyecto anterior.
+              loading="eager"
             />
           ))}
         </div>

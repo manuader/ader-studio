@@ -1,5 +1,9 @@
 export interface Project {
+  /** Dibujo de líneas en blanco y negro: la portada del proyecto en toda la web. */
   image: string;
+  /** Dimensiones reales del dibujo. */
+  w: number;
+  h: number;
   alt: string;
   tag: string;
   name: string;
@@ -13,6 +17,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     image: '/images/projects/CASA ANGEL.webp',
+    w: 1536,
+    h: 1024,
     alt: 'Casa Angel',
     tag: 'Residencial Privado',
     name: 'Casa Angel',
@@ -22,6 +28,8 @@ export const projects: Project[] = [
   },
   {
     image: '/images/projects/URBETRACK.webp',
+    w: 1491,
+    h: 1055,
     alt: 'Oficina Urbetrack',
     tag: 'Reforma y modernizacion',
     name: 'Oficina Urbetrack',
@@ -31,6 +39,8 @@ export const projects: Project[] = [
   },
   {
     image: '/images/projects/fadu-dibujo.webp',
+    w: 1800,
+    h: 1350,
     alt: 'FADU – UBA: render de un proyecto de taller',
     tag: 'Formación Académica',
     name: 'FADU – UBA',
@@ -40,6 +50,8 @@ export const projects: Project[] = [
   },
   {
     image: '/images/projects/bauhaus-weimar-dibujo.webp',
+    w: 1800,
+    h: 1350,
     alt: 'Bauhaus-Universität Weimar: render de la plaza del mercado de tierra apisonada',
     tag: 'Intercambio Académico',
     name: 'Bauhaus-Universität Weimar',
@@ -56,3 +68,10 @@ export const projects: Project[] = [
   //   year: '2026–2027',
   // },
 ];
+
+/** Portada de dibujo de líneas de un proyecto con página propia. */
+export function lineCover(href: string) {
+  const p = projects.find((x) => x.href === href);
+  if (!p) throw new Error(`Proyecto sin portada: ${href}`);
+  return { src: p.image, w: p.w, h: p.h, alt: p.name };
+}

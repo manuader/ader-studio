@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { lineCover } from '@/components/proyectos/projects';
 import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Lightbox, type LightboxItem } from '@/components/portfolio/shared/Lightbox';
 import { Footer } from '@/components/footer/Footer';
@@ -232,7 +233,7 @@ export function BauhausCase() {
             {NEXT.map(({ href, c }, i) => (
               <Link key={href} href={href} className={`${s.card} reveal rd${i + 1}`}>
                 <div className={s.cardImg}>
-                  <Image src={c.cover.src} alt={c.cover.alt} fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
+                  <Image src={lineCover(href).src} alt={c.title} fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
                 </div>
                 <div className={s.cardMeta}>
                   <span>{c.tag}</span>
