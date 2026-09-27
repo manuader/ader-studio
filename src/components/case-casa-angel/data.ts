@@ -39,15 +39,6 @@ export const PLAN_VIEWS = [
   { key: 'corte', label: 'Corte', image: img(E3, 2) },
 ];
 
-/** Capas del modelo BIM, con los rótulos de la sección BIM de la home. */
-export const BIM_LAYERS = [
-  { num: '01', label: 'Estructura', sub: 'Muros portantes de hormigón armado.', src: '/images/bim/BIM 01 ESTRUCTURA.png' },
-  { num: '02', label: 'Cerramientos', sub: 'Mampostería de construcción en seco y aventanamientos de piso a techo.', src: '/images/bim/BIM 02 MAMPOSTERIA.png' },
-  { num: '03', label: 'Arquitectura', sub: 'Configuración espacial y relaciones funcionales.', src: '/images/bim/BIM 03 ARQUITECTURA.png' },
-  { num: '04', label: 'Instalaciones', sub: 'Coordinación integral de instalaciones sanitarias, cloacales y termomecánicas.', src: '/images/bim/BIM 04 INSTALACIONES.png' },
-];
-export const BIM_SIZE = { w: 4961, h: 3508 };
-
 /** Etapa 4 — recorrido de renders: del exterior al interior y de vuelta al jardín. */
 const site = (src: string, w: number, h: number, alt: string): PImage => ({ src, w, h, alt, kind: 'render' });
 export const RENDERS: PImage[] = [

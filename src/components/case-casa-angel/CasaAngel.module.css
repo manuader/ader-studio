@@ -833,116 +833,6 @@
 .axoWide { grid-column: 1 / -1; }
 .axoTall { grid-column: 5 / -1; }
 
-.bim {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: 64px;
-  align-items: center;
-  margin-top: 120px;
-  padding-top: 120px;
-  border-top: 1px solid var(--border);
-}
-
-.bimItems {
-  list-style: none;
-  margin-top: 40px;
-  border-bottom: 1px solid var(--border);
-}
-
-.bimItem {
-  position: relative;
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: 12px;
-  width: 100%;
-  padding: 18px 0 20px;
-  border: 0;
-  border-top: 1px solid var(--border);
-  background: none;
-  text-align: left;
-  color: var(--gray2);
-  transition: color 0.4s var(--ease);
-}
-.bimItem:hover,
-.bimItemOn {
-  color: var(--white);
-}
-
-.bimNum {
-  font-family: var(--font-c);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  padding-top: 4px;
-}
-
-.bimLabel {
-  display: block;
-  font-family: var(--font-c);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.bimSub {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.6s var(--ease);
-}
-.bimSub > span {
-  overflow: hidden;
-  font-family: var(--font-b);
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: var(--gray1);
-}
-.bimItemOn .bimSub {
-  grid-template-rows: 1fr;
-}
-.bimItemOn .bimSub > span {
-  padding-top: 6px;
-}
-
-.bimBar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 1px;
-}
-.bimBar span {
-  display: block;
-  height: 100%;
-  background: var(--white);
-  transform-origin: left;
-}
-
-.bimStage {
-  position: relative;
-  aspect-ratio: 4961 / 3508;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  overflow: hidden;
-}
-
-.bimFrame {
-  position: absolute;
-  inset: 0;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 0.95s var(--mask);
-}
-.bimFrame:first-child,
-.bimFrameOn {
-  clip-path: inset(0 0 0 0);
-}
-.bimFrame img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 /* ─── ETAPA 4: galería horizontal ──────────────────── */
 .reel {
   position: relative;
@@ -1243,11 +1133,6 @@
     gap: 40px;
   }
 
-  .bim {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-
   .axoTall { grid-column: 3 / -1; }
 
   /* Galería: carrusel nativo con snap. */
@@ -1411,11 +1296,6 @@
   }
   .axoTall { grid-column: 1 / -1; }
 
-  .bim {
-    margin-top: 80px;
-    padding-top: 80px;
-  }
-
   .reelMeta {
     bottom: 40px;
   }
@@ -1446,8 +1326,6 @@
   }
   .seqFrame,
   .sketchImg img,
-  .bimFrame,
-  .bimSub,
   .indiceThumb,
   .indiceRow::after {
     transition: none;

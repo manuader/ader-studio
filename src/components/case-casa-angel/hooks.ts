@@ -52,30 +52,4 @@ export function usePinProgress(ref: RefObject<HTMLElement | null>, onProgress?: 
   }, [ref, onProgress]);
 }
 
-/** Recorre 0..count-1 cada `ms` mientras `active`. */
-export function useAutoCycle(count: number, ms: number, active: boolean) {
-  const [index, setIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    const tick = 50;
-    const id = setInterval(() => {
-      setProgress((p) => {
-        const next = p + tick / ms;
-        if (next >= 1) {
-          setIndex((i) => (i + 1) % count);
-          return 0;
-        }
-        return next;
-      });
-    }, tick);
-    return () => clearInterval(id);
-  }, [count, ms, active]);
-  const select = (i: number) => {
-    setIndex(i);
-    setProgress(0);
-  };
-  return { index, progress, select };
-}
-
 export const pad = (n: number) => String(n).padStart(2, '0');

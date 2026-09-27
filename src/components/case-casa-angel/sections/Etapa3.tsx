@@ -4,22 +4,17 @@ import { useRef, useState, type KeyboardEvent } from 'react';
 import Image from 'next/image';
 import { Lightbox } from '@/components/portfolio/shared/Lightbox';
 import { ChapterHead } from '../ChapterHead';
-import { BIM_LAYERS, BIM_SIZE, E3, PLAN_VIEWS } from '../data';
-import { pad, useAutoCycle, useInView } from '../hooks';
+import { E3, PLAN_VIEWS } from '../data';
+import { pad } from '../hooks';
 import s from '../CasaAngel.module.css';
 
 const AXOS = [E3.images[3], E3.images[4]];
 
-/** Etapa 3: plantas y corte en un conmutador, axonometrías y capas del modelo. */
+/** Etapa 3: plantas y corte en un conmutador, y axonometrías. */
 export function Etapa3() {
   const [view, setView] = useState(0);
   const [lb, setLb] = useState<number | null>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
-
-  const bimRef = useRef<HTMLDivElement>(null);
-  const bimIn = useInView(bimRef, 0.3);
-  const [paused, setPaused] = useState(false);
-  const bim = useAutoCycle(BIM_LAYERS.length, 4000, bimIn && !paused);
 
   const onTabKey = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
@@ -108,62 +103,6 @@ export function Etapa3() {
         ))}
       </div>
 
-      {/* Capas del modelo */}
-      <div
-        ref={bimRef}
-        className={s.bim}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
-      >
-        <div className={s.bimList}>
-          <div className="sec-label reveal">Modelo BIM</div>
-          <h3 className={`${s.subTitle} reveal rd1`}>
-            Capa
-            <br />
-            <em>por capa</em>
-          </h3>
-          <ol className={s.bimItems}>
-            {BIM_LAYERS.map((l, i) => (
-              <li key={l.num}>
-                <button
-                  type="button"
-                  className={`${s.bimItem} ${i === bim.index ? s.bimItemOn : ''}`}
-                  aria-pressed={i === bim.index}
-                  onClick={() => bim.select(i)}
-                >
-                  <span className={s.bimNum}>{l.num}</span>
-                  <span className={s.bimBody}>
-                    <span className={s.bimLabel}>{l.label}</span>
-                    <span className={s.bimSub}><span>{l.sub}</span></span>
-                  </span>
-                  <span className={s.bimBar} aria-hidden="true">
-                    <span style={{ transform: `scaleX(${i === bim.index ? bim.progress : 0})` }} />
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className={s.bimStage}>
-          {BIM_LAYERS.map((l, i) => (
-            <div key={l.num} className={`${s.bimFrame} ${i <= bim.index ? s.bimFrameOn : ''}`} aria-hidden={i !== bim.index}>
-              <Image
-                src={l.src}
-                alt={`Modelo BIM, capa ${l.num}: ${l.label}`}
-                width={BIM_SIZE.w}
-                height={BIM_SIZE.h}
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                loading="lazy"
-              />
-            </div>
-          ))}
-          <div className={s.planCounter} aria-hidden="true">
-            <span>{BIM_LAYERS[bim.index].num}</span> / {pad(BIM_LAYERS.length)}
-          </div>
-        </div>
-      </div>
 
       <Lightbox items={lbItems} index={lb} onChange={setLb} />
     </section>
