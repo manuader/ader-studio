@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Ader Studio × Casa Angel</title>
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="stage">
+
+  <!-- decorative flowing lines (Ader hero motif) -->
+  <svg id="lines" viewBox="0 0 1080 1920" preserveAspectRatio="none"><g id="linesG"></g></svg>
+
+  <!-- ═══ S1 · Hook ═══ -->
+  <section id="s1" class="scene inkBg">
+    <div id="s1frame"><img id="s1img" class="vid" /></div>
+    <div id="s1t1" class="mask hook"><div>ESTA CASA…</div></div>
+    <div id="s1paper"></div>
+    <div id="s1t2" class="mask hook ink"><div>…ERA <em>ESTO.</em></div></div>
+  </section>
+
+  <!-- ═══ S2 · Proceso ═══ -->
+  <section id="s2" class="scene creamBg">
+    <div class="head"><span>ADER STUDIO / PROCESO</span><span>CASA ANGEL · PINAMAR</span></div>
+    <div id="s2num"><div id="s2numTrack"></div></div>
+    <div id="s2title" class="mask"><div></div></div>
+    <div id="s2desc"></div>
+    <div id="s2cam"><img id="s2img" class="vid" /></div>
+    <div id="s2rail"></div>
+    <div class="foot"><span>ARQUITECTURA QUE EMERGE DEL LUGAR</span><span id="s2code">01 / 06</span></div>
+  </section>
+
+  <!-- ═══ S3 · BIM ═══ -->
+  <section id="s3" class="scene creamBg">
+    <div class="head"><span>ADER STUDIO / METODOLOGÍA</span><span>MODELO BIM</span></div>
+    <div id="s3cam">
+      <img class="bim" id="b1" src="assets/bim1.jpg" />
+      <img class="bim" id="b2" src="assets/bim2.jpg" />
+      <img class="bim" id="b3" src="assets/bim3.jpg" />
+      <img class="bim" id="b4" src="assets/bim4.jpg" />
+    </div>
+    <div id="s3big"><span>B</span><span>I</span><span>M</span></div>
+    <div id="s3layer">
+      <div id="s3ln"></div>
+      <div id="s3lt" class="mask"><div></div></div>
+      <div id="s3ls"></div>
+    </div>
+    <div id="s3bars"><i></i><i></i><i></i><i></i></div>
+  </section>
+
+  <!-- ═══ S4 · Fachada ═══ -->
+  <section id="s4" class="scene creamBg">
+    <div class="head"><span>ADER STUDIO / VISUALIZACIÓN</span><span>FACHADA PRINCIPAL</span></div>
+    <div id="s4t1" class="mask big"><div>DEL TRAZO</div></div>
+    <div id="s4line"><img src="assets/fline.png" /></div>
+    <div id="s4photo">
+      <img id="s4byn" src="assets/fbyn.jpg" />
+      <canvas id="s4canvas" width="1920" height="1440"></canvas>
+    </div>
+    <div id="s4t2" class="mask big"><div><em>a la luz.</em></div></div>
+  </section>
+
+  <!-- ═══ S5 · La casa ═══ -->
+  <section id="s5" class="scene inkBg">
+    <div id="s5a" class="panel"><img id="s5vid" class="vid" /></div>
+    <div id="s5b" class="panel"><img src="assets/r-estructura.jpg" /></div>
+    <div id="s5c" class="panel"><img src="assets/r-acceso.jpg" /></div>
+    <div id="s5shade"></div>
+    <div id="s5t1" class="mask cap"><div>Diseño contextual.</div></div>
+    <div id="s5t2" class="mask cap"><div>Honestidad material.</div></div>
+    <div id="s5name" class="mask"><div>CASA ANGEL</div></div>
+    <div id="s5loc" class="mask"><div>PINAMAR · ARGENTINA · 2025–2026</div></div>
+  </section>
+
+  <!-- ═══ S6 · Norte ═══ -->
+  <section id="s6" class="scene creamBg">
+    <div id="s6logoWrap">
+      <svg id="s6mark" viewBox="-100 -100 200 200">
+        <circle id="s6ring" cx="0" cy="0" r="94" />
+        <g id="s6ghosts"></g>
+        <g id="s6needle"><path fill-rule="evenodd" d="M-78.4,-4.5 L0,-18.6 L78.9,-4.2 L78.9,3.9 L1.7,18.6 L-78.4,3.9 Z M-46.8,-0.4 L-1,-9.1 L-1,8.2 Z" /></g>
+      </svg>
+      <img id="s6full" src="assets/ader-full.png" />
+    </div>
+    <div id="s6t1" class="mask"><div>TODOS LOS PROYECTOS</div></div>
+    <div id="s6t2" class="mask"><div><em>tienen un norte.</em></div></div>
+    <div id="s6name" class="mask"><div>ADER STUDIO</div></div>
+    <div id="s6desc" class="mask"><div>Arquitectura · Buenos Aires</div></div>
+    <div id="s6rule"></div>
+    <div id="s6case" class="mask"><div>CASA ANGEL · PINAMAR · 2025–2026</div></div>
+    <div id="s6cta"><span>AGENDÁ UNA REUNIÓN</span><svg width="34" height="20" viewBox="0 0 34 20"><line x1="1" y1="10" x2="31" y2="10" /><polyline points="23,2 31,10 23,18" /></svg></div>
+  </section>
+
+  <div id="flash"></div>
+  <canvas id="grain" width="540" height="960"></canvas>
+  <div id="vignette"></div>
+</div>
+<script src="timeline.js"></script>
+</body>
+</html>

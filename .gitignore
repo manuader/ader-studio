@@ -34,3 +34,11 @@ brag-output/work/stills/
 brag-output/work/node_modules
 brag-output/work/log_*.txt
 brag-output/work/*.png
+brag-angel/**/*.mp4
+brag-angel/**/*.wav
+brag-angel/work/assets/
+brag-angel/work/stills/
+brag-angel/work/node_modules
+brag-angel/work/log_*.txt
+brag-angel/work/*.png
+brag-output/work/list.txt
