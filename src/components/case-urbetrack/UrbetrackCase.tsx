@@ -16,9 +16,12 @@ import { Capas } from './sections/Capas';
 import { Materialidad } from './sections/Materialidad';
 import { Resultado } from './sections/Resultado';
 import { Documentacion } from './sections/Documentacion';
+import { useCompassLogo } from '@/components/portfolio/shared/useCompassLogo';
 
 function CaseNav() {
   const barRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+  useCompassLogo(logoRef);
   const [chapter, setChapter] = useState('Oficinas Urbetrack');
 
   useEffect(() => {
@@ -54,7 +57,7 @@ function CaseNav() {
   return (
     <nav className={s.nav}>
       <Link href="/" className={s.navBrand}>
-        <Image src="/images/logo.jpeg" alt="Ader Studio" width={36} height={36} className={s.navLogo} />
+        <Image ref={logoRef} src="/images/logo.jpeg" alt="Ader Studio" width={36} height={36} className={s.navLogo} />
         <span>Ader Studio</span>
       </Link>
       <div className={s.navChapter} key={chapter}>{chapter}</div>

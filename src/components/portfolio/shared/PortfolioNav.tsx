@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import s from './PortfolioNav.module.css';
+import { useCompassLogo } from './useCompassLogo';
 
 const LINKS = [
   { href: '/proyectos', label: 'Proyectos' },
@@ -19,6 +20,8 @@ const LINKS = [
  */
 export function PortfolioNav({ initialChapter = '' }: { initialChapter?: string }) {
   const barRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+  useCompassLogo(logoRef);
   const [chapter, setChapter] = useState(initialChapter);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -59,7 +62,7 @@ export function PortfolioNav({ initialChapter = '' }: { initialChapter?: string 
   return (
     <nav className={s.nav} data-open={open || undefined}>
       <Link href="/" className={s.brand} aria-label="Ader Studio — inicio">
-        <Image src="/images/logo.jpeg" alt="" width={36} height={36} className={s.logo} />
+        <Image ref={logoRef} src="/images/logo.jpeg" alt="" width={36} height={36} className={s.logo} />
         <span>Ader Studio</span>
       </Link>
       <div className={s.chapter} key={chapter} aria-live="polite">{chapter}</div>
