@@ -42,3 +42,8 @@ brag-angel/work/node_modules
 brag-angel/work/log_*.txt
 brag-angel/work/*.png
 brag-output/work/list.txt
+
+# brag film build artifacts
+brag-films/*/assets/
+brag-films/*/out/
+brag-films/*/node_modules
