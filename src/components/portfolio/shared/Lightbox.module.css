@@ -1,0 +1,81 @@
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: grid;
+  place-items: center;
+  animation: lbIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+.backdrop { position: absolute; inset: 0; border: 0; background: rgba(250, 250, 247, 0.96); cursor: pointer; }
+
+.figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: calc(100vw - 200px);
+  animation: figIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes figIn { from { opacity: 0; transform: scale(0.985); } to { opacity: 1; transform: none; } }
+.img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 200px);
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+}
+.caption {
+  font-family: var(--font-b);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--gray1);
+  text-align: center;
+  max-width: 60ch;
+}
+
+.counter {
+  position: absolute;
+  top: 28px;
+  left: 40px;
+  font-family: var(--font-c);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--white);
+}
+
+.close, .arrow {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--gray3);
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.close:hover, .arrow:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
+.close:focus-visible, .arrow:focus-visible { outline: 1px solid var(--white); outline-offset: 3px; }
+.close { top: 16px; right: 40px; }
+.arrow { top: 50%; margin-top: -26px; }
+.prev { left: 40px; }
+.next { right: 40px; }
+
+@media (max-width: 768px) {
+  .figure, .img { max-width: calc(100vw - 32px); }
+  .img { max-height: calc(100vh - 200px); }
+  .counter { left: 20px; top: 30px; }
+  .close { right: 16px; }
+  .arrow { top: auto; bottom: 24px; margin-top: 0; }
+  .prev { left: 16px; }
+  .next { right: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .figure { animation: none; }
+}

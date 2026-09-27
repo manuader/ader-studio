@@ -1,0 +1,3 @@
+.film { position: relative; overflow: hidden; background: var(--bg2); aspect-ratio: 16 / 9; }
+.poster, .poster img, .video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 768px) { .film { aspect-ratio: 9 / 16; } }
