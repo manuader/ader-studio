@@ -1,0 +1,97 @@
+<!doctype html>
+<!--
+  OBRA — 20 s silent loop for the /proyectos hero (brag-slim pipeline).
+  Build:  python3 prep_assets.py ../../public/images assets
+          FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")
+          FF=$FF node render.mjs h out/master-h.mkv && FF=$FF node render.mjs v out/master-v.mkv
+          FF=$FF sh encode.sh ../../public/videos/portfolio
+          FF=$FF node poster.mjs h 7.75 ../../public/videos/portfolio/obra-poster.jpg
+          FF=$FF node poster.mjs v 7.75 ../../public/videos/portfolio/obra-9x16-poster.jpg
+  Preview: index.html?f=h (1920×1080) / ?f=v (1080×1920); window.renderAt(t).
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>OBRA — Ader Studio</title>
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1–S2 · plan space (native px of the 02-02 sheet) -->
+  <div id="plan">
+    <img id="pg" src="assets/plan-grilla.webp" alt="" />
+    <img id="pa" src="assets/planta-alta.webp" alt="" />
+    <svg id="grid" viewBox="0 0 2400 1148"><g id="gridG"></g><line id="wipeLn" /></svg>
+  </div>
+
+  <!-- S2 · corte -->
+  <div id="corte"><img src="assets/corte.webp" alt="" /></div>
+
+  <!-- S4 · Urbetrack -->
+  <div id="axos">
+    <img class="axo" id="ax0" src="assets/axo-11.webp" alt="" />
+    <img class="axo" id="ax1" src="assets/axo-12.webp" alt="" />
+    <img class="axo" id="ax2" src="assets/axo-13.webp" alt="" />
+  </div>
+  <div class="flr" id="fl0"><i></i><span>PISO 11</span></div>
+  <div class="flr" id="fl1"><i></i><span>PISO 12</span></div>
+  <div class="flr" id="fl2"><i></i><span>PISO 13</span></div>
+
+  <!-- S5 · FADU / Weimar frame -->
+  <div id="frame">
+    <img class="fr" id="fr0" src="assets/fadu-2020.webp" alt="" />
+    <img class="fr" id="fr1" src="assets/fadu-2021.webp" alt="" />
+    <img class="fr" id="fr2" src="assets/fadu-2022.webp" alt="" />
+    <img class="fr" id="fr3" src="assets/fadu-2023.webp" alt="" />
+    <img class="fr" id="fr4" src="assets/fadu-2024.webp" alt="" />
+    <img class="fr" id="fr5" src="assets/weimar-splat.webp" alt="" />
+  </div>
+
+  <!-- S3 · renders -->
+  <div id="render">
+    <img id="r1" src="assets/render-patio.webp" alt="" />
+    <img id="r2" src="assets/render-pasarela.webp" alt="" />
+    <div id="scrim"></div>
+  </div>
+
+  <!-- ink layer (screen space) -->
+  <svg id="ink">
+    <line id="ln" />
+    <line id="cut" />
+    <g id="cmp">
+      <circle id="ring" cx="0" cy="0" r="94" />
+      <g id="needle"><path fill-rule="evenodd" d="M-78.4,-4.5 L0,-18.6 L78.9,-4.2 L78.9,3.9 L1.7,18.6 L-78.4,3.9 Z M-46.8,-0.4 L-1,-9.1 L-1,8.2 Z" /></g>
+    </g>
+  </svg>
+  <img id="mark" src="assets/ader-mark.png" alt="" />
+
+  <!-- type -->
+  <div class="eb mask" id="p0"><div>PROCESO</div></div>
+  <div class="hl mask" id="p1"><div>PENSAR</div></div>
+  <div class="hl it mask" id="p2"><div>el lugar.</div></div>
+
+  <div class="eb mask" id="c0"><div>RESIDENCIAL PRIVADO · 2024–2025</div></div>
+  <div class="hl mask" id="c1"><div>CASA ANGEL</div></div>
+  <div class="hl it mask" id="c2"><div>Pinamar.</div></div>
+
+  <div class="eb mask" id="u0"><div>REFORMA Y AMPLIACIÓN</div></div>
+  <div class="hl mask" id="u1"><div>URBETRACK</div></div>
+  <div class="hl it mask" id="u2"><div>Buenos Aires.</div></div>
+
+  <div class="eb mask" id="e0"><div>FORMACIÓN</div></div>
+  <div class="odo mask" id="yr"><div id="yrT"></div></div>
+  <div class="hl mask" id="e1"><div>FADU–UBA</div></div>
+  <div class="hl it mask" id="e2"><div>Bauhaus Weimar.</div></div>
+  <div class="sub mask" id="sb"><div id="sbT"></div></div>
+
+  <div class="hl mask cen" id="n1"><div>TODOS LOS PROYECTOS</div></div>
+  <div class="hl mask cen" id="n1b"><div>PROYECTOS</div></div>
+  <div class="hl it mask cen" id="n2"><div>tienen un norte.</div></div>
+
+  <div id="caps"></div>
+</div>
+<script src="timeline.js"></script>
+</body>
+</html>
