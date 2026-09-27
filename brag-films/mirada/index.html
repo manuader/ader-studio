@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Ader Studio — MIRADA</title>
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="stage">
+
+  <!-- windows (built in timeline.js) -->
+  <div id="wL" class="win"></div>
+  <div id="wC" class="win"></div>
+  <div id="wR" class="win"></div>
+
+  <!-- framing marks: ink outside the windows, cream viewfinder inside the grown window -->
+  <svg id="marks"><path id="mInk" /><path id="mCream" /></svg>
+
+  <!-- S1 · museum labels under the triptych -->
+  <div id="labL" class="mlab mask"><div><i>01</i>Alemania</div></div>
+  <div id="labC" class="mlab mask"><div><i>02</i>España</div></div>
+  <div id="labR" class="mlab mask"><div><i>03</i>Argentina</div></div>
+
+  <!-- S2 · title over the hero -->
+  <div id="t1" class="title mask"><div>FOTOGRAFÍA</div></div>
+  <div id="t2" class="title mask"><div><em>mirada arquitectónica.</em></div></div>
+  <div id="cap" class="cap mask"><div><span id="capTxt">Patio circular con columnata de dos niveles</span><b>España</b></div></div>
+
+  <!-- S3 · rhythm: series label + counter + ticks -->
+  <div id="rSerie" class="small mask"><div>SERIE</div></div>
+  <div id="rName" class="mask"><div id="rNameA"></div><div id="rNameB"></div></div>
+  <div id="rCount"><div id="rNum" class="mask"><div id="rNumA"></div><div id="rNumB"></div></div><div id="rTot" class="mask"><div>/ 11</div></div></div>
+  <div id="ticks"></div>
+
+  <!-- S4 · closing -->
+  <div id="e1" class="end mask"><div>11 SERIES</div></div>
+  <div id="e2" class="end mask"><div><em>un mismo lenguaje.</em></div></div>
+</div>
+<script src="timeline.js"></script>
+</body>
+</html>
