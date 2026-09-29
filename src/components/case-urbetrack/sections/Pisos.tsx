@@ -8,11 +8,11 @@ import { usePinProgress } from '../hooks';
 import { FLOOR_EVENT } from './Hero';
 
 // Tramos del scroll: primero se despieza el edificio, después se recorre cada piso.
-const EXPLODE_END = 0.16;
+const EXPLODE_END = 0.5;
 const SEGMENTS = [
-  [EXPLODE_END, 0.45],
-  [0.45, 0.73],
-  [0.73, 1],
+  [EXPLODE_END, 0.67],
+  [0.67, 0.84],
+  [0.84, 1],
 ] as const;
 
 function FloorPanel({ floor }: { floor: Floor }) {
@@ -38,9 +38,13 @@ function FloorPanel({ floor }: { floor: Floor }) {
 
 export function Pisos() {
   const ref = useRef<HTMLElement>(null);
+  const [textVisible, setTextVisible] = useState(false);
   const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const selected = hovered ?? active;
 
   const onProgress = useCallback((p: number) => {
+    setTextVisible(p >= 0.48);
     const i = p < SEGMENTS[1][0] ? 0 : p < SEGMENTS[2][0] ? 1 : 2;
     setActive((prev) => (prev === i ? prev : i));
   }, []);
@@ -49,10 +53,6 @@ export function Pisos() {
   const scrollToFloor = useCallback((i: number) => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia('(max-width: 900px)').matches) {
-      document.getElementById(`piso-${FLOORS[i].id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
     const top = el.getBoundingClientRect().top + window.scrollY;
     const range = el.offsetHeight - window.innerHeight;
     const [a, b] = SEGMENTS[i];
@@ -71,38 +71,45 @@ export function Pisos() {
   return (
     <section ref={ref} id="pisos" className={s.pisos} data-chapter="Tres pisos">
       <div className={s.pisosSticky}>
-        <div className={s.pisosHeader}>
+        <div className={s.pisosHeader} aria-hidden={!textVisible}>
           <div className={s.kicker}>01 / Arquitectura · Axonométrica despiezada</div>
           <h2 className={s.pisosTitle}>Tres pisos,<br /><em>un sistema</em></h2>
         </div>
 
-        <div className={s.axoStage} aria-hidden="true">
-          <svg className={s.axoGuides} viewBox="0 0 100 100" preserveAspectRatio="none">
+        <div className={s.axoStage}>
+          <svg aria-hidden="true" className={s.axoGuides} viewBox="0 0 100 100" preserveAspectRatio="none">
             <line x1="2" y1="10" x2="2" y2="90" />
             <line x1="53" y1="18" x2="53" y2="96" />
             <line x1="98" y1="10" x2="98" y2="90" />
           </svg>
           {FLOORS.map((f, i) => (
-            <div
+            <button
+              type="button"
               key={f.id}
-              className={`${s.axoFloor} ${i === active ? s.axoFloorOn : ''}`}
+              className={`${s.axoFloor} ${i === selected ? s.axoFloorOn : ''}`}
               style={{ ['--i' as string]: i - 1, zIndex: 3 - i }}
+              aria-label={'Piso ' + f.id + ': ' + f.use}
+              aria-pressed={i === selected}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              onFocus={() => setHovered(i)}
+              onBlur={() => setHovered(null)}
               onClick={() => scrollToFloor(i)}
             >
               <Image src={f.axo} alt="" width={1100} height={690} sizes="(max-width: 900px) 90vw, 48vw" />
               <span className={s.axoTag}>P{f.id}</span>
-            </div>
+            </button>
           ))}
         </div>
 
-        <div className={s.pisosPanel}>
-          <FloorPanel floor={FLOORS[active]} />
+        <div className={s.pisosPanel} inert={!textVisible}>
+          <FloorPanel floor={FLOORS[selected]} />
           <div className={s.floorTabs}>
             {FLOORS.map((f, i) => (
               <button
                 key={f.id}
                 type="button"
-                className={`${s.floorTab} ${i === active ? s.floorTabOn : ''}`}
+                className={`${s.floorTab} ${i === selected ? s.floorTabOn : ''}`}
                 onClick={() => scrollToFloor(i)}
               >
                 <span>{f.id}</span>

@@ -58,7 +58,7 @@ export function Hero() {
       </div>
 
       <div className={s.heroCopy}>
-        <div className={s.kicker}>Studio Ader / Caso de estudio</div>
+        <div className={s.kicker}>Studio Ader</div>
         <p className={s.heroPre}>Oficinas Urbetrack</p>
         <h1 className={s.heroTitle}>
           Reforma y<br /><span>ampliación</span>

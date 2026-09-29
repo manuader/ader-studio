@@ -4,6 +4,7 @@ const IMG = '/images/urbetrack';
 export type FloorId = 11 | 12 | 13;
 
 export interface Room {
+  code: string;
   name: string;
   area: string;
   /** Posición del rótulo en la planta, en % del ancho / alto de la imagen. */
@@ -39,16 +40,18 @@ export const FLOORS: Floor[] = [
     plan: `${IMG}/plan-13.webp`,
     demolition: `${IMG}/dem-13.webp`,
     rooms: [
-      { name: 'Puestos operativos', area: '144 m²', x: 46.9, y: 33.6 },
-      { name: 'Sala de reuniones', area: '25 m²', x: 14.7, y: 33.6 },
-      { name: 'Sala de trabajo', area: '14 m²', x: 14.8, y: 55.6 },
-      { name: 'NOC', area: '14 m²', x: 14.5, y: 70.5 },
-      { name: 'I.O.T.', area: '20 m²', x: 14.5, y: 85.6 },
-      { name: 'Sala de trabajo', area: '16 m²', x: 43.3, y: 86.4 },
-      { name: 'Gerencia Desarrollo', area: '17 m²', x: 66.5, y: 86.4 },
-      { name: 'Gerencia de Talento', area: '20 m²', x: 85.2, y: 86.4 },
-      { name: 'Baños', area: '10 m²', x: 79.7, y: 40.2 },
-      { name: 'Cocina', area: '5 m²', x: 87.0, y: 28.2 },
+      { code: '13.01', name: 'Puestos operativos', area: '144 m²', x: 46.9, y: 33.6 },
+      { code: '13.02', name: 'Sala de reuniones', area: '25 m²', x: 14.7, y: 33.6 },
+      { code: '13.03', name: 'Sala de trabajo', area: '14 m²', x: 14.8, y: 55.6 },
+      { code: '13.04', name: 'NOC', area: '14 m²', x: 14.5, y: 70.5 },
+      { code: '13.05', name: 'I.O.T.', area: '20 m²', x: 14.5, y: 85.6 },
+      { code: '13.06', name: 'Sala de trabajo', area: '16 m²', x: 43.3, y: 86.4 },
+      { code: '13.07', name: 'Gerencia Desarrollo', area: '17 m²', x: 66.5, y: 86.4 },
+      { code: '13.08', name: 'Gerencia de Talento', area: '20 m²', x: 85.2, y: 86.4 },
+      { code: '13.09', name: 'Rack', area: '2 m²', x: 80.0, y: 62.8 },
+      { code: '13.10', name: 'Caldera', area: '11 m²', x: 89.5, y: 60.5 },
+      { code: '13.11', name: 'Baños', area: '10 m²', x: 79.7, y: 40.2 },
+      { code: '13.12', name: 'Cocina', area: '5 m²', x: 87.0, y: 28.2 },
     ],
   },
   {
@@ -66,17 +69,22 @@ export const FLOORS: Floor[] = [
     plan: `${IMG}/plan-12.webp`,
     demolition: `${IMG}/dem-12.webp`,
     rooms: [
-      { name: 'Comedor', area: '43 m²', x: 47.5, y: 82.3 },
-      { name: 'Soporte', area: '28 m²', x: 81.7, y: 82.3 },
-      { name: 'Sala de capacitación', area: '19 m²', x: 47.9, y: 64.7 },
-      { name: 'Sala de trabajo', area: '10 m²', x: 40.8, y: 51.3 },
-      { name: 'Coordinación', area: '10 m²', x: 57.1, y: 51.3 },
-      { name: 'Depósito', area: '33 m²', x: 15.6, y: 54.0 },
-      { name: 'Laboratorio + Volumétricos', area: '13 m²', x: 19.8, y: 86.5 },
-      { name: 'Gerencia Operaciones', area: '16 m²', x: 52.2, y: 25.0 },
-      { name: 'Jefatura Operaciones', area: '14 m²', x: 31.2, y: 25.0 },
-      { name: 'Calidad', area: '17 m²', x: 12.9, y: 25.0 },
-      { name: 'Baños', area: '11 m²', x: 80.0, y: 39.7 },
+      { code: '12.01', name: 'Gerencia Operaciones', area: '16 m²', x: 52.2, y: 25.0 },
+      { code: '12.02', name: 'Jefatura Operaciones', area: '14 m²', x: 31.2, y: 25.0 },
+      { code: '12.03', name: 'Calidad', area: '17 m²', x: 12.9, y: 25.0 },
+      { code: '12.04a', name: 'Depósito', area: '33 m²', x: 15.6, y: 54.0 },
+      { code: '12.04b', name: 'Bóveda', area: '7 m²', x: 15.7, y: 77.2 },
+      { code: '12.05', name: 'Laboratorio + Volumétricos', area: '13 m²', x: 19.8, y: 86.5 },
+      { code: '12.06', name: 'Comedor', area: '43 m²', x: 47.5, y: 82.3 },
+      { code: '12.07', name: 'Soporte', area: '28 m²', x: 81.7, y: 82.3 },
+      { code: '12.08a', name: 'Rack', area: '4 m²', x: 79.5, y: 63.3 },
+      { code: '12.08b', name: 'Office', area: '4 m²', x: 79.4, y: 54.6 },
+      { code: '12.09', name: 'Caldera', area: '11 m²', x: 89.5, y: 60.5 },
+      { code: '12.10', name: 'Baños', area: '11 m²', x: 80.0, y: 39.7 },
+      { code: '12.11', name: 'Cocina', area: '5 m²', x: 86.8, y: 28.5 },
+      { code: '12.12', name: 'Sala de trabajo', area: '10 m²', x: 40.8, y: 51.3 },
+      { code: '12.13', name: 'Coordinación', area: '10 m²', x: 57.1, y: 51.3 },
+      { code: '12.14', name: 'Sala de capacitación', area: '19 m²', x: 47.9, y: 64.7 },
     ],
   },
   {
@@ -93,23 +101,28 @@ export const FLOORS: Floor[] = [
     diagram: `${IMG}/diag-11.webp`,
     plan: `${IMG}/plan-11.webp`,
     rooms: [
-      { name: 'Puestos operativos', area: '118 m²', x: 69.2, y: 58.7 },
-      { name: 'Gerencia Comercial', area: '17 m²', x: 52.4, y: 25.8 },
-      { name: 'Comercial trabajo', area: '17 m²', x: 32.7, y: 25.8 },
-      { name: 'Sala de reuniones', area: '27 m²', x: 12.4, y: 25.8 },
-      { name: 'Gerencia B&S', area: '13 m²', x: 17.6, y: 85.6 },
-      { name: 'Oficinas', area: '18 y 21 m²', x: 47.5, y: 85.6 },
-      { name: 'Gerencia Administrativa', area: '13 m²', x: 84.4, y: 85.6 },
-      { name: 'Baño', area: '11 m²', x: 80.1, y: 39.8 },
+      { code: '11.01', name: 'Puestos operativos', area: '118 m²', x: 69.2, y: 58.7 },
+      { code: '11.02', name: 'Gerencia Comercial', area: '17 m²', x: 52.4, y: 25.8 },
+      { code: '11.03', name: 'Comercial trabajo', area: '17 m²', x: 32.7, y: 25.8 },
+      { code: '11.04', name: 'Sala de reuniones', area: '27 m²', x: 12.4, y: 25.8 },
+      { code: '11.05', name: 'Bonomia', area: '15 m²', x: 13.6, y: 61.4 },
+      { code: '11.06', name: 'Gerencia B&S', area: '13 m²', x: 17.6, y: 85.6 },
+      { code: '11.07', name: 'Oficina Pablo', area: '18 m²', x: 32.0, y: 85.6 },
+      { code: '11.08', name: 'Oficina Ángel', area: '21 m²', x: 65.2, y: 85.6 },
+      { code: '11.09', name: 'Gerencia Administrativa', area: '13 m²', x: 84.4, y: 85.6 },
+      { code: '11.10', name: 'Tesorería', area: '5 m²', x: 87.7, y: 74.1 },
+      { code: '11.11', name: 'Caldera', area: '11 m²', x: 89.5, y: 60.5 },
+      { code: '11.12', name: 'Baño', area: '11 m²', x: 80.1, y: 39.8 },
+      { code: '11.13', name: 'Cocina', area: '5 m²', x: 85.9, y: 28.1 },
     ],
   },
 ];
 
 export const STATS = [
   { value: 3, suffix: '', label: 'Pisos integrados en un mismo sistema' },
-  { value: 300, prefix: '≈', suffix: ' m²', label: 'De reforma integral en el piso 13' },
-  { value: 30, suffix: '', label: 'Personas en el comedor compartido' },
-  { value: 24, suffix: '', label: 'Frentes vidriados a medida' },
+  { value: 618, suffix: ' m²', label: 'Metros cuadrados totales' },
+  { value: 35, suffix: '', label: 'Semanas de trabajo' },
+  { value: 100, prefix: '+', suffix: '', label: 'Puestos de trabajo agregados' },
 ];
 
 export const CORTES = [
@@ -118,61 +131,58 @@ export const CORTES = [
     label: 'Transversal A',
     text: 'Salas vidriadas sobre el frente, puestos al centro y el núcleo de baños compartidos, repetido en los tres niveles.',
     img: `${IMG}/corte-a.webp`,
-    ratio: 1262 / 723,
+    crop: { x: 36, y: 51, width: 1190, height: 602, imageWidth: 1262, imageHeight: 723 },
   },
   {
     id: 'l',
     label: 'Longitudinal',
     text: 'Las columnas en violeta marcan el ritmo de la planta y vinculan los tres pisos con un mismo gesto de color.',
     img: `${IMG}/corte-l.webp`,
-    ratio: 1233 / 494,
+    crop: { x: 17, y: 11, width: 1191, height: 464, imageWidth: 1233, imageHeight: 494 },
   },
   {
     id: 'b',
     label: 'Transversal B',
-    text: 'Del rack y la circulación al comedor y las salas de trabajo: la secuencia completa de usos en un solo corte.',
+    text: 'Cada piso con su rack independiente distinguiendo la sala de servidores en el P12.',
     img: `${IMG}/corte-b.webp`,
-    ratio: 1261 / 722,
+    crop: { x: 35, y: 51, width: 1191, height: 601, imageWidth: 1261, imageHeight: 722 },
   },
 ] as const;
 
 export const CAPAS = [
   {
-    num: '02',
-    title: 'Sanitarias',
-    text: 'Agua fría, caliente y desagües integrados en una misma implantación para los pisos 12 y 13: baños compartidos y cocina de servicio.',
-    fact: 'AF · AC · desagües',
-    img: `${IMG}/inst-sanitaria.webp`,
+    num: '01', title: 'Iluminación',
+    text: 'La luz acompaña los puestos, las salas y las circulaciones. Circuitos y comandos por sector coordinados con la distribución de cada planta.',
+    fact: 'Luz por sector',
+    sheets: [{ page: 19, label: 'Piso 12 · Iluminación' }, { page: 20, label: 'Piso 13 · Iluminación' }],
   },
   {
-    num: '03',
-    title: 'Iluminación',
-    text: 'Circuitos por sector y bandejas portacables que recorren la planta, proyectados según el uso de cada espacio.',
-    fact: 'Tableros seccionales por uso',
-    img: `${IMG}/inst-iluminacion.webp`,
+    num: '02', title: 'Tomacorrientes',
+    text: 'La energía llega a cada isla de trabajo. Tomas, canalizaciones y detalles de conexión pensados junto con el mobiliario y los equipos.',
+    fact: 'Energía en cada puesto',
+    sheets: [{ page: 21, label: 'Piso 12 · Tomacorrientes' }, { page: 22, label: 'Piso 13 · Tomacorrientes' }],
   },
   {
-    num: '03',
-    title: 'Datos',
-    text: 'Bocas de datos por puesto, CCTV, WiFi y control de acceso, pensados desde el equipamiento previsto.',
-    fact: 'Cat 6A por puesto',
-    img: `${IMG}/inst-datos.webp`,
+    num: '03', title: 'Datos',
+    text: 'La conectividad es parte de la arquitectura de una empresa de software. Bocas de datos, CCTV y WiFi se coordinan con los racks, los recorridos y la ubicación de los equipos.',
+    fact: 'Bocas · CCTV · WiFi',
+    sheets: [{ page: 24, label: 'Piso 12 · Datos' }, { page: 25, label: 'Piso 13 · Datos' }],
   },
   {
-    num: '04',
-    title: 'Climatización',
-    text: 'Equipos nuevos coordinados con los existentes en los tres pisos, con alimentación eléctrica propia.',
-    fact: 'Naranja: equipos nuevos',
-    img: `${IMG}/inst-aa.webp`,
+    num: '04', title: 'Climatización',
+    text: 'Equipos nuevos y existentes trabajan con la organización de cada piso. Su ubicación y su alimentación eléctrica se documentan como parte del mismo sistema.',
+    fact: 'Confort y alimentación',
+    sheets: [{ page: 34, label: 'Piso 11 · Equipos' }, { page: 35, label: 'Piso 12 · Equipos' }, { page: 36, label: 'Piso 12 · Alimentación eléctrica' }, { page: 37, label: 'Piso 13 · Equipos' }, { page: 38, label: 'Piso 13 · Alimentación eléctrica' }],
   },
   {
-    num: '05',
-    title: 'Tabiquería vidriada',
-    text: 'Frentes de vidrio 5+5 con perfilería de aluminio anodizado, esmerilados donde se necesita privacidad, y cubículos de baño con pivote libre.',
-    fact: '24 frentes a medida',
-    img: `${IMG}/inst-tabiqueria.webp`,
+    num: '05', title: 'Tableros',
+    text: 'La distribución se organiza en tableros de iluminación y tomas, puestos y aire acondicionado. Cada uno tiene su esquema unifilar, circuitos y referencias para ejecutar y mantener la instalación.',
+    fact: 'Circuitos documentados',
+    sheets: [{ page: 27, label: 'Piso 12 · TS-IT' }, { page: 28, label: 'Piso 12 · TS-Puestos' }, { page: 29, label: 'Piso 12 · TS-AA' }, { page: 30, label: 'Piso 13 · TS-IT' }, { page: 31, label: 'Piso 13 · TS-Puestos' }, { page: 32, label: 'Piso 13 · TS-AA' }],
   },
 ];
+
+export const technicalSheet = (page: number) => `${IMG}/technical/${String(page).padStart(2, '0')}.webp`;
 
 export const TERMINACIONES = [
   { id: 'piso', name: 'Piso vinílico', spec: 'LVT 3 mm · color Cenizo', use: 'Espacios de trabajo', img: `${IMG}/mat-piso.webp` },
@@ -195,37 +205,53 @@ export const EQUIPAMIENTO = [
 
 export const RECORRIDO = [
   {
-    num: '01',
-    title: 'NOC',
-    text: 'La sala de monitoreo del piso 13: videowall, puestos de control y un paramento de acento en el violeta de la marca.',
-    img: '/images/renders/07 - Sala de control.webp',
-    alt: 'Sala NOC de Urbetrack',
-    drawing: false,
+    "num": "01",
+    "title": "NOC",
+    "text": "La sala de monitoreo: videowall, puestos de control y conexión visual con la planta de trabajo.",
+    "img": "/images/urbetrack/espacios/01. NOC.png",
+    "alt": "Urbetrack · NOC",
+    "drawing": false
   },
   {
-    num: '02',
-    title: 'Planta de trabajo',
-    text: 'Islas de puestos bajo una grilla de luz lineal, con las columnas en violeta marcando el ritmo del espacio.',
-    img: '/images/renders/02 - Oficina.webp',
-    alt: 'Planta de trabajo de Urbetrack',
-    drawing: false,
+    "num": "02",
+    "title": "Puestos de trabajo",
+    "text": "El espacio central del equipo, con islas de trabajo, luz continua y la identidad violeta de Urbetrack.",
+    "img": "/images/urbetrack/espacios/02. PUESTOS DE TRABAJO.png",
+    "alt": "Urbetrack · Puestos de trabajo",
+    "drawing": false
   },
   {
-    num: '03',
-    title: 'Baños compartidos',
-    text: 'Mesada corrida de granito, bachas de apoyo, muebles en Nogal Persa y cubículos de vidrio.',
-    img: '/images/renders/10 - Baño oficina.webp',
-    alt: 'Baños compartidos de Urbetrack',
-    drawing: false,
+    "num": "03",
+    "title": "Comedor",
+    "text": "Un lugar de encuentro compartido por los tres pisos, pensado para las pausas y la conversación.",
+    "img": "/images/urbetrack/espacios/03. COMEDOR.png",
+    "alt": "Urbetrack · Comedor",
+    "drawing": false
   },
   {
-    num: '04',
-    title: 'Acceso',
-    text: 'Un umbral de vidrio con el isotipo de la marca. Simple, reconocible y preciso.',
-    img: '/images/projects/urbetrack-acceso.webp',
-    alt: 'Dibujo del acceso a Urbetrack',
-    drawing: true,
+    "num": "04",
+    "title": "Sala de trabajo",
+    "text": "Un ámbito de colaboración delimitado por vidrio, integrado visualmente al resto de la oficina.",
+    "img": "/images/urbetrack/espacios/04. SALA DE TRABAJO.png",
+    "alt": "Urbetrack · Sala de trabajo",
+    "drawing": false
   },
+  {
+    "num": "05",
+    "title": "Acceso",
+    "text": "La llegada a la planta entre la circulación, los puestos y el núcleo revestido en madera.",
+    "img": "/images/urbetrack/espacios/05. ACCESO.png",
+    "alt": "Urbetrack · Acceso",
+    "drawing": false
+  },
+  {
+    "num": "06",
+    "title": "Baños",
+    "text": "Materiales y detalles que dan continuidad a los espacios de servicio.",
+    "img": "/images/urbetrack/espacios/06. BAÑOS.png",
+    "alt": "Urbetrack · Baños",
+    "drawing": false
+  }
 ];
 
 export const CAPITULOS = [

@@ -14,27 +14,43 @@ export function Demolicion() {
   const [dragging, setDragging] = useState(false);
   const [touched, setTouched] = useState(false);
   const viewerRef = useRef<HTMLDivElement>(null);
-  const seen = useInView(viewerRef, 0.4, true);
+  const seen = useInView(viewerRef, 0.2);
+  const manual = useRef(false);
+  const phase = useRef(0);
   const floor = WITH_DEMOLITION[floorIdx];
 
-  // Barrido de presentación la primera vez que se ve el comparador.
+  // Va y vuelve mientras está visible; el primer gesto entrega el control al visitante.
   useEffect(() => {
     if (!seen || touched) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let raf = 0;
-    const start = performance.now();
-    const keys = [50, 82, 18, 50];
-    const step = (t: number) => {
-      const k = Math.min(1, (t - start) / 2600);
-      const seg = Math.min(2, Math.floor(k * 3));
-      const local = k * 3 - seg;
-      const ease = local < 0.5 ? 2 * local * local : 1 - Math.pow(-2 * local + 2, 2) / 2;
-      setX(keys[seg] + (keys[seg + 1] - keys[seg]) * ease);
-      if (k < 1) raf = requestAnimationFrame(step);
+    let previous = performance.now();
+    const step = (time: number) => {
+      if (manual.current || motion.matches) return;
+      phase.current += Math.min(time - previous, 64) / 8000 * Math.PI * 2;
+      previous = time;
+      setX(50 + Math.sin(phase.current) * 34);
+      raf = requestAnimationFrame(step);
     };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    const onMotion = () => {
+      cancelAnimationFrame(raf);
+      if (!motion.matches && !manual.current) {
+        previous = performance.now();
+        raf = requestAnimationFrame(step);
+      }
+    };
+    onMotion();
+    motion.addEventListener('change', onMotion);
+    return () => {
+      cancelAnimationFrame(raf);
+      motion.removeEventListener('change', onMotion);
+    };
   }, [seen, touched]);
 
+  const takeControl = () => {
+    manual.current = true;
+    setTouched(true);
+  };
   const setFromEvent = useCallback((clientX: number) => {
     const r = viewerRef.current?.getBoundingClientRect();
     if (!r) return;
@@ -75,7 +91,7 @@ export function Demolicion() {
         className={`${s.compare} ${dragging ? s.compareDragging : ''}`}
         style={{ ['--x' as string]: `${x}%` }}
         onPointerDown={(e) => {
-          setTouched(true);
+          takeControl();
           setDragging(true);
           e.currentTarget.setPointerCapture(e.pointerId);
           setFromEvent(e.clientX);
@@ -90,8 +106,8 @@ export function Demolicion() {
         aria-valuemax={100}
         aria-valuenow={Math.round(x)}
         onKeyDown={(e) => {
-          if (e.key === 'ArrowLeft') { setTouched(true); setX((v) => Math.max(0, v - 5)); }
-          if (e.key === 'ArrowRight') { setTouched(true); setX((v) => Math.min(100, v + 5)); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); takeControl(); setX((v) => Math.max(0, v - 5)); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); takeControl(); setX((v) => Math.min(100, v + 5)); }
         }}
       >
         <Image

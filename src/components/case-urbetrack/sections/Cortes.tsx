@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import s from '../UrbetrackCase.module.css';
 import { CORTES } from '../data';
 
-const ZOOM = 2;
+
 
 /** Planta llave: silueta del edificio con las líneas de corte, como en la lámina. */
 function KeyPlan({ active }: { active: string }) {
@@ -34,15 +34,7 @@ function KeyPlan({ active }: { active: string }) {
 
 export function Cortes() {
   const [idx, setIdx] = useState(0);
-  const [lens, setLens] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
   const corte = CORTES[idx];
-
-  const onMove = (e: React.PointerEvent) => {
-    if (e.pointerType !== 'mouse') return;
-    const r = frameRef.current!.getBoundingClientRect();
-    setLens({ x: e.clientX - r.left, y: e.clientY - r.top, w: r.width, h: r.height });
-  };
 
   return (
     <section className={s.cortes} data-chapter="Cortes">
@@ -62,6 +54,7 @@ export function Cortes() {
                   key={c.id}
                   type="button"
                   className={`${s.tab} ${i === idx ? s.tabOn : ''}`}
+                  aria-pressed={i === idx}
                   onClick={() => setIdx(i)}
                 >
                   {c.label}
@@ -73,36 +66,23 @@ export function Cortes() {
         </div>
       </div>
 
-      <div
-        ref={frameRef}
-        className={`${s.corteFrame} reveal`}
-        style={{ ['--r' as string]: corte.ratio }}
-        onPointerMove={onMove}
-        onPointerLeave={() => setLens(null)}
-      >
-        {CORTES.map((c, i) => (
-          <Image
-            key={c.id}
-            src={c.img}
-            alt={`Corte fugado ${c.label}`}
-            fill
-            sizes="100vw"
-            className={`${s.corteImg} ${i === idx ? s.corteImgOn : ''}`}
-          />
-        ))}
-        {lens && (
-          <div
-            className={s.lens}
-            style={{
-              left: lens.x,
-              top: lens.y,
-              backgroundImage: `url("${corte.img}")`,
-              backgroundSize: `${lens.w * ZOOM}px ${lens.h * ZOOM}px`,
-              backgroundPosition: `${-(lens.x * ZOOM - 110)}px ${-(lens.y * ZOOM - 110)}px`,
-            }}
-          />
-        )}
-        <span className={s.corteHint}>Pasá el cursor para ampliar</span>
+      <div className={`${s.corteFrame} reveal`}>
+        <div className={s.corteTrack} style={{ transform: `translateX(-${idx * 100}%)` }}>
+          {CORTES.map((c, i) => (
+            <div key={c.id} className={s.corteSlide} aria-hidden={i !== idx}>
+              <div className={s.corteDrawing} style={{ aspectRatio: c.crop.width / c.crop.height }}>
+                <Image src={c.img} alt={`Corte fugado ${c.label}`} width={c.crop.imageWidth} height={c.crop.imageHeight} sizes="100vw" className={s.corteImg}
+                  style={{ width: `${c.crop.imageWidth / c.crop.width * 100}%`, height: `${c.crop.imageHeight / c.crop.height * 100}%`, left: `${-c.crop.x / c.crop.width * 100}%`, top: `${-c.crop.y / c.crop.height * 100}%` }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <button type="button" className={`${s.sheetArrow} ${s.sheetArrowPrev} ${s.cutArrow}`} aria-label="Corte anterior" onClick={() => setIdx((value) => (value + CORTES.length - 1) % CORTES.length)}>
+          <Image src="/images/urbetrack/ui/arrow-left.png" alt="" width={24} height={24} />
+        </button>
+        <button type="button" className={`${s.sheetArrow} ${s.sheetArrowNext} ${s.cutArrow}`} aria-label="Corte siguiente" onClick={() => setIdx((value) => (value + 1) % CORTES.length)}>
+          <Image src="/images/urbetrack/ui/arrow-right.png" alt="" width={24} height={24} />
+        </button>
       </div>
     </section>
   );

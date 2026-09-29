@@ -195,9 +195,9 @@
 
 .heroMark {
   position: absolute;
-  top: calc(-12vh + var(--my) * -24px);
-  right: calc(-6vw + var(--mx) * -24px);
-  width: min(62vh, 50vw);
+  top: calc(var(--nav-h) + 24px + var(--my) * -24px);
+  right: calc(32px + var(--mx) * -16px);
+  width: min(62vh, 50vw, max(180px, calc(100vh - var(--nav-h) - 112px - clamp(269.28px, 36.72vh, 459px))));
   aspect-ratio: 1;
   transition: top 0.6s cubic-bezier(0.22, 1, 0.36, 1), right 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   animation: markIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -383,7 +383,7 @@
   display: grid;
   grid-template-columns: 5fr 6fr;
   gap: 64px;
-  align-items: center;
+  align-items: start;
 }
 
 .memoriaTitle {
@@ -403,16 +403,13 @@
   margin-top: 22px;
   max-width: 540px;
   font-family: var(--font-b);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.5;
+  color: #ffffff;
 }
 .memoriaText .memoriaLead {
   margin-top: 32px;
-  font-size: 22px;
-  line-height: 1.5;
-  color: #ffffff;
 }
 
 .memoriaIso img {
@@ -465,9 +462,10 @@
 /* ─── PISOS · axonométrica despiezada ─────────────── */
 .pisos {
   --p: 0;
-  --e: clamp(0, calc(var(--p) / 0.16), 1);
+  --e: clamp(0, calc(var(--p) / 0.25), 1);
+  --travel: clamp(0, calc((var(--p) - 0.3) / 0.2), 1);
   position: relative;
-  height: 380vh;
+  height: 460vh;
   background: #ffffff;
 }
 
@@ -476,8 +474,8 @@
   top: 0;
   height: 100vh;
   display: grid;
-  grid-template-columns: 7fr 5fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 5fr 7fr;
+  grid-template-rows: auto minmax(0, 1fr);
   column-gap: 48px;
   padding: calc(var(--nav-h) + 36px) 40px 36px;
   overflow: hidden;
@@ -502,8 +500,9 @@
 }
 
 .axoStage {
-  grid-column: 1;
-  grid-row: 2;
+  container-type: size;
+  grid-column: 2;
+  grid-row: 1 / 3;
   position: relative;
   min-height: 0;
 }
@@ -512,8 +511,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(100%, 50vh);
-  height: calc(12vh + var(--e) * 30vh + 30vh);
+  width: min(90%, 50cqh);
+  height: calc(16cqh + var(--e) * 52cqh + 28cqh);
   transform: translate(-50%, -50%);
   overflow: visible;
   opacity: var(--e);
@@ -526,11 +525,14 @@
 }
 
 .axoFloor {
+  padding: 0;
+  border: 0;
+  background: transparent;
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(100%, 50vh);
-  transform: translate(-50%, -50%) translateY(calc(var(--i) * (6vh + var(--e) * 15vh)));
+  width: min(90%, 50cqh);
+  transform: translate(-50%, -50%) translateY(calc(var(--i) * (8cqh + var(--e) * 26cqh)));
   opacity: 0.4;
   filter: grayscale(0.9);
   cursor: pointer;
@@ -548,6 +550,10 @@
 }
 .axoFloorOn img {
   transform: translateX(-2%) scale(1.04);
+}
+.axoFloor:focus-visible {
+  outline: 2px solid var(--u-violet);
+  outline-offset: 6px;
 }
 .axoFloor:hover {
   opacity: 0.85;
@@ -570,9 +576,10 @@
 }
 
 .pisosPanel {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  align-self: center;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  padding-top: 24px;
 }
 
 .floorPanel {
@@ -587,7 +594,7 @@
 
 .floorNum {
   font-family: var(--font-b);
-  font-size: clamp(110px, 16vh, 180px);
+  font-size: clamp(80px, 12vh, 140px);
   font-weight: 300;
   line-height: 0.8;
   letter-spacing: -0.03em;
@@ -690,7 +697,7 @@
   display: grid;
   grid-template-columns: 4fr 6fr;
   gap: 72px;
-  align-items: center;
+  align-items: start;
   padding: 120px 40px;
   border-top: 1px solid var(--border);
 }
@@ -726,7 +733,7 @@
 .compare {
   --x: 50%;
   position: relative;
-  width: min(100%, calc(86vh * 1600 / 2052));
+  width: min(100%, calc((100svh - var(--nav-h) - 120px) * 1600 / 2052));
   aspect-ratio: 1600 / 2052;
   margin: 0 auto;
   background: #ffffff;
@@ -842,9 +849,21 @@
   color: var(--u-orange);
 }
 
+.planColumn {
+  min-width: 0;
+}
+.planTabs {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: min(100%, calc((100svh - var(--nav-h) - 120px) * 1600 / 2052));
+  margin: 0 auto 20px;
+}
+
 .planViewer {
   position: relative;
-  width: min(100%, calc(86vh * 1600 / 2052));
+  width: min(100%, calc((100svh - var(--nav-h) - 120px) * 1600 / 2052));
   aspect-ratio: 1600 / 2052;
   margin: 0 auto;
   background: #ffffff;
@@ -948,7 +967,7 @@
 .cortesHead {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 48px;
   margin-bottom: 48px;
   flex-wrap: wrap;
@@ -1008,53 +1027,15 @@
 
 .corteFrame {
   position: relative;
-  width: min(100%, calc(80vh * var(--r)));
-  aspect-ratio: var(--r);
-  margin: 0 auto;
+  width: 100%;
+  aspect-ratio: 2.57;
   overflow: hidden;
-  background: #ffffff;
-  cursor: none;
+  background: #fff;
 }
-
-.corteImg {
-  object-fit: contain;
-  opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 0.7s, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.corteImgOn {
-  opacity: 1;
-  transform: none;
-}
-
-.lens {
-  position: absolute;
-  z-index: 3;
-  width: 220px;
-  height: 220px;
-  margin: -110px 0 0 -110px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  outline: 1px solid var(--u-violet);
-  background-repeat: no-repeat;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-}
-
-.corteHint {
-  position: absolute;
-  right: 16px;
-  bottom: 14px;
-  z-index: 2;
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.9);
-  font-family: var(--font-c);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gray1);
-}
+.corteTrack { display: flex; height: 100%; transition: transform 1600ms cubic-bezier(.22, 1, .36, 1); }
+.corteSlide { position: relative; flex: 0 0 100%; height: 100%; }
+.corteDrawing { position: relative; height: 100%; margin: 0 auto; overflow: hidden; }
+.corteImg { position: absolute; max-width: none; }
 
 /* ─── CAPAS TÉCNICAS ───────────────────────────────── */
 .capas {
@@ -1232,7 +1213,7 @@
   display: grid;
   grid-template-columns: 4fr 6fr;
   gap: 72px;
-  align-items: center;
+  align-items: start;
 }
 
 .matList {
@@ -1769,6 +1750,10 @@
 
 /* ─── RESPONSIVE ───────────────────────────────────── */
 @media (max-width: 1024px) {
+  /* El indicador central se cruza con el texto en pantallas angostas. */
+  .heroScroll {
+    display: none;
+  }
   .memoriaGrid,
   .split,
   .matGrid,
@@ -1777,9 +1762,7 @@
     grid-template-columns: 1fr;
     gap: 48px;
   }
-  .splitReverse .planViewer {
-    order: -1;
-  }
+
   .stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1850,9 +1833,9 @@
     align-items: end;
   }
   .heroMark {
-    width: 78vw;
-    top: calc(var(--nav-h) - 12vw);
-    right: -24vw;
+    width: 62vw;
+    top: calc(var(--nav-h) + 16px);
+    right: 16px;
   }
   .heroFloors {
     position: absolute;
@@ -1943,3 +1926,184 @@
     transform: none;
   }
 }
+
+/* Technical document reader */
+.roomIdx { min-width: 44px; }
+.roomList li { grid-template-columns: 48px 1fr auto; }
+.capas { align-items: start; }
+.electricalViewer { min-width: 0; width: min(100%, calc((100svh - var(--nav-h) - 110px) * 360 / 508)); justify-self: center; }
+.electricalFrame { position: relative; aspect-ratio: 360 / 508; background: white; overflow: hidden; }
+.electricalSheet { position: absolute; inset: 0; }
+.electricalSheet img { object-fit: contain; }
+.electricalSheetNext { animation: sheetNext 450ms ease both; }
+.electricalSheetPrev { animation: sheetPrev 450ms ease both; }
+@keyframes sheetNext { from { opacity: 0; transform: translateX(8%); } to { opacity: 1; transform: none; } }
+@keyframes sheetPrev { from { opacity: 0; transform: translateX(-8%); } to { opacity: 1; transform: none; } }
+.sheetArrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 56px; display: grid; place-items: center; border: 0; color: var(--u-violet); background: rgba(255,255,255,.9); cursor: pointer; z-index: 2; }
+.sheetArrow:hover { background: var(--u-lav); }
+.sheetArrow:focus-visible, .sheetOpen:focus-visible { outline: 2px solid var(--u-orange); outline-offset: 3px; }
+.sheetArrowPrev { left: 0; }
+.sheetArrowNext { right: 0; }
+.sheetCaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 16px; font-family: var(--font-c); font-size: 14px; letter-spacing: .04em; }
+.sheetCaption span { opacity: .65; }
+.sheetOpen { display: inline-block; margin-top: 16px; color: inherit; font-family: var(--font-c); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; text-underline-offset: 5px; }
+.capa[aria-pressed="true"] { border-bottom-color: var(--u-orange); }
+@media (prefers-reduced-motion: reduce) { .corteTrack { transition: none; } .electricalSheet { animation: none; } }
+
+@media (max-width: 600px) { .capasTitle { font-size: clamp(32px, 8.5vw, 46px); } .capa { grid-template-columns: 32px minmax(0, 1fr); } .capaFact { display: none; } }
+
+@media (max-width: 1024px) { .electricalViewer { width: 100%; max-width: 640px; } }
+
+/* Graphic-first exploded view: assemble, separate, then make room for the story. */
+.pisosHeader, .pisosPanel { opacity: var(--travel); transform: translateX(calc((1 - var(--travel)) * -24px)); }
+.axoStage { position: absolute; inset: calc(var(--nav-h) + 36px) 40px 36px; transform: translateX(calc(var(--travel) * 21vw)); }
+.axoFloor, .axoGuides { width: min(85vw, calc((85 - var(--e) * 31 - var(--travel) * 4) * 1cqh)); }
+.axoFloor { pointer-events: auto; }
+.sheetImageButton { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: white; cursor: zoom-in; }
+.sheetDialog { width: 100vw; max-width: none; height: 100dvh; max-height: none; border: 0; padding: 56px 60px 48px; background: #eeecef; color: var(--u-violet); }
+.sheetDialog::backdrop { background: rgba(20,15,25,.8); }
+.sheetDialogImage { position: relative; height: 100%; width: 100%; }
+.sheetDialogImage img { object-fit: contain; }
+.sheetClose { position: absolute; right: 16px; top: 12px; width: 40px; height: 40px; border: 0; background: none; color: inherit; font-size: 28px; cursor: pointer; }
+.sheetDialogCaption { position: absolute; bottom: 14px; left: 60px; right: 60px; text-align: center; font-family: var(--font-c); }
+.providers { margin-top: 80px; }
+.providerStrip { margin: 28px -40px 0; overflow: hidden; background: #e7e7e7; }
+.providerTrack { display: flex; width: max-content; animation: suppliersRun 38s linear infinite; }
+.providerGroup { display: flex; align-items: center; gap: 64px; padding: 32px; }
+.providerLogo { position: relative; width: 160px; height: 70px; flex: none; }
+.providerLogo img { object-fit: contain; filter: grayscale(1); mix-blend-mode: multiply; }
+.providerStrip:hover .providerTrack { animation-play-state: paused; }
+@keyframes suppliersRun { to { transform: translateX(-50%); } }
+@media (max-width: 900px) {
+ .pisos { height: 400svh; padding: 0; }
+ .pisosSticky { position: sticky; top: 0; height: 100svh; padding: calc(var(--nav-h) + 16px) 20px 16px; }
+ .pisosMobile { display: none; }
+ .axoStage { display: block; inset: calc(var(--nav-h) + 32px) 12px auto; height: 60svh; transform: translateY(calc((1 - var(--travel)) * 8svh)) scale(calc(1 - var(--travel) * .18)); transform-origin: center top; }
+ .axoFloor, .axoGuides { width: min(88vw, calc((85 - var(--e) * 31) * 1cqh)); }
+ .pisosHeader { position: absolute; top: calc(var(--nav-h) + 12px); left: 20px; }
+ .pisosTitle { font-size: 24px; }
+ .pisosHeader .kicker { display: none; }
+ .pisosPanel { display: block; position: absolute; top: 65svh; left: 20px; right: 20px; padding: 0; }
+ .pisosPanel .floorHead, .pisosPanel .floorList { display: none; }
+ .pisosPanel .floorUse { margin-top: 0; font-size: 19px; }
+ .pisosPanel .floorSummary { font-size: 14px; line-height: 1.4; margin-top: 8px; }
+ .pisosPanel .floorTabs { margin-top: 16px; }
+ .providerStrip { margin-left: -20px; margin-right: -20px; }
+ .sheetDialog { padding: 56px 8px 48px; }
+}
+@media (prefers-reduced-motion: reduce) { .providerTrack { animation: none; } .providerStrip { overflow-x: auto; } }
+
+.axoStage { grid-column: auto; grid-row: auto; }
+
+
+.electricalViewer { width: min(100%, calc((100svh - var(--nav-h) - 110px) * 360 / 508)); }
+:global(body):has(.sheetDialog[open]) { overflow: hidden; }
+
+
+.providerStrip:focus-within .providerTrack { animation-play-state: paused; }
+.providerLogo { mix-blend-mode: multiply; }
+.providerLogo[data-provider='BANCHERO'] img { filter: grayscale(1) invert(1); }
+
+/* Compact lists and a continuous, category-aware document viewer. */
+.plantasSection .splitTitle { font-size: clamp(32px, 3.2vw, 48px); }
+.plantasSection .roomList { margin-top: 20px; }
+.plantasSection .roomList li { padding: 5px 0; min-height: 29px; grid-template-columns: 48px minmax(0,1fr) 60px; align-items: center; }
+.plantasSection .roomName { font-size: 13px; line-height: 1.2; }
+.plantasSection .roomArea { font-size: 13px; text-align: right; white-space: nowrap; }
+.plantasSection .roomOn { padding-left: 0 !important; }
+.capasTitle { font-size: clamp(32px, 3.6vw, 52px); }
+.capasLead { margin-top: 16px; font-size: 14px; line-height: 1.5; }
+.capasItems { margin-top: 24px; }
+.capa { padding: 12px 0; grid-template-columns: 32px minmax(0,1fr); }
+.capaTitle { font-size: 19px; }
+.capaText { font-size: 13px; line-height: 1.45; }
+.capaFact { display: none; }
+.sheetDialog { background: rgba(25,20,33,.28); color: white; padding: 88px 60px 44px; }
+.sheetDialog::backdrop { background: rgba(25,20,33,.64); backdrop-filter: blur(6px); }
+.sheetCategories { position: absolute; top: 20px; left: 60px; right: 60px; display: flex; justify-content: center; gap: 8px; }
+.sheetCategory { min-height: 42px; border: 1px solid rgba(255,255,255,.3); padding: 8px 16px; background: rgba(25,20,33,.3); color: white; font-family: var(--font-c); font-size: 15px; cursor: pointer; }
+.sheetCategory span { margin-right: 6px; opacity: .6; }
+.sheetCategory[aria-pressed="true"] { background: white; color: var(--u-violet); border-color: white; }
+.sheetCategory:focus-visible { outline: 2px solid var(--u-orange); outline-offset: 3px; }
+@media (min-width: 1025px) and (max-height: 760px) {
+ .plantasSection .splitTitle { font-size: 36px; }
+ .plantasSection .roomList li { min-height: 25px; padding: 3px 0; }
+ .capasTitle { font-size: 38px; }
+ .capasLead { font-size: 13px; margin-top: 12px; }
+ .capasItems { margin-top: 16px; }
+ .capa { padding: 8px 0; }
+}
+@media (max-width: 700px) {
+ .sheetDialog { padding: 130px 8px 56px; }
+ .sheetCategories { top: 12px; left: 12px; right: 52px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; }
+ .sheetCategory { padding: 6px 4px; font-size: 12px; }
+ .sheetCategory span { display: none; }
+ .sheetDialogCaption { left: 16px; right: 16px; font-size: 14px; }
+}
+
+.capaOn .capaFact { display: block; grid-column: 2; padding-top: 0; font-size: 10px; line-height: 1.3; text-align: left; }
+
+/* Soft controls and slow document transitions. */
+.page button { border-radius: 7px; transition: background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease, opacity .3s ease; }
+.page button:focus-visible { outline: 2px solid var(--u-orange); outline-offset: 3px; }
+.tab:hover, .sheetCategory:hover { box-shadow: 0 3px 12px rgba(65,35,85,.12); }
+.page .sheetArrow, .page .sheetArrow:hover { background: transparent; box-shadow: none; }
+.sheetArrow img { transition: transform .3s ease, opacity .3s ease; filter: drop-shadow(0 0 2px white); }
+.sheetArrow:hover img { transform: scale(1.18); }
+.sheetArrow:active img { transform: scale(.92); }
+.sheetDialog .sheetArrow img { filter: brightness(0) invert(1) drop-shadow(0 1px 2px #333); }
+.page .cutArrow { background: rgba(255,255,255,.65); }
+.electricalSheetNext, .electricalSheetPrev { animation-duration: 2s; animation-timing-function: cubic-bezier(.22,1,.36,1); }
+@media (prefers-reduced-motion: reduce) { .page button, .sheetArrow img { transition: none; } .electricalSheetNext, .electricalSheetPrev { animation: none; } }
+
+.page .axoFloor { transition: opacity .6s, filter .6s; }
+.page :global(.btn-primary), .page :global(.btn-ghost), :global(body):has(.page) :global(nav) button, :global(body):has(.page) :global(nav) a { border-radius: 7px; }
+
+.providers { margin-top: 0; padding: 64px 40px 0; background: white; }
+@media (max-width: 900px) { .providers { padding: 48px 20px 0; } }
+
+.recStage { aspect-ratio: 4 / 3; min-height: 0; align-self: start; }
+
+/* One shared frame for the six spaces and their render. */
+@media (min-width: 1025px) {
+ .recorrido { --frame-h: min(calc(100svh - var(--nav-h) - 80px), calc((100vw - 144px) * 7 / 11 * .75)); grid-template-rows: var(--frame-h); align-items: stretch; padding-top: 64px; padding-bottom: 64px; }
+ .recList { min-height: 0; display: flex; flex-direction: column; }
+ .recList .splitTitle { font-size: clamp(30px, 3vw, 44px); }
+ .recItems { margin-top: 18px; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+ .recItems li { flex: 1; min-height: 0; display: flex; }
+ .recItems li:has(.recItemActive) { flex: 2; }
+ .recItem { height: 100%; padding: 7px 0; align-content: center; grid-template-columns: 30px 1fr; }
+ .recTitle { font-size: 18px; line-height: 1.15; }
+ .recNum { padding-top: 2px; font-size: 10px; }
+ .recText { font-size: 12px; line-height: 1.35; }
+ .recItemActive .recText { margin-top: 5px; }
+ .recStage { height: auto; width: min(100%, calc(var(--frame-h) * 4 / 3)); aspect-ratio: 4 / 3; align-self: start; justify-self: center; background: transparent; }
+ .recImg { object-fit: cover; }
+}
+.recFrame { clip-path: none; opacity: 0; transform: translateY(12px) scale(1.025); filter: blur(5px); transition: opacity 1.6s ease, transform 1.8s cubic-bezier(.22,1,.36,1), filter 1.6s ease; }
+.recFrameActive { clip-path: none; opacity: 1; transform: none; filter: blur(0); transition: opacity 1.6s ease, transform 1.8s cubic-bezier(.22,1,.36,1), filter 1.6s ease; }
+.recImg, .recFrameActive .recImg { transform: none; }
+@media (max-width: 1024px) {
+ .recorrido { gap: 24px; }
+ .recList .splitTitle { font-size: 36px; }
+ .recItems { margin-top: 20px; }
+ .recItem { padding: 9px 0; grid-template-columns: 30px 1fr; }
+ .recTitle { font-size: 18px; }
+ .recText { font-size: 13px; line-height: 1.4; }
+}
+@media (prefers-reduced-motion: reduce) { .recFrame, .recFrameActive { transition: none; transform: none; filter: none; } }
+@media (max-width: 1024px) {
+ .recorrido { display: flex; flex-direction: column; gap: 14px; padding: 48px 20px; }
+ .recList { display: contents; }
+ .recList > .kicker { order: 0; margin-bottom: 0; }
+ .recList > .splitTitle { order: 1; font-size: 30px; }
+ .recStage { order: 2; width: min(100%, 58svh * 4 / 3); align-self: center; }
+ .recItems { order: 3; margin-top: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 14px; }
+ .recItem { min-height: 40px; padding: 8px 0; grid-template-columns: 22px minmax(0,1fr); }
+ .recTitle { font-size: 15px; }
+ .recText { display: none; }
+ .recNum { font-size: 10px; padding-top: 2px; }
+}
+.providerLogo { width: 180px; height: 90px; overflow: hidden; mix-blend-mode: normal; }
+.providerLogo img { position: absolute; max-width: none; object-fit: contain; mix-blend-mode: normal; }
+.providerLogo[data-provider='ABC CONSTRUCCIONES'] img, .providerLogo[data-provider='VOLTAMPERE'] img { border-radius: 50%; }

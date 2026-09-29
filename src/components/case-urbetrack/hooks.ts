@@ -27,31 +27,51 @@ export function useInView(ref: RefObject<Element | null>, threshold = 0.25, once
  */
 export function usePinProgress(ref: RefObject<HTMLElement | null>, onProgress?: (p: number) => void) {
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let raf = 0;
-    const update = () => {
-      raf = 0;
-      const el = ref.current;
-      if (!el) return;
+    let current = 0;
+    let target = 0;
+    let previousTime = 0;
+    const measure = () => {
       const r = el.getBoundingClientRect();
-      const range = Math.max(1, r.height - window.innerHeight);
-      const p = Math.min(1, Math.max(0, -r.top / range));
-      el.style.setProperty('--p', p.toFixed(4));
-      onProgress?.(p);
+      target = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - window.innerHeight)));
+    };
+    const paint = () => {
+      el.style.setProperty('--p', current.toFixed(5));
+      onProgress?.(current);
+    };
+    const update = (time: number) => {
+      raf = 0;
+      const dt = Math.min(64, Math.max(0, time - previousTime));
+      previousTime = time;
+      current = motion.matches ? target : current + (target - current) * (1 - Math.exp(-dt / 160));
+      if (Math.abs(target - current) < 0.00005) current = target;
+      paint();
+      if (current !== target) raf = requestAnimationFrame(update);
     };
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      measure();
+      if (!raf) {
+        previousTime = performance.now();
+        raf = requestAnimationFrame(update);
+      }
     };
-    update();
+    measure();
+    current = target;
+    paint();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+    motion.addEventListener('change', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
+      motion.removeEventListener('change', onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
   }, [ref, onProgress]);
 }
-
 /** Cycles 0..count-1 every `ms` while `active`. */
 export function useAutoCycle(count: number, ms: number, active: boolean) {
   const [index, setIndex] = useState(0);

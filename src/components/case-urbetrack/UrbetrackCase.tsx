@@ -13,6 +13,7 @@ import { Plantas } from './sections/Plantas';
 import { Cortes } from './sections/Cortes';
 import { Capas } from './sections/Capas';
 import { Materialidad } from './sections/Materialidad';
+import { Proveedores } from './sections/Proveedores';
 import { Resultado } from './sections/Resultado';
 import { Documentacion } from './sections/Documentacion';
 import { SiteNav } from '@/components/site-nav/SiteNav';
@@ -37,8 +38,8 @@ export function UrbetrackCase() {
       <main className={s.page}>
         <Hero />
         <Memoria />
-        <Pisos />
         <Demolicion />
+        <Pisos />
         <Plantas />
         <Cortes />
         <Capas />
@@ -60,6 +61,8 @@ export function UrbetrackCase() {
             <em className="reveal rd1">Una misma identidad.</em>
           </blockquote>
         </section>
+
+        <Proveedores />
 
         <section className={s.others} data-chapter="Otros proyectos" aria-labelledby="ub-others">
           <div className={s.othersHead}>

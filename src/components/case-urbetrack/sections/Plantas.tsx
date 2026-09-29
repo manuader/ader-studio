@@ -11,28 +11,13 @@ export function Plantas() {
   const floor = FLOORS[floorIdx];
 
   return (
-    <section className={`${s.split} ${s.splitReverse}`} data-chapter="Plantas">
+    <section className={`${s.split} ${s.splitReverse} ${s.plantasSection}`} data-chapter="Plantas">
       <div className={s.splitText}>
         <div className={`${s.kicker} reveal`}>01 / Arquitectura · Planta con mobiliario</div>
         <h2 className={`${s.splitTitle} reveal rd1`}>
-          Cada área,<br /><em>su lugar</em>
+          La planta,<br /><em>ambiente por ambiente</em>
         </h2>
-        <p className={`${s.splitLead} reveal rd2`}>
-          Puestos operativos, oficinas, salas de trabajo y de reunión, resueltos según las
-          necesidades de concentración, privacidad y colaboración de cada equipo.
-        </p>
-        <div className={`${s.tabs} reveal rd2`}>
-          {FLOORS.map((f, i) => (
-            <button
-              key={f.id}
-              type="button"
-              className={`${s.tab} ${i === floorIdx ? s.tabOn : ''}`}
-              onClick={() => { setFloorIdx(i); setRoom(null); }}
-            >
-              Piso {f.id}
-            </button>
-          ))}
-        </div>
+
         {/* El reveal va en un contenedor estable: la lista se remonta al cambiar de
             piso (para reanimar las filas) y un .reveal nuevo nacería invisible. */}
         <div className="reveal rd3">
@@ -44,7 +29,7 @@ export function Plantas() {
                 onMouseEnter={() => setRoom(i)}
                 style={{ ['--d' as string]: `${i * 40}ms` }}
               >
-                <span className={s.roomIdx}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={s.roomIdx}>{r.code}</span>
                 <span className={s.roomName}>{r.name}</span>
                 <span className={s.roomArea}>{r.area}</span>
               </li>
@@ -53,6 +38,20 @@ export function Plantas() {
         </div>
       </div>
 
+      <div className={s.planColumn}>
+        <div className={s.planTabs}>
+          {FLOORS.map((f, i) => (
+            <button
+              key={f.id}
+              type="button"
+              className={`${s.tab} ${i === floorIdx ? s.tabOn : ''}`}
+              aria-pressed={i === floorIdx}
+              onClick={() => { setFloorIdx(i); setRoom(null); }}
+            >
+              Piso {f.id}
+            </button>
+          ))}
+        </div>
       <div className={s.planViewer}>
         <Image
           key={floor.plan}
@@ -88,6 +87,7 @@ export function Plantas() {
             </span>
           </button>
         ))}
+      </div>
       </div>
     </section>
   );

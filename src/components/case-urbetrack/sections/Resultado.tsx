@@ -16,14 +16,14 @@ export function Resultado() {
     <section
       ref={ref}
       className={s.recorrido}
-      data-chapter="Resultado"
+      data-chapter="Espacios"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <div className={s.recList}>
-        <div className={`${s.kicker} reveal`}>Resultado</div>
+        <div className={`${s.kicker} reveal`}>Espacios del proyecto</div>
         <h2 className={`${s.splitTitle} reveal rd1`}>
-          Los espacios,<br /><em>habitados</em>
+          Lugares para<br /><em>conectar</em>
         </h2>
         <ol className={s.recItems}>
           {RECORRIDO.map((r, i) => (

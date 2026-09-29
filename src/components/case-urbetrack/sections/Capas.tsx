@@ -1,66 +1,106 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import s from '../UrbetrackCase.module.css';
-import { CAPAS } from '../data';
-import { useAutoCycle, useInView } from '../hooks';
+import { CAPAS, technicalSheet } from '../data';
+import { useInView } from '../hooks';
+
+const SEQUENCE = CAPAS.flatMap((category, categoryIndex) => category.sheets.map((_, sheetIndex) => ({ categoryIndex, sheetIndex })));
 
 export function Capas() {
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, 0.25);
-  const [paused, setPaused] = useState(false);
-  const { index, progress, select } = useAutoCycle(CAPAS.length, 5000, inView && !paused);
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const visible = useInView(viewerRef, 0.4);
+  const [manual, setManual] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [position, setPosition] = useState(0);
+  const { categoryIndex: index, sheetIndex } = SEQUENCE[position];
+  const [direction, setDirection] = useState(1);
+  const category = CAPAS[index];
+  const sheet = category.sheets[sheetIndex];
+  useEffect(() => {
+    if (!visible || manual) return;
+    const timer = window.setInterval(() => {
+      if (document.hidden || dialogRef.current?.open || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      setDirection(1);
+      setPosition((value) => (value + 1) % SEQUENCE.length);
+    }, 5500);
+    return () => window.clearInterval(timer);
+  }, [visible, manual, position]);
+  const select = (i: number) => {
+    setManual(true);
+    if (i === index) return;
+    setDirection(i > index ? 1 : -1);
+    setPosition(SEQUENCE.findIndex((entry) => entry.categoryIndex === i));
+  };
+  const move = (step: number) => {
+    setManual(true);
+    setDirection(step);
+    setPosition((value) => (value + step + SEQUENCE.length) % SEQUENCE.length);
+  };
 
   return (
-    <section
-      ref={ref}
-      className={s.capas}
-      data-chapter="Instalaciones"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <section className={s.capas} data-chapter="Instalaciones">
       <div className={s.capasList}>
-        <div className={`${s.kicker} ${s.kickerLight} reveal`}>02 — 05 / Documentación técnica</div>
-        <h2 className={`${s.capasTitle} reveal rd1`}>
-          Lo que no<br /><em>se ve</em>
-        </h2>
+        <div className={`${s.kicker} ${s.kickerLight} reveal`}>02 / Instalación eléctrica</div>
+        <h2 className={`${s.capasTitle} reveal rd1`}>Infraestructura<br /><em>para conectar</em></h2>
         <p className={`${s.capasLead} reveal rd2`}>
-          Cada puesto, cada equipo y cada frente vidriado fue documentado. Instalaciones proyectadas
-          en función del uso real de cada espacio.
+          Una empresa de software necesita mucho más que puestos de trabajo.
+          Energía, conectividad, iluminación y confort se proyectaron juntos:
+          la infraestructura que sostiene la actividad de los tres pisos.
         </p>
         <ol className={s.capasItems}>
           {CAPAS.map((c, i) => (
             <li key={c.title}>
-              <button
-                type="button"
-                className={`${s.capa} ${i === index ? s.capaOn : ''}`}
-                onClick={() => select(i)}
-                onMouseEnter={() => select(i)}
-              >
+              <button type="button" className={`${s.capa} ${i === index ? s.capaOn : ''}`} aria-pressed={i === index} onClick={() => select(i)}>
                 <span className={s.capaNum}>{c.num}</span>
                 <span className={s.capaBody}>
                   <span className={s.capaTitle}>{c.title}</span>
                   <span className={s.capaText}><span>{c.text}</span></span>
                 </span>
                 <span className={s.capaFact}>{c.fact}</span>
-                <span className={s.capaBar}>
-                  <span style={{ transform: `scaleX(${i === index ? progress : 0})` }} />
-                </span>
               </button>
             </li>
           ))}
         </ol>
       </div>
-      <div className={s.capasStage}>
-        {CAPAS.map((c, i) => (
-          <div key={c.title} className={`${s.capaFrame} ${i === index ? s.capaFrameOn : ''}`}>
-            <Image src={c.img} alt={`Instalaciones: ${c.title}`} fill sizes="(max-width: 1024px) 100vw, 58vw" className={s.capaImg} />
+      <div ref={viewerRef} className={s.electricalViewer} onFocusCapture={() => setManual(true)} role="region" aria-label="Planos de instalación eléctrica" aria-roledescription="carrusel">
+        <div className={s.electricalFrame}>
+          <div key={`${index}-${sheetIndex}`} className={`${s.electricalSheet} ${direction > 0 ? s.electricalSheetNext : s.electricalSheetPrev}`}>
+            <button type="button" className={s.sheetImageButton} aria-label={`Ampliar ${sheet.label}`} onClick={() => { setManual(true); dialogRef.current?.showModal(); }}>
+              <Image src={technicalSheet(sheet.page)} alt={`${category.title}: ${sheet.label}`} fill sizes="(max-width: 1024px) 100vw, 58vw" />
+            </button>
           </div>
-        ))}
-        <div className={s.capaCounter}>
-          <span>{String(index + 1).padStart(2, '0')}</span> / {String(CAPAS.length).padStart(2, '0')}
+          <button type="button" className={`${s.sheetArrow} ${s.sheetArrowPrev}`} aria-label="Plano anterior" onClick={() => move(-1)}>
+            <Image src="/images/urbetrack/ui/arrow-left.png" alt="" width={24} height={24} />
+          </button>
+          <button type="button" className={`${s.sheetArrow} ${s.sheetArrowNext}`} aria-label="Plano siguiente" onClick={() => move(1)}>
+            <Image src="/images/urbetrack/ui/arrow-right.png" alt="" width={24} height={24} />
+          </button>
         </div>
+        <div className={s.sheetCaption} aria-live={manual ? "polite" : "off"} aria-atomic="true">
+          <strong>{sheet.label}</strong>
+          <span>{String(sheetIndex + 1).padStart(2, '0')} / {String(category.sheets.length).padStart(2, '0')}</span>
+        </div>
+        <dialog ref={dialogRef} className={s.sheetDialog} aria-label="Lámina ampliada" onKeyDown={(event) => {
+          if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
+          if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
+        }}>
+          <button type="button" className={s.sheetClose} aria-label="Cerrar lámina" onClick={() => dialogRef.current?.close()}>×</button>
+          <nav className={s.sheetCategories} aria-label="Categorías de instalaciones">
+            {CAPAS.map((c, i) => (
+              <button type="button" key={c.num} className={s.sheetCategory} aria-pressed={index === i} onClick={() => select(i)}>
+                <span>{c.num}</span> {c.title}
+              </button>
+            ))}
+          </nav>
+          <div key={position} className={`${s.sheetDialogImage} ${direction > 0 ? s.electricalSheetNext : s.electricalSheetPrev}`}>
+            <Image src={technicalSheet(sheet.page)} alt={sheet.label} fill sizes="100vw" />
+          </div>
+          <button type="button" className={`${s.sheetArrow} ${s.sheetArrowPrev}`} aria-label="Lámina anterior" onClick={() => move(-1)}><Image src="/images/urbetrack/ui/arrow-left.png" alt="" width={24} height={24} /></button>
+          <button type="button" className={`${s.sheetArrow} ${s.sheetArrowNext}`} aria-label="Lámina siguiente" onClick={() => move(1)}><Image src="/images/urbetrack/ui/arrow-right.png" alt="" width={24} height={24} /></button>
+          <div className={s.sheetDialogCaption} aria-live="polite">{sheet.label} · {sheetIndex + 1} / {category.sheets.length}</div>
+        </dialog>
       </div>
     </section>
   );

@@ -27,9 +27,9 @@ export const projects: Project[] = [
     href: '/proyectos/casa-angel',
   },
   {
-    image: '/images/projects/urbetrack-dibujo.webp',
-    w: 1604,
-    h: 1203,
+    image: '/images/projects/urbetrack-acceso.webp',
+    w: 1491,
+    h: 1055,
     alt: 'Oficina Urbetrack',
     tag: 'Reforma y modernizacion',
     name: 'Oficina Urbetrack',

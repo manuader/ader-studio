@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import s from '../UrbetrackCase.module.css';
-import { EQUIPAMIENTO, TERMINACIONES } from '../data';
+import { TERMINACIONES } from '../data';
+
 
 // Composición del moodboard, en % del contenedor (como la lámina MAT / 01).
 const LAYOUT: Record<string, { l: number; t: number; w: number; h: number }> = {
@@ -71,22 +72,7 @@ export function Materialidad() {
         </div>
       </div>
 
-      <div className={s.equip}>
-        <div className={`${s.kicker} reveal`}>Mobiliario y equipamiento</div>
-        <div className={s.equipRow}>
-          {EQUIPAMIENTO.map((o, i) => (
-            <figure key={o.name} className={`${s.equipItem} reveal rd${Math.min(4, i + 1)}`}>
-              <div className={s.equipImg}>
-                <Image src={o.img} alt={o.name} fill sizes="(max-width: 768px) 45vw, 16vw" />
-              </div>
-              <figcaption>
-                <strong>{o.name}</strong>
-                {o.spec}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
+
     </section>
   );
 }
