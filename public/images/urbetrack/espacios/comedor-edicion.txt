@@ -1,0 +1,4 @@
+Herramienta: image_gen integrada (skill imagegen).
+Origen: public/images/urbetrack/espacios/03. COMEDOR.png
+Resultado: public/images/urbetrack/espacios/03-comedor-realista.png
+Prompt: Edit target: the supplied cafeteria architectural render. Make it hyperrealistic architectural photography using ONLY improved material microtextures, physically plausible lighting, subtle contact shadows, reflections, realistic skin and fabric. STRICT preserve exact camera, 4:3 framing, every architectural geometry, ceiling and circular lights, walls, tables, chairs, positions and number of people, mural artwork and exact URBETRACK logo/text. Do not redesign, add/remove objects, crop or move anything. Preserve purple palette and current daylight. Output a faithful polished photorealistic version.

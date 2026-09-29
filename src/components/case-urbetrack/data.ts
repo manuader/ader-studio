@@ -29,7 +29,7 @@ export const FLOORS: Floor[] = [
     id: 13,
     use: 'Desarrollo',
     summary:
-      'Reforma integral de unos 300 m². La planta de puestos operativos ocupa el centro y el perímetro se reparte entre salas de trabajo, NOC, I.O.T. y gerencias, todas con frentes vidriados.',
+      'Reforma integral de 292 m². La planta de puestos operativos ocupa el centro y el perímetro se reparte entre salas de trabajo, NOC, I.O.T. y gerencias, todas con frentes vidriados.',
     highlights: [
       { label: 'Puestos operativos', value: '144 m²' },
       { label: 'Sala de reuniones', value: '25 m²' },
@@ -206,14 +206,6 @@ export const EQUIPAMIENTO = [
 export const RECORRIDO = [
   {
     "num": "01",
-    "title": "NOC",
-    "text": "La sala de monitoreo: videowall, puestos de control y conexión visual con la planta de trabajo.",
-    "img": "/images/urbetrack/espacios/01. NOC.png",
-    "alt": "Urbetrack · NOC",
-    "drawing": false
-  },
-  {
-    "num": "02",
     "title": "Puestos de trabajo",
     "text": "El espacio central del equipo, con islas de trabajo, luz continua y la identidad violeta de Urbetrack.",
     "img": "/images/urbetrack/espacios/02. PUESTOS DE TRABAJO.png",
@@ -221,10 +213,18 @@ export const RECORRIDO = [
     "drawing": false
   },
   {
+    "num": "02",
+    "title": "NOC",
+    "text": "La sala de monitoreo: videowall, puestos de control y conexión visual con la planta de trabajo.",
+    "img": "/images/urbetrack/espacios/01. NOC.png",
+    "alt": "Urbetrack · NOC",
+    "drawing": false
+  },
+  {
     "num": "03",
     "title": "Comedor",
     "text": "Un lugar de encuentro compartido por los tres pisos, pensado para las pausas y la conversación.",
-    "img": "/images/urbetrack/espacios/03. COMEDOR.png",
+    "img": "/images/urbetrack/espacios/03-comedor-realista.png",
     "alt": "Urbetrack · Comedor",
     "drawing": false
   },
@@ -247,7 +247,7 @@ export const RECORRIDO = [
   {
     "num": "06",
     "title": "Baños",
-    "text": "Materiales y detalles que dan continuidad a los espacios de servicio.",
+    "text": "Réplica de los baños compartidos, manteniendo los materiales y criterios de diseño entre los pisos.",
     "img": "/images/urbetrack/espacios/06. BAÑOS.png",
     "alt": "Urbetrack · Baños",
     "drawing": false

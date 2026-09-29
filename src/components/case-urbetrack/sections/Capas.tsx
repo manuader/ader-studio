@@ -66,10 +66,16 @@ export function Capas() {
       </div>
       <div ref={viewerRef} className={s.electricalViewer} onFocusCapture={() => setManual(true)} role="region" aria-label="Planos de instalación eléctrica" aria-roledescription="carrusel">
         <div className={s.electricalFrame}>
-          <div key={`${index}-${sheetIndex}`} className={`${s.electricalSheet} ${direction > 0 ? s.electricalSheetNext : s.electricalSheetPrev}`}>
-            <button type="button" className={s.sheetImageButton} aria-label={`Ampliar ${sheet.label}`} onClick={() => { setManual(true); dialogRef.current?.showModal(); }}>
-              <Image src={technicalSheet(sheet.page)} alt={`${category.title}: ${sheet.label}`} fill sizes="(max-width: 1024px) 100vw, 58vw" />
-            </button>
+          <div className={s.electricalFlow} style={{ transform: `translateX(-${position * 100}%)` }}>
+            {SEQUENCE.map((entry, i) => {
+              const c = CAPAS[entry.categoryIndex];
+              const item = c.sheets[entry.sheetIndex];
+              return <div className={s.electricalFlowPage} key={item.page} aria-hidden={i !== position}>
+                <button type="button" tabIndex={i === position ? 0 : -1} className={s.sheetImageButton} aria-label={`Ampliar ${item.label}`} onClick={() => { setManual(true); dialogRef.current?.showModal(); }}>
+                  <Image src={technicalSheet(item.page)} alt={`${c.title}: ${item.label}`} fill sizes="(max-width: 1024px) 100vw, 58vw" />
+                </button>
+              </div>;
+            })}
           </div>
           <button type="button" className={`${s.sheetArrow} ${s.sheetArrowPrev}`} aria-label="Plano anterior" onClick={() => move(-1)}>
             <Image src="/images/urbetrack/ui/arrow-left.png" alt="" width={24} height={24} />

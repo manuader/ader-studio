@@ -97,7 +97,7 @@ const PROVEEDORES = [
 export function Proveedores() {
   return (
       <section className={s.providers} data-chapter="Proveedores">
-        <div className={s.kicker}>Proveedores · Materiales y tecnología</div>
+        <div className={s.kicker}>Proveedores</div>
         <div className={s.providerStrip} tabIndex={0} role="region" aria-label="Proveedores del proyecto">
           <div className={s.providerTrack}>
             {[0, 1].map((copy) => (

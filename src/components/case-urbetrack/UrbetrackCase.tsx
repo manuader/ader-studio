@@ -47,22 +47,7 @@ export function UrbetrackCase() {
         <Resultado />
         <Documentacion />
 
-        <section className={s.cierre} data-chapter="Oficinas Urbetrack">
-          <Image
-            src="/images/renders/02 - Oficina.webp"
-            alt="Planta de trabajo de Urbetrack"
-            fill
-            sizes="100vw"
-            className={s.cierreImg}
-          />
-          <div className={s.cierreShade} />
-          <blockquote className={s.cierreQuote}>
-            <span className="reveal">Tres pisos.</span>
-            <em className="reveal rd1">Una misma identidad.</em>
-          </blockquote>
-        </section>
-
-        <Proveedores />
+<Proveedores />
 
         <section className={s.others} data-chapter="Otros proyectos" aria-labelledby="ub-others">
           <div className={s.othersHead}>

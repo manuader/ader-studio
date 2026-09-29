@@ -52,9 +52,11 @@ export function Resultado() {
         </ol>
       </div>
       <div className={s.recStage}>
+        <div className={s.recFlow} style={{ transform: `translateY(-${index * 100}%)` }}>
         {RECORRIDO.map((r, i) => (
           <div
             key={r.num}
+            style={{ top: `${i * 100}%` }}
             className={`${s.recFrame} ${i === index ? s.recFrameActive : ''} ${r.drawing ? s.recFrameDrawing : ''}`}
             aria-hidden={i !== index}
           >
@@ -67,6 +69,7 @@ export function Resultado() {
             />
           </div>
         ))}
+        </div>
         <div className={s.recCounter}>
           <span>{RECORRIDO[index].num}</span> / {String(RECORRIDO.length).padStart(2, '0')}
         </div>

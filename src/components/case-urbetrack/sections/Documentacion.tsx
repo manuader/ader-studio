@@ -43,14 +43,13 @@ export function Documentacion() {
           grifería. Así documentamos cada proyecto antes de llegar a obra.
         </p>
       </div>
-      <div className={`${s.chapters} reveal`} onMouseLeave={() => setChapter(null)}>
+      <div className={`${s.chapters} reveal`}>
         {CAPITULOS.map((c, i) => (
           <button
             key={c.num}
             type="button"
             className={`${s.chapter} ${chapter === i ? s.chapterOn : ''}`}
-            onMouseEnter={() => setChapter(i)}
-            onFocus={() => setChapter(i)}
+            aria-pressed={chapter === i}
             onClick={() => setChapter(chapter === i ? null : i)}
           >
             <span>{c.num}</span>
@@ -58,8 +57,17 @@ export function Documentacion() {
           </button>
         ))}
       </div>
-      {row(ROW_A, false)}
-      {row(ROW_B, true)}
+      {pages ? <div key={chapter} className={s.selectedSheets}>
+        <div className={s.selectedTrack} style={{ animationDuration: `${Math.max(20, pages.length * 4)}s` }}>
+          {[0, 1].map(copy => <div className={s.selectedGroup} key={copy} aria-hidden={copy === 1}>
+            {pages.map(n => <div className={s.sheet} key={n}>
+              <Image src={docThumb(n)} alt={`Lámina ${n} · ${CAPITULOS[chapter!].name}`} width={360} height={508} sizes="(max-width: 700px) 42vw, 180px" />
+              <span>{String(n).padStart(2, '0')}</span>
+            </div>)}
+          </div>)}
+        </div>
+      </div> : <>{row(ROW_A, false)}{row(ROW_B, true)}</>}
+
     </section>
   );
 }
