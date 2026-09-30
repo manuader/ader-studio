@@ -1,0 +1,56 @@
+{
+  "viewBox": {
+    "width": 1600,
+    "height": 620
+  },
+  "frames": [
+    {
+      "angle": 0,
+      "label": "Sur",
+      "src": "/images/casa-piaggio/fachada-sur-canva.svg",
+      "w": 1299,
+      "h": 493,
+      "x": 80.5533692625014,
+      "y": 38.54410054094643,
+      "width": 1293.7651165675538,
+      "height": 491.59298602796287,
+      "kind": "original"
+    },
+    {
+      "angle": 90,
+      "label": "Este",
+      "src": "/images/casa-piaggio/fachada-este-canva.svg",
+      "w": 966,
+      "h": 473,
+      "x": 352.37696554512655,
+      "y": 93.64620938628155,
+      "width": 906.6772563176896,
+      "height": 443.9621968126725,
+      "kind": "original"
+    },
+    {
+      "angle": 180,
+      "label": "Norte",
+      "src": "/images/casa-piaggio/fachada-norte-canva.svg",
+      "w": 1314,
+      "h": 496,
+      "x": 82.06685764672136,
+      "y": 43.053444250575524,
+      "width": 1303.5440135379195,
+      "height": 492.2058645341088,
+      "kind": "original"
+    },
+    {
+      "angle": 270,
+      "label": "Oeste",
+      "src": "/images/casa-piaggio/fachada-oeste-canva.svg",
+      "w": 936,
+      "h": 441,
+      "x": 352.77535772161144,
+      "y": 102.5045285388561,
+      "width": 922.0135863130967,
+      "height": 433.83790050666835,
+      "kind": "original"
+    }
+  ]
+}

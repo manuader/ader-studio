@@ -1,0 +1,728 @@
+[
+  {
+    "page": 1,
+    "title": "Casa Piaggio — portada",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/lamina-01.webp",
+        "w": 1920,
+        "h": 1080,
+        "alt": "Casa Piaggio — portada — lámina completa"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-01.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Casa Piaggio — portada — lámina completa"
+    }
+  },
+  {
+    "page": 2,
+    "title": "Índice de las cuatro etapas",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/lamina-02.webp",
+        "w": 1920,
+        "h": 1080,
+        "alt": "Índice de las cuatro etapas — lámina completa"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-02.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Índice de las cuatro etapas — lámina completa"
+    }
+  },
+  {
+    "page": 3,
+    "title": "Etapa 1 — Investigación y diagnóstico",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/lamina-03.webp",
+        "w": 1920,
+        "h": 1080,
+        "alt": "Etapa 1 — Investigación y diagnóstico — lámina completa"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-03.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Etapa 1 — Investigación y diagnóstico — lámina completa"
+    }
+  },
+  {
+    "page": 4,
+    "title": "Condiciones climatológicas",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p04-X4.webp",
+        "w": 1455,
+        "h": 481,
+        "alt": "Condiciones climatológicas"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-04.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Condiciones climatológicas — lámina completa"
+    }
+  },
+  {
+    "page": 5,
+    "title": "Humedad",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p05-X8.webp",
+        "w": 1197,
+        "h": 612,
+        "alt": "Humedad"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-05.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Humedad — lámina completa"
+    }
+  },
+  {
+    "page": 6,
+    "title": "Temperatura",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p06-X4.webp",
+        "w": 1069,
+        "h": 614,
+        "alt": "Temperatura — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p06-X6.webp",
+        "w": 885,
+        "h": 191,
+        "alt": "Tabla mensual de temperatura: máxima, media y mínima"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-06.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Temperatura — lámina completa"
+    }
+  },
+  {
+    "page": 7,
+    "title": "Precipitación",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p07-X4.webp",
+        "w": 1160,
+        "h": 592,
+        "alt": "Precipitación"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-07.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Precipitación — lámina completa"
+    }
+  },
+  {
+    "page": 8,
+    "title": "Viento",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p08-X8.webp",
+        "w": 1325,
+        "h": 486,
+        "alt": "Viento"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-08.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Viento — lámina completa"
+    }
+  },
+  {
+    "page": 9,
+    "title": "Sitio y zonificación",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p09-X8.webp",
+        "w": 1016,
+        "h": 978,
+        "alt": "Sitio y zonificación — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p09-X9.webp",
+        "w": 1039,
+        "h": 1042,
+        "alt": "Sitio y zonificación — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-09.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Sitio y zonificación — lámina completa"
+    }
+  },
+  {
+    "page": 10,
+    "title": "Ocupación del lote — FOS y FOT",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p10-X8.webp",
+        "w": 828,
+        "h": 828,
+        "alt": "Ocupación del lote — FOS y FOT"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-10.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Ocupación del lote — FOS y FOT — lámina completa"
+    }
+  },
+  {
+    "page": 11,
+    "title": "Grilla modular",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p11-X8.webp",
+        "w": 1488,
+        "h": 864,
+        "alt": "Grilla modular"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-11.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Grilla modular — lámina completa"
+    }
+  },
+  {
+    "page": 12,
+    "title": "Grilla modular — primeras ocupaciones",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p12-X8.webp",
+        "w": 1488,
+        "h": 864,
+        "alt": "Grilla modular — primeras ocupaciones"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-12.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Grilla modular — primeras ocupaciones — lámina completa"
+    }
+  },
+  {
+    "page": 13,
+    "title": "Etapa 2 — Definición conceptual",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/lamina-13.webp",
+        "w": 1920,
+        "h": 1080,
+        "alt": "Etapa 2 — Definición conceptual — lámina completa"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-13.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Etapa 2 — Definición conceptual — lámina completa"
+    }
+  },
+  {
+    "page": 14,
+    "title": "Diagramas — organización",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p14-X8.webp",
+        "w": 1129,
+        "h": 1129,
+        "alt": "Diagramas — organización"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-14.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Diagramas — organización — lámina completa"
+    }
+  },
+  {
+    "page": 15,
+    "title": "Diagramas — materialidad",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p15-X8.webp",
+        "w": 1129,
+        "h": 1129,
+        "alt": "Diagramas — materialidad — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p15-X9.webp",
+        "w": 1129,
+        "h": 1129,
+        "alt": "Diagramas — materialidad — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-15.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Diagramas — materialidad — lámina completa"
+    }
+  },
+  {
+    "page": 16,
+    "title": "Diagramas — patio y programa",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p16-X8.webp",
+        "w": 1262,
+        "h": 1010,
+        "alt": "Diagramas — patio y programa — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p16-X9.webp",
+        "w": 1122,
+        "h": 898,
+        "alt": "Diagramas — patio y programa — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-16.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Diagramas — patio y programa — lámina completa"
+    }
+  },
+  {
+    "page": 17,
+    "title": "Configuración del conjunto",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p17-X8.webp",
+        "w": 1328,
+        "h": 978,
+        "alt": "Configuración del conjunto"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-17.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Configuración del conjunto — lámina completa"
+    }
+  },
+  {
+    "page": 18,
+    "title": "Etapa 3 — Diseño y desarrollo",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/lamina-18.webp",
+        "w": 1920,
+        "h": 1080,
+        "alt": "Etapa 3 — Diseño y desarrollo — lámina completa"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-18.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Etapa 3 — Diseño y desarrollo — lámina completa"
+    }
+  },
+  {
+    "page": 19,
+    "title": "Planta baja",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p19-X90.webp",
+        "w": 1716,
+        "h": 916,
+        "alt": "Planta baja"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-19.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Planta baja — lámina completa"
+    }
+  },
+  {
+    "page": 20,
+    "title": "Fachadas",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/fachada-oeste-canva.svg",
+        "w": 936,
+        "h": 441,
+        "alt": "Fachadas — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/fachada-sur-canva.svg",
+        "w": 1299,
+        "h": 493,
+        "alt": "Fachadas — pieza 2"
+      },
+      {
+        "src": "/images/casa-piaggio/fachada-norte-canva.svg",
+        "w": 1314,
+        "h": 496,
+        "alt": "Fachadas — pieza 3"
+      },
+      {
+        "src": "/images/casa-piaggio/fachada-este-canva.svg",
+        "w": 966,
+        "h": 473,
+        "alt": "Fachadas — pieza 4"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-20.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Fachadas — lámina completa"
+    }
+  },
+  {
+    "page": 21,
+    "title": "Axonométricas",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p21-X4.webp",
+        "w": 1229,
+        "h": 820,
+        "alt": "Axonométricas — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p21-X10.webp",
+        "w": 1296,
+        "h": 777,
+        "alt": "Axonométricas — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-21.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Axonométricas — lámina completa"
+    }
+  },
+  {
+    "page": 22,
+    "title": "Corte fugado 03 — espacio público",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p22-X8.webp",
+        "w": 1576,
+        "h": 998,
+        "alt": "Corte fugado 03 — espacio público"
+      },
+      {
+        "src": "/images/casa-piaggio/p22-X9.webp",
+        "w": 859,
+        "h": 458,
+        "alt": "Planta de ubicación del corte — espacio público"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-22.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Corte fugado 03 — espacio público — lámina completa"
+    }
+  },
+  {
+    "page": 23,
+    "title": "Corte fugado 04 — espacio privado",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p23-X8.webp",
+        "w": 1055,
+        "h": 1491,
+        "alt": "Corte fugado 04 — espacio privado"
+      },
+      {
+        "src": "/images/casa-piaggio/p23-X9.webp",
+        "w": 859,
+        "h": 458,
+        "alt": "Planta de ubicación del corte — espacio privado"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-23.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Corte fugado 04 — espacio privado — lámina completa"
+    }
+  },
+  {
+    "page": 24,
+    "title": "Corte fugado 02 — patio central",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p24-X8.webp",
+        "w": 1575,
+        "h": 998,
+        "alt": "Corte fugado 02 — patio central"
+      },
+      {
+        "src": "/images/casa-piaggio/p24-X9.webp",
+        "w": 859,
+        "h": 458,
+        "alt": "Planta de ubicación del corte — patio central"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-24.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Corte fugado 02 — patio central — lámina completa"
+    }
+  },
+  {
+    "page": 25,
+    "title": "Corte fugado — núcleo sanitario",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p25-X8.webp",
+        "w": 859,
+        "h": 458,
+        "alt": "Planta de ubicación del corte — núcleo sanitario"
+      },
+      {
+        "src": "/images/casa-piaggio/p25-X9.webp",
+        "w": 1575,
+        "h": 998,
+        "alt": "Corte fugado — núcleo sanitario"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-25.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Corte fugado — núcleo sanitario — lámina completa"
+    }
+  },
+  {
+    "page": 26,
+    "title": "Corte fugado 01 — cuarto en suite",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p26-X8.webp",
+        "w": 1055,
+        "h": 1491,
+        "alt": "Corte fugado 01 — cuarto en suite"
+      },
+      {
+        "src": "/images/casa-piaggio/p26-X9.webp",
+        "w": 859,
+        "h": 458,
+        "alt": "Planta de ubicación del corte — cuarto en suite"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-26.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Corte fugado 01 — cuarto en suite — lámina completa"
+    }
+  },
+  {
+    "page": 27,
+    "title": "Etapa 4 — Producción gráfica",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/lamina-27.webp",
+        "w": 1920,
+        "h": 1080,
+        "alt": "Etapa 4 — Producción gráfica — lámina completa"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-27.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Etapa 4 — Producción gráfica — lámina completa"
+    }
+  },
+  {
+    "page": 28,
+    "title": "Implantación y jardín",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p28-X8.webp",
+        "w": 1086,
+        "h": 1086,
+        "alt": "Implantación y jardín — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p28-X9.webp",
+        "w": 1393,
+        "h": 1129,
+        "alt": "Implantación y jardín — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-28.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Implantación y jardín — lámina completa"
+    }
+  },
+  {
+    "page": 29,
+    "title": "Render — fachada",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p29-X8.webp",
+        "w": 1402,
+        "h": 1122,
+        "alt": "Render — fachada"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-29.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Render — fachada — lámina completa"
+    }
+  },
+  {
+    "page": 30,
+    "title": "Render — fachadas",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p30-X8.webp",
+        "w": 1391,
+        "h": 1131,
+        "alt": "Render — fachadas"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-30.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Render — fachadas — lámina completa"
+    }
+  },
+  {
+    "page": 31,
+    "title": "Renders — cuartos",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p31-X8.webp",
+        "w": 1403,
+        "h": 1121,
+        "alt": "Renders — cuartos — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p31-X9.webp",
+        "w": 1387,
+        "h": 1134,
+        "alt": "Renders — cuartos — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-31.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Renders — cuartos — lámina completa"
+    }
+  },
+  {
+    "page": 32,
+    "title": "Renders — cocina",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p32-X8.webp",
+        "w": 1390,
+        "h": 1132,
+        "alt": "Renders — cocina — pieza 1"
+      },
+      {
+        "src": "/images/casa-piaggio/p32-X9.webp",
+        "w": 1388,
+        "h": 1133,
+        "alt": "Renders — cocina — pieza 2"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-32.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Renders — cocina — lámina completa"
+    }
+  },
+  {
+    "page": 33,
+    "title": "Render — cocina",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p33-X8.webp",
+        "w": 1395,
+        "h": 1127,
+        "alt": "Render — cocina"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-33.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Render — cocina — lámina completa"
+    }
+  },
+  {
+    "page": 34,
+    "title": "Render — baño",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p34-X8.webp",
+        "w": 1448,
+        "h": 1086,
+        "alt": "Render — baño"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-34.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Render — baño — lámina completa"
+    }
+  },
+  {
+    "page": 35,
+    "title": "Render — quincho",
+    "items": [
+      {
+        "src": "/images/casa-piaggio/p35-X7.webp",
+        "w": 1392,
+        "h": 1130,
+        "alt": "Render — quincho"
+      }
+    ],
+    "sheet": {
+      "src": "/images/casa-piaggio/lamina-35.webp",
+      "w": 1920,
+      "h": 1080,
+      "alt": "Render — quincho — lámina completa"
+    }
+  }
+]

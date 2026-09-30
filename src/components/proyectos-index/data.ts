@@ -11,6 +11,7 @@ export type IndexEntry = Project & {
 
 /** Datos propios del índice que no viven en projects.ts. */
 const CATEGORY: Record<string, Category> = {
+  '/proyectos/casa-piaggio': 'obra',
   '/proyectos/casa-angel': 'obra',
   '/proyectos/urbetrack': 'obra',
   '/proyectos/fadu': 'formacion',

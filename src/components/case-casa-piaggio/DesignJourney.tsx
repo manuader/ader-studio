@@ -1,0 +1,21 @@
+'use client';
+import {useEffect,useRef,useState} from 'react';
+import dynamic from 'next/dynamic';
+import {asset} from './data';
+import {SectionViewer} from './DrawingViewers';
+import type {LightboxItem} from '@/components/portfolio/shared/Lightbox';
+import s from './DesignJourney.module.css';
+const Model=dynamic(()=>import('./OrbitalModel'),{ssr:false,loading:()=> <p>Preparando modelo de Revit…</p>});
+const names=['Planta','Vistas','Axonométricas','Cortes fugados'];
+const views=[['p20-X8','Sur',640,1090],['p20-X4','Este',0,1734],['p20-X7','Norte',290,1120],['p20-X9','Oeste',0,1953]] as const;
+export function DesignJourney({onOpen}:{onOpen:(items:LightboxItem[],index:number)=>void}){
+ const root=useRef<HTMLDivElement>(null);const [phase,setPhase]=useState(0);const [arrival,setArrival]=useState(0);
+ useEffect(()=>{let raf=0;const update=()=>{raf=0;const el=root.current;if(!el)return;setArrival(Math.max(0,Math.min(1,(innerHeight-el.getBoundingClientRect().top)/(innerHeight-64))));setPhase(Math.max(0,Math.min(10.999,(64-el.getBoundingClientRect().top)/Math.max(1,el.offsetHeight-innerHeight+64)*11)));};const schedule=()=>{if(!raf)raf=requestAnimationFrame(update);};update();window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);return()=>{cancelAnimationFrame(raf);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);};},[]);
+ const group=phase<1.4?0:phase<5.4?1:phase<9.4?2:3;const view=Math.min(3,Math.max(0,(phase-1.65)/1.1));const cut=1.01*(1-Math.max(0,Math.min(1,(phase-6.0)/2.9)));
+ return <div ref={root} className={s.scrollJourney}><div className={s.immersiveFrame}><header><span>03 / DESARROLLAR</span><h2>{names[group]}{group===1&&<small className={s.viewSubtitle}>{views[Math.round(view)][1].toUpperCase()}</small>}</h2></header><div className={`${s.workspace} ${group===2?s.axoEntrance:group===0?s.planEntrance:''}`} key={group} style={group===0?{transform:`translateX(${(1-arrival)*90-Math.max(0,(phase-.85)/.55)*110}%) rotate(${(1-arrival)*4}deg)`,opacity:arrival}:group===3?{transform:`translateX(${Math.max(0,1-(phase-9.4)/.45)*90}%)`}:group===1?{opacity:Math.min(1,(phase-1.4)/.3),transform:`translateY(${Math.max(0,1-(phase-1.4)/.3)*24}px) translateX(${-Math.max(0,(phase-5.05)/.35)*110}%)`}:undefined}>
+ {group===0&&<button className={s.planReveal} onClick={()=>onOpen([{src:'/images/casa-piaggio/planta-limpia-v3.png',w:1716,h:916,alt:'Planta de Casa Piaggio'}],0)} aria-label="Ampliar planta"><svg viewBox="35 55 1660 780" role="img" aria-label="Planta de Casa Piaggio"><image href="/images/casa-piaggio/planta-limpia-v3.png" width="1716" height="916"/><g fill="white" stroke="#777" strokeWidth="1">{[915,1066].map(x=><g key={x}><rect x={x} y="415" width="9" height="50"/><path d={`M${x+3} 415v50m3-50v50`}/></g>)}</g><g transform="translate(1585 680) rotate(-45)" aria-label="Logo ADER: norte a 45 grados hacia arriba a la derecha"><image href="/images/logo-full.webp" x="-70" y="-50" width="140" height="100"/></g></svg><span>Explorar la planta ↗</span></button>}
+ {group===1&&<><div className={s.viewTrack} >{views.map(([key,label])=>{const item=asset(key,label);return <div className={s.viewSlide} style={{transform:`translateX(${-view*100}%)`}} key={key}><svg viewBox={`0 0 ${item.w} ${item.h*.754}`} preserveAspectRatio="xMidYMax meet"><defs><pattern id={`soil-${key}`} width="180" height="150" patternUnits="userSpaceOnUse"><svg viewBox="800 425 160 90" width="180" height="150" preserveAspectRatio="none"><image href="/images/casa-piaggio/p20-X8.webp" width="2169" height="725"/></svg></pattern></defs><image href={item.src} width={item.w} height={item.h}/><rect x="0" y={item.h*.554} width={item.w} height={item.h*.20} fill={`url(#soil-${key})`}/></svg></div>;})}</div><div className={s.localControls}><small>Deslizá para recorrer las vistas</small></div></>}
+ {group===2&&<><div className={s.modelStage}  aria-label="Aparición progresiva de la casa. Usá la rueda o el control inferior."><Model cinematic cut={cut}/></div><div className={s.localControls}><span>Deslizá para descubrir el interior</span><button onClick={()=>onOpen([asset('p21-X10','Conjunto'),asset('p21-X4','Patio y terrazas')],0)}>Ver láminas ↗</button></div></>}
+ {group===3&&<SectionViewer onOpen={onOpen} onChange={()=>{}}/>}
+ </div></div></div>;
+}

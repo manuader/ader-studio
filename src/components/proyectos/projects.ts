@@ -16,6 +16,17 @@ export interface Project {
 // Para agregar un nuevo proyecto, simplemente añade un objeto a esta lista.
 export const projects: Project[] = [
   {
+    image: '/images/projects/casa-piaggio-dibujo.webp',
+    w: 1402,
+    h: 1122,
+    alt: 'Casa Piaggio, dibujo de fachada',
+    tag: 'Residencial · Anteproyecto',
+    name: 'Casa Piaggio',
+    location: 'San Vicente, Buenos Aires',
+    year: '2026',
+    href: '/proyectos/casa-piaggio',
+  },
+  {
     image: '/images/projects/casa-angel-dibujo.webp',
     w: 1882,
     h: 1412,
