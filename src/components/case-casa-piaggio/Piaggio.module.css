@@ -53,3 +53,5 @@
 .introJourney .heroImage img{object-fit:contain;object-position:center}.introJourney .heroImage{background:#a85e40}
 
 .introJourney .heroImage img{object-fit:cover;object-position:center center}
+
+.stageNav{transform:translate(-50%,var(--nav-lift,0px))}.experience .memory{position:relative;margin:0;font-size:15px}.experience .memory p{position:absolute;bottom:calc(100% + 12px);left:0;width:min(340px,80vw);margin:0;padding:20px;border-radius:12px;background:#84482ff2;box-shadow:0 8px 32px #3d231c33;z-index:30;max-height:50svh;overflow:auto}.experience{padding-bottom:0}

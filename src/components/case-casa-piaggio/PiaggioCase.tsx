@@ -50,7 +50,7 @@ export function PiaggioCase() {
     const intro=el.querySelector<HTMLElement>('#piaggio-inicio');
     if(intro){const timeline=gsap.timeline({scrollTrigger:{trigger:intro,start:'top top',end:'bottom bottom',scrub:.8}});timeline.fromTo(intro.querySelectorAll('[data-wall-line]'),{strokeDashoffset:1600},{strokeDashoffset:0,duration:1.2,stagger:.012,ease:'none'},0).fromTo(intro.querySelector('h1'),{opacity:0,y:50},{opacity:1,y:0,duration:1},1.7).to(intro.querySelector('[class*="heroImage"]'),{opacity:1,scale:1,duration:1.5},2.8).to(intro.querySelector('[class*="introWall"]'),{opacity:0,duration:1},2.8);}
     let frame = 0;
-    const update = () => { frame=0; setIntroOnly(scrollY<innerHeight*.2); let selected=0; stages.forEach((item,i) => {const n=document.getElementById(item.id); if(n && n.getBoundingClientRect().top<innerHeight*.45) selected=i;}); setStage(selected); };
+    const update = () => { frame=0; el.style.setProperty("--nav-lift",`${Math.min(0,el.getBoundingClientRect().bottom-innerHeight)}px`); setIntroOnly(scrollY<innerHeight*.2); let selected=0; stages.forEach((item,i) => {const n=document.getElementById(item.id); if(n && n.getBoundingClientRect().top<innerHeight*.45) selected=i;}); setStage(selected); };
     const onScroll = () => {if(!frame) frame=requestAnimationFrame(update);};
     update(); window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll);
     return () => {mm.revert();cancelAnimationFrame(frame);window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll);};
@@ -81,9 +81,9 @@ export function PiaggioCase() {
       </section>
       <section id="experiencia" className={`${s.section} ${s.experience}`}>
 
-        <BrickGallery onOpen={open}/>{memory('Los renders exploran cómo se habitaría la propuesta. La luz, la relación con el jardín y la convivencia del ladrillo, el hormigón y la madera permiten volver a mirar las decisiones del proyecto. Cada imagen es una nueva pregunta sobre la experiencia de la casa.')}
+        <BrickGallery onOpen={open} memory={memory('Los renders exploran cómo se habitaría la propuesta. La luz, la relación con el jardín y la convivencia del ladrillo, el hormigón y la madera permiten volver a mirar las decisiones del proyecto. Cada imagen es una nueva pregunta sobre la experiencia de la casa.')} />
       </section>
-      <section className={`${s.section} ${s.closing}`}><span className={s.eyebrow}>Un estado del proceso</span><h2>La investigación<br/>continúa.</h2><a className={s.pdfButton} href={pdf} target="_blank" rel="noopener noreferrer">Explorar la entrega <span>35 páginas ↗</span></a><div className={s.closingLinks}><Link href="/#contacto">Conversemos sobre tu proyecto ↗</Link><Link href="/proyectos">← Volver a proyectos</Link></div></section>
+      <section className={`${s.section} ${s.closing}`}><span className={s.eyebrow}>Un estado del proceso</span><h2>Un anteproyecto.<br/>Nuevas posibilidades.</h2><a className={s.pdfButton} href={pdf} target="_blank" rel="noopener noreferrer">Explorar el anteproyecto <span>35 páginas ↗</span></a><div className={s.closingLinks}><Link href="/#contacto">Conversemos sobre tu proyecto ↗</Link><Link href="/proyectos">← Volver a proyectos</Link></div></section>
     </main><Footer/><Lightbox items={viewer.items} index={viewer.index} onChange={index=>setViewer(v=>({...v,index}))}/>
   </>;
 }

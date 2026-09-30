@@ -27,3 +27,5 @@
 
 /* Give the un-cropped renders more of the viewport. */
 @media(min-width:761px){.scene{grid-template-columns:minmax(170px,18%) minmax(0,1fr);gap:1.5vw;padding:10px 1vw 32px}.index h2{font-size:clamp(28px,3vw,48px)}}
+
+.memorySlot{margin-top:8px;position:relative;z-index:30}.memorySlot summary{font-size:15px;padding:8px 14px}@media(max-width:760px){.memorySlot{grid-column:1/-1}}
