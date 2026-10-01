@@ -9,3 +9,5 @@
 .swipeHint{align-self:center;color:#999;font:12px var(--font-c);letter-spacing:.08em;display:flex;align-items:center;gap:12px;margin:0 0 8px}.swipeHint:before,.swipeHint:after{content:"";height:1px;width:45px;background:#ccc}
 
 .swipeHint:before,.swipeHint:after{display:none}
+
+@media(max-width:760px){.viewer{padding:0 0 74px}.cutViewport{padding:0 4px 80px}.plan{width:170px;height:110px;bottom:0;right:10px}.cutHeading{padding-left:14px;font-size:14px}.cutLayer svg{width:100%;height:100%}.previous,.next{padding:4px 0;font-size:26px!important}}

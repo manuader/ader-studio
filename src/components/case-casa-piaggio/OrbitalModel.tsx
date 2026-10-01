@@ -12,43 +12,47 @@ export default function OrbitalModel({angle=35,interactive=false,cinematic=false
   useEffect(()=>{
     let disposed=false,renderer:Three.WebGLRenderer|undefined,scene:Three.Scene|undefined,observer:ResizeObserver|undefined;
     const textures:Three.Texture[]=[];let disposeEffects=()=>{},disposeControls=()=>{};
-    const element=host.current!;
+    const element=host.current!;const mobile=matchMedia('(max-width:760px)').matches;
     async function setup(){
       const T=await import('three');
       const {GLTFLoader}=await import('three/examples/jsm/loaders/GLTFLoader.js');
-      const [{EffectComposer},{RenderPass},{GTAOPass},{OutputPass}]=await Promise.all([import('three/examples/jsm/postprocessing/EffectComposer.js'),import('three/examples/jsm/postprocessing/RenderPass.js'),import('three/examples/jsm/postprocessing/GTAOPass.js'),import('three/examples/jsm/postprocessing/OutputPass.js')]);
+
       if(disposed)return;
-      renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
-      renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor('#ffffff');renderer.clippingPlanes=[new T.Plane(new T.Vector3(0,1,0),.35)];
-      renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFShadowMap;
+      renderer=new T.WebGLRenderer({antialias:!mobile,powerPreference:'high-performance'});
+      renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1:2));renderer.setClearColor('#ffffff');renderer.clippingPlanes=[new T.Plane(new T.Vector3(0,1,0),.35)];
+      renderer.shadowMap.enabled=!mobile;renderer.shadowMap.type=T.PCFShadowMap;
       renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
-      renderer.domElement.style.cssText='width:100%;height:100%;display:block;touch-action:none';
+      renderer.domElement.style.cssText='width:100%;height:100%;display:block;touch-action:pan-y';
       renderer.domElement.setAttribute('aria-label','Órbita de Casa Piaggio con materiales y cámara a nivel del observador');
       element.appendChild(renderer.domElement);
       scene=new T.Scene();scene.background=new T.Color('#ffffff');scene.add(new T.HemisphereLight(0xe8efff,0x998c78,1.65));
       const sun=new T.DirectionalLight(0xfff2df,3.2);sun.position.set(24,16,18);sun.castShadow=true;
-      sun.shadow.mapSize.set(4096,4096);Object.assign(sun.shadow.camera,{left:-24,right:24,top:24,bottom:-24,far:100});
+      sun.shadow.mapSize.set(mobile?1024:4096,mobile?1024:4096);Object.assign(sun.shadow.camera,{left:-24,right:24,top:24,bottom:-24,far:100});
       sun.shadow.normalBias=.015;sun.shadow.bias=-.00006;scene.add(sun);
       const fill=new T.DirectionalLight(0xfff3e0,1.25);fill.position.set(-8,8,-15);scene.add(fill);
       const camera=new T.OrthographicCamera(-15,15,6,-6,.1,200);
+      let composer:import('three/examples/jsm/postprocessing/EffectComposer.js').EffectComposer|undefined;
+      if(!mobile){
+      const [{EffectComposer},{RenderPass},{GTAOPass},{OutputPass}]=await Promise.all([import('three/examples/jsm/postprocessing/EffectComposer.js'),import('three/examples/jsm/postprocessing/RenderPass.js'),import('three/examples/jsm/postprocessing/GTAOPass.js'),import('three/examples/jsm/postprocessing/OutputPass.js')]);
       const target=new T.WebGLRenderTarget(1,1,{type:T.HalfFloatType,samples:4});
-      const composer=new EffectComposer(renderer,target);composer.addPass(new RenderPass(scene,camera));
+      composer=new EffectComposer(renderer,target);composer.addPass(new RenderPass(scene,camera));
       const ao=new GTAOPass(scene,camera,1,1);ao.updateGtaoMaterial({radius:.5,thickness:1,distanceExponent:1.5,scale:1});composer.addPass(ao);
-      const output=new OutputPass();composer.addPass(output);disposeEffects=()=>{ao.dispose();output.dispose();composer.dispose();};
-      const draw=()=>{if(disposed||!renderer||!scene)return;if(!interactive){const a=current.current*Math.PI/180;if(cinematic)camera.position.set(32,32,32);else camera.position.set(Math.sin(a)*65,1.6,Math.cos(a)*65);camera.lookAt(0,1.6,0);}composer.render();};
+      const output=new OutputPass();composer.addPass(output);const effects=composer;disposeEffects=()=>{ao.dispose();output.dispose();effects.dispose();};
+      }
+      const draw=()=>{if(disposed||!renderer||!scene)return;if(!interactive){const a=current.current*Math.PI/180;if(cinematic)camera.position.set(32,32,32);else camera.position.set(Math.sin(a)*65,1.6,Math.cos(a)*65);camera.lookAt(0,1.6,0);}if(mobile)renderer.render(scene,camera);else composer?.render();};
       if(interactive){camera.position.set(32,26,38);camera.lookAt(0,1.6,0);const {OrbitControls}=await import('three/examples/jsm/controls/OrbitControls.js');if(disposed)return;const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,1.6,0);controls.enableDamping=false;controls.minZoom=.55;controls.maxZoom=3;controls.maxPolarAngle=Math.PI*.48;controls.addEventListener('change',draw);controls.update();disposeControls=()=>controls.dispose();}
       redraw.current=draw;
       const resize=()=>{if(!renderer)return;const w=element.clientWidth,h=element.clientHeight;if(!w||!h)return;
-        renderer.setSize(w,h,false);composer.setSize(w,h);const halfW=cinematic?Math.max(20,15*w/h):interactive?24:16.1,halfH=halfW*h/w;Object.assign(camera,{left:-halfW,right:halfW,top:halfH+1.05,bottom:-halfH+1.05});camera.updateProjectionMatrix();draw();};
+        renderer.setSize(w,h,false);composer?.setSize(w,h);const halfW=cinematic?Math.max(20,15*w/h):interactive?24:16.1,halfH=halfW*h/w;Object.assign(camera,{left:-halfW,right:halfW,top:halfH+1.05,bottom:-halfH+1.05});camera.updateProjectionMatrix();draw();};
       observer=new ResizeObserver(resize);observer.observe(element);resize();
       const loader=new T.TextureLoader();
       const maps=new Map<string,Three.Texture[]>();
-      const [gltf]=await Promise.all([new GLTFLoader().loadAsync('/models/casa-piaggio/orbita.glb?v=pbr2'),...['brick','roof','concrete','wood','grass'].map(async kind=>{
+      const [gltf]=await Promise.all([(async()=>{const loader=new GLTFLoader();if(mobile&&typeof DecompressionStream!=='undefined'){const response=await fetch('/models/casa-piaggio/orbita-mobile.glb.gz');if(!response.ok||!response.body)throw new Error('Model unavailable');const buffer=await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();return loader.parseAsync(buffer,'/models/casa-piaggio/');}return loader.loadAsync('/models/casa-piaggio/orbita.glb?v=pbr2');})(),...['brick','roof','concrete','wood','grass'].map(async kind=>{
         const loaded=await Promise.all(['color','normal','rough'].map(async channel=>{
-          const texture=await loader.loadAsync(`/models/casa-piaggio/materials/${kind}-${channel}.jpg`);
+          const texture=await loader.loadAsync(`/models/casa-piaggio/materials/${mobile?'mobile/':''}${kind}-${channel}.jpg`);
           if(disposed){texture.dispose();return texture;}
           texture.wrapS=texture.wrapT=T.RepeatWrapping;texture.flipY=false;
-          texture.anisotropy=Math.min(16,renderer!.capabilities.getMaxAnisotropy());
+          texture.anisotropy=Math.min(mobile?2:16,renderer!.capabilities.getMaxAnisotropy());
           texture.colorSpace=channel==='color'?T.SRGBColorSpace:T.NoColorSpace;textures.push(texture);return texture;
         }));maps.set(kind,loaded);
       })]);
