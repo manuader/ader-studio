@@ -154,3 +154,9 @@ body {
 @font-face { font-family: 'Ader Country Flags'; src: url('/fonts/noto-color-emoji-flags.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+1F1E6-1F1FF; }
 
 html{overflow-x:clip;}@media(max-width:768px){body{width:100%;}button,a,input,select{-webkit-tap-highlight-color:transparent;}button{touch-action:manipulation;}img,canvas,video{max-width:100%;}}
+
+.btn-primary,.btn-ghost{border-radius:999px;}
+
+.formation-hero{height:34svh;min-height:210px;padding:calc(var(--nav-h) + 20px) 40px 20px;display:flex;flex-direction:column;justify-content:center;}.formation-hero .sec-title{font-size:clamp(32px,4vw,58px);}.formation-hero p{font-size:13px;margin-top:12px!important;}@media(max-width:768px){.formation-hero{padding:calc(var(--nav-h) + 12px) 20px 12px;min-height:190px;}.formation-hero .sec-title{font-size:32px;}.formation-hero .sec-label{margin-bottom:12px;}.formation-hero p{font-size:11px;line-height:1.5!important;}}
+
+.formation-hero{height:auto;min-height:0;padding:calc(var(--nav-h) + 40px) 40px 32px;}@media(max-width:768px){.formation-hero{padding:calc(var(--nav-h) + 24px) 20px 24px;}}

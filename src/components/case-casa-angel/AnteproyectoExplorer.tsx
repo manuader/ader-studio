@@ -6,8 +6,8 @@ import { E1, E2, E3, E4, RENDERS, stageName } from './data';
 import s from './AnteproyectoExplorer.module.css';
 const chapters=[E1,E2,E3,E4];
 const decisions=[
-  {title:'Elevar la vida pública',text:'Los espacios públicos se ubican arriba; el acceso y los servicios, en planta baja. El croquis explica esa relación.',image:E2.images[0],stage:1},
-  {title:'Difuminar los límites',text:'Las galerías y los espacios semicubiertos construyen una transición entre interior y exterior: la casa se abre al paisaje sin pasar de un ambiente a otro de forma abrupta.',image:E3.images[4],stage:2}
+  {title:'Elevar la vida pública',text:'Los espacios públicos se ubican arriba; el acceso y los servicios, en planta baja. El croquis explica esa relación.',image:{src:"/images/casa-angel/decisiones/elevar-la-vida-publica.webp",w:1448,h:1086,alt:"Elevar la vida pública: corte del refugio, espacios de encuentro en altura y relación con el paisaje"},stage:1},
+  {title:'Difuminar los límites',text:'Las galerías y los espacios semicubiertos construyen una transición entre interior y exterior: la casa se abre al paisaje sin pasar de un ambiente a otro de forma abrupta.',image:{src:"/images/casa-angel/decisiones/difuminar-los-limites.webp",w:1448,h:1086,alt:"Difuminar los límites: continuidad del estar, la galería y el bosque en una vista de Casa Ángel"},stage:2}
 ];
 const statements=[
   'Leer el lote: conectividad, vecinos, viento, grilla y arbolado.',
@@ -20,11 +20,13 @@ export function AnteproyectoExplorer(){
   const [stage,setStage]=useState(0);
   const [viewer,setViewer]=useState<{items:LightboxItem[];index:number|null}>({items:[],index:null});
   const tabs=useRef<HTMLDivElement>(null);
+  const decisionsRef=useRef<HTMLDivElement>(null);
+  useEffect(()=>{const el=decisionsRef.current;if(!el)return;const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{entry.target.setAttribute('data-visible',String(entry.isIntersecting&&entry.intersectionRatio>=.2));}),{threshold:.2});el.querySelectorAll('article').forEach(node=>observer.observe(node));return()=>observer.disconnect();},[]);
   useEffect(()=>{
-    const sync=()=>{const i=chapters.findIndex(c=>'#'+c.key===location.hash);if(i>=0){setStage(i);requestAnimationFrame(()=>document.getElementById('documentacion-angel')?.scrollIntoView({block:'start',behavior:'instant'}));}};
+    const sync=()=>{const i=chapters.findIndex(c=>'#'+c.key===location.hash);if(i>=0)setStage(i);};
     sync();window.addEventListener('hashchange',sync);return()=>window.removeEventListener('hashchange',sync);
   },[]);
-  const select=(i:number)=>{setStage(i);history.replaceState(null,'','#'+chapters[i].key);};
+  const select=(i:number)=>{setStage(i);};
   const keys=(event:KeyboardEvent<HTMLButtonElement>,i:number)=>{
     let next=i;
     if(event.key==='ArrowRight')next=(i+1)%4;else if(event.key==='ArrowLeft')next=(i+3)%4;else if(event.key==='Home')next=0;else if(event.key==='End')next=3;else return;
@@ -32,12 +34,12 @@ export function AnteproyectoExplorer(){
   };
   const chapter=chapters[stage];
   return <section id="anteproyecto" className={s.section} data-chapter="Casa Ángel · Anteproyecto" aria-labelledby="angel-decisions">
-    <header className={s.heading}><div className="sec-label">Anteproyecto / Las decisiones</div><h2 id="angel-decisions" className="sec-title">La vida arriba.<br/><em>El paisaje adentro.</em></h2><p>Dos decisiones que conectan la organización de la casa con la experiencia de habitarla.</p></header>
-    <div className={s.decisions}>{decisions.map((d,i)=><article key={d.title} className={s.decision}>
-      <button className={s.imageButton} onClick={()=>setViewer({items:[d.image],index:0})} aria-label={'Ampliar: '+d.image.alt}><Image src={d.image.src} alt={d.image.alt} width={d.image.w} height={d.image.h} sizes="(max-width:768px) 90vw, 30vw"/></button>
-      <span className={s.number}>0{i+1}</span><h3>{d.title}</h3><p>{d.text}</p><button className={s.textButton} onClick={()=>{select(d.stage);const docs=document.getElementById('documentacion-angel') as HTMLDetailsElement | null;if(docs){docs.open=true;docs.scrollIntoView({block:'start'});}}}>Explorar las piezas ↗</button>
+    <div className={s.decisionsFrame}><header className={s.heading}><div className="sec-label">Anteproyecto / Las decisiones</div><h2 id="angel-decisions" className="sec-title">La vida arriba.<br/><em>El paisaje adentro.</em></h2><p>Dos decisiones que conectan la organización de la casa con la experiencia de habitarla.</p></header>
+    <div ref={decisionsRef} className={s.decisions}>{decisions.map((d,i)=><article key={d.title} className={s.decision}>
+      <button className={s.imageButton} onClick={()=>setViewer({items:[d.image],index:0})} aria-label={'Ampliar: '+d.image.alt}><Image src={d.image.src} alt={d.image.alt} width={d.image.w} height={d.image.h} sizes="(max-width:768px) 90vw, 46vw"/></button>
+      <span className={s.number}>0{i+1}</span><h3>{d.title}</h3><p>{d.text}</p>
     </article>)}</div>
-    <details id="documentacion-angel" className={s.explorer} open>
+    </div><details id="documentacion-angel" className={s.explorer} open>
       <summary>Explorar el anteproyecto <span>Cuatro etapas · Dibujos y renders</span></summary>
       <div ref={tabs} className={s.tabs} role="tablist" aria-label="Documentación del anteproyecto">{chapters.map((c,i)=><button type="button" key={c.key} role="tab" id={'doc-tab-'+c.key} aria-controls="angel-doc-panel" aria-selected={stage===i} tabIndex={stage===i?0:-1} onClick={()=>select(i)} onKeyDown={e=>keys(e,i)}><span>0{i+1}</span>{stageName(c)}</button>)}</div>
       <div id="angel-doc-panel" role="tabpanel" aria-labelledby={'doc-tab-'+chapter.key} className={s.panel}>

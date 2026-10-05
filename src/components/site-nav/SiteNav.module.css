@@ -412,3 +412,5 @@
 @media(max-height:700px) and (max-width:900px){.sheetGroup{padding:10px 0;}.sheetHead{font-size:26px;}.sheetInner{padding-top:8px;}.sheetCta{margin-top:12px;}}
 
 @media(max-width:900px){.burger{min-width:44px;min-height:44px;}.mobileProject button{width:44px;height:44px;border-radius:999px;}.sheetLink{min-height:44px;align-items:center;}.sheet{padding-bottom:env(safe-area-inset-bottom);}}
+
+.cta,.panelAll,.panelSub,.sheetCta,.trigger{border-radius:999px;}.work{border-radius:18px;padding:12px;transition:background .25s;}.work:hover{background:#e9e6df80;}.workThumb{border-radius:14px;overflow:hidden;}.section{border-radius:16px;}.mobileProject>a,.sheetLink{border-radius:12px;}

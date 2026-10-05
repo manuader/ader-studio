@@ -1,0 +1,10 @@
+ 'use client';
+import {useEffect,useRef,useState,type ReactNode} from 'react';
+import {YEARS} from './content';
+import s from './FaduCase.module.css';
+export function YearTimeline({children}:{children:ReactNode}){
+ const root=useRef<HTMLDivElement>(null),fill=useRef<HTMLDivElement>(null);
+ const [active,setActive]=useState(-1);
+ useEffect(()=>{const el=root.current;if(!el)return;let raf=0;const update=()=>{raf=0;const chapters=[...el.querySelectorAll<HTMLElement>('section[id^="anio-"]')];const probe=innerHeight*.5;let current=-1,part=0;chapters.forEach((chapter,i)=>{const r=chapter.getBoundingClientRect();if(r.top<=probe){current=i;part=Math.max(0,Math.min(1,(probe-r.top)/Math.max(1,r.height)));}});fill.current?.style.setProperty('transform',`scaleX(${current<0?0:(current+part)/chapters.length})`);setActive(p=>p===current?p:current);};const schedule=()=>{if(!raf)raf=requestAnimationFrame(update);};update();addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);const ro=new ResizeObserver(schedule);ro.observe(el);return()=>{cancelAnimationFrame(raf);removeEventListener('scroll',schedule);removeEventListener('resize',schedule);ro.disconnect();};},[]);
+ return <div ref={root} className={s.timeline}><nav className={s.ruler} aria-label="Línea del tiempo de FADU"><ol className={s.rulerYears}>{YEARS.map((y,i)=><li key={y.key}><button type="button" className={s.rulerYear} data-state={i===active?'on':i<active?'past':undefined} aria-current={i===active?'step':undefined} aria-label={`Ir al año ${y.year}`} onClick={()=>document.getElementById('anio-'+y.key)?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}><span className={s.rulerNum}>{y.year}</span></button></li>)}</ol><div className={s.rulerScale} aria-hidden="true"><svg className={s.rulerTicks} viewBox="0 0 500 10" preserveAspectRatio="none">{Array.from({length:51},(_,i)=><line key={i} x1={i*10} x2={i*10} y1={i%10===5?0:6} y2={10} vectorEffect="non-scaling-stroke"/>)}</svg><div ref={fill} className={s.rulerFill}/></div></nav>{children}</div>;
+}

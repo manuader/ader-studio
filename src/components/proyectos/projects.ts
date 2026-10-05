@@ -16,6 +16,17 @@ export interface Project {
 // Para agregar un nuevo proyecto, simplemente añade un objeto a esta lista.
 export const projects: Project[] = [
   {
+    image: '/images/projects/casa-angel-dibujo.webp',
+    w: 1882,
+    h: 1412,
+    alt: 'Casa Angel',
+    tag: 'Residencial · Proyecto',
+    name: 'Casa Ángel',
+    location: 'Pinamar, Argentina',
+    year: '2024–2026',
+    href: '/proyectos/casa-angel',
+  },
+  {
     image: '/images/projects/casa-piaggio-dibujo.webp',
     w: 1402,
     h: 1122,
@@ -27,22 +38,11 @@ export const projects: Project[] = [
     href: '/proyectos/casa-piaggio',
   },
   {
-    image: '/images/projects/casa-angel-dibujo.webp',
-    w: 1882,
-    h: 1412,
-    alt: 'Casa Angel',
-    tag: 'Residencial Privado',
-    name: 'Casa Angel',
-    location: 'Pinamar, Argentina',
-    year: '2024–2026',
-    href: '/proyectos/casa-angel',
-  },
-  {
     image: '/images/projects/urbetrack-acceso.webp',
     w: 1491,
     h: 1055,
     alt: 'Oficina Urbetrack',
-    tag: 'Reforma y modernizacion',
+    tag: 'Proyecto y dirección de obra',
     name: 'Oficina Urbetrack',
     location: 'Av. Rivadavia 4260, CABA',
     year: '2026',
@@ -73,7 +73,7 @@ export const projects: Project[] = [
   // {
   //   image: '/images/projects/urbetrack-dibujo.webp',
   //   alt: 'Casa Piaggio',
-  //   tag: 'Residencial Privado',
+  //   tag: 'Residencial · Proyecto',
   //   name: 'Casa Piaggio',
   //   location: 'San Vicente, Buenos Aires',
   //   year: '2026–2027',

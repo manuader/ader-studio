@@ -114,3 +114,4 @@
     gap: 20px;
   }
 }
+@media(max-width:768px){.link{font-size:12px;letter-spacing:.06em;}.link svg{flex-shrink:0;}.cta{flex-wrap:wrap;justify-content:center;}.cta a{min-height:44px;}}

@@ -1,6 +1,5 @@
 'use client';
-import { OtherProjects } from '@/components/other-projects/OtherProjects';
-
+import { AcademicHero,AcademicNav } from '@/components/academic/AcademicPresentation';
 import { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -76,63 +75,12 @@ export function BauhausCase() {
       <SiteNav initialContext={CASE.title} />
       <main className={s.page}>
         {/* ─── HERO ─────────────────────────────── */}
-        <header className={s.hero} data-chapter={CASE.title}>
-          <div className={s.heroTop}>
-            <div>
-              <div className={`sec-label ${s.heroLabel}`}>{CASE.tag}</div>
-              <h1 className={s.heroTitle}>
-                <span className={s.line}><span>Bauhaus-Universität</span></span>
-                <span className={s.line}><span>Weimar</span></span>
-                <em className={s.line}><span>Tecnología aplicada al diseño.</span></em>
-              </h1>
-            </div>
-            <p className={s.lede}>{CASE.lede}</p>
-          </div>
-
-          <dl className={s.ficha}>
-            <div><dt>Programa</dt><dd>Intercambio académico</dd></div>
-            <div><dt>Lugar</dt><dd>{CASE.location}</dd></div>
-            <div><dt>Año</dt><dd>{CASE.years}</dd></div>
-            <div><dt>Materias</dt><dd>{CHAPTERS.length}</dd></div>
-          </dl>
-
-          <figure className={s.heroFig}>
-            <div className={s.heroImg}>
-              <Image
-                src={CASE.hero.src}
-                alt={`${FIGS.render.alt}. Proyecto RothNEUsiedl, Viena`}
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, calc(100vw - 80px)"
-              />
-            </div>
-            <figcaption className={s.cap}>
-              <span className={s.capNum}>Portada</span>
-              <span>{FIGS.render.alt}. RothNEUsiedl, Viena — materia 02.</span>
-            </figcaption>
-          </figure>
-        </header>
-
-        {/* ─── ÍNDICE ───────────────────────────── */}
-        <nav className={s.index} aria-label="Materias">
-          <div className="sec-label reveal">Contenido</div>
-          <ol className={s.indexList}>
-            {CHAPTERS.map((c, i) => (
-              <li key={c.id} className={`reveal rd${i + 1}`}>
-                <a href={`#${c.id}`} className={s.indexRow}>
-                  <span className={s.indexNum}>{c.num}</span>
-                  <span className={s.indexShort}>{c.short}</span>
-                  <span className={s.indexOrig}>{c.ch.title}</span>
-                  <span className={s.indexArrow}><Arrow /></span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <AcademicHero title="Bauhaus · Weimar" subtitle="Tecnología aplicada al diseño." label="Formación / Intercambio académico · Alemania" description="Durante mi intercambio académico en la Bauhaus-Universität Weimar desarrollé cuatro materias. El recorrido vinculó la documentación del espacio, la planificación urbana, la producción generativa y la reflexión crítica sobre la inteligencia artificial." image={CASE.hero} meta={[{label:'Lugar',value:CASE.location},{label:'Año',value:CASE.years},{label:'Recorrido',value:'Cuatro materias'}]} onOpen={()=>open('render')}><ol className={s.heroSubjects} aria-label="Las cuatro materias del intercambio">{CHAPTERS.map(c=><li key={c.id}><a href={'#'+c.id}><span>{c.num}</span>{c.short}</a></li>)}</ol></AcademicHero>
+        <AcademicNav items={CHAPTERS.map(c=>({id:c.id,label:c.short}))}/>
 
         {/* ─── 01 FOTOGRAMETRÍA ─────────────────── */}
         <section id="fotogrametria" className={`${s.chapter} ${s.bgCream}`} data-chapter="01 Fotogrametría">
-          <ChapterHead id="fotogrametria" />
+          <div className={s.chapterOpening}><ChapterHead id="fotogrametria" />
           <div className={s.compareRow}>
             <div className="reveal"><Compare /></div>
             <div className={`${s.legend} reveal rd2`}>
@@ -144,7 +92,7 @@ export function BauhausCase() {
               <p className={s.legendHint}>Arrastrá la línea, o usá las flechas del teclado, para pasar de la foto al modelo.</p>
             </div>
           </div>
-          <div className={`${s.wide} ${s.wideOffset} reveal`}>
+          </div><div className={`${s.wide} ${s.wideOffset} reveal`}>
             <Doc k="juxta" sizes="(max-width: 1024px) 100vw, 1200px" />
           </div>
           <div className={s.pair}>
@@ -155,8 +103,8 @@ export function BauhausCase() {
 
         {/* ─── 02 PLANIFICACIÓN ─────────────────── */}
         <section id="planificacion" className={`${s.chapter} ${s.bgWhite}`} data-chapter="02 Planificación urbana">
-          <ChapterHead id="planificacion" />
-          <RenderPan />
+          <div className={s.chapterOpening}><ChapterHead id="planificacion" />
+          <RenderPan /></div>
           <div className={s.planRow}>
             <div className="reveal">
               <Doc k="planta" sizes="(max-width: 1024px) 100vw, 70vw" />
@@ -227,7 +175,7 @@ export function BauhausCase() {
         </section>
 
         {/* ─── CIERRE ───────────────────────────── */}
-        <OtherProjects current="/proyectos/bauhaus-weimar" />
+
 
         <section className={s.cta}>
           <div>
