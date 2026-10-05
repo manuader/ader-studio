@@ -9,7 +9,7 @@ import { useCompassLogo } from '@/components/portfolio/shared/useCompassLogo';
 import { REPLAY_EVENT, SKIP_CLASS, requestIntroReplay } from '@/components/logo-intro/introState';
 import s from './SiteNav.module.css';
 
-type Group = 'proyectos' | 'estudio' | 'fotografia' | 'contacto';
+type Group = 'proyectos' | 'estudio' | 'formacion' | 'fotografia' | 'contacto' | 'formacion';
 
 /** Secciones de la home → grupo del menú y rótulo del indicador de contexto. */
 const HOME_SECTIONS: Record<string, { group: Group | null; label: string }> = {
@@ -25,7 +25,7 @@ const HOME_SECTIONS: Record<string, { group: Group | null; label: string }> = {
 
 const ESTUDIO = [
   { href: '/#vision', label: 'Visión', meta: 'Diseño contextual' },
-  { href: '/#proceso', label: 'Proceso', meta: 'Del terreno a la forma' },
+  { href: '/proyectos/casa-angel#proceso', label: 'Proceso', meta: 'Del terreno a la forma' },
   { href: '/#bim', label: 'BIM', meta: 'Modelo integrado' },
   { href: '/#metodologia', label: 'Metodología', meta: 'Cómo trabajamos' },
 ];
@@ -49,15 +49,18 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
   const [logoVisible, setLogoVisible] = useState(!home);
   const [context, setContext] = useState(initialContext);
   const [homeGroup, setHomeGroup] = useState<Group | null>(null);
-  const [open, setOpen] = useState<'proyectos' | 'estudio' | null>(null);
+  const [open, setOpen] = useState<'proyectos' | 'estudio' | 'formacion' | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileProject, setMobileProject] = useState(0);
 
   useCompassLogo(logoRef);
 
   // Grupo activo: por ruta en páginas internas, por sección visible en la home.
   const active: Group | null = home
     ? homeGroup
-    : pathname.startsWith('/proyectos')
+    : pathname.startsWith('/formacion') || FORMACION.some(p => p.href === pathname)
+      ? 'formacion'
+      : pathname.startsWith('/proyectos')
       ? 'proyectos'
       : pathname.startsWith('/fotografia')
         ? 'fotografia'
@@ -181,7 +184,7 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
     [pathname]
   );
 
-  const enter = (menu: 'proyectos' | 'estudio') => {
+  const enter = (menu: 'proyectos' | 'estudio' | 'formacion') => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
     setOpen(menu);
   };
@@ -238,46 +241,11 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
         </div>
 
         <ul className={s.menu}>
-          <li className={s.item} onMouseEnter={() => enter('proyectos')}>
-            <button
-              type="button"
-              className={s.trigger}
-              aria-expanded={open === 'proyectos'}
-              aria-controls="nav-proyectos"
-              data-active={active === 'proyectos' || undefined}
-              onClick={() => setOpen(open === 'proyectos' ? null : 'proyectos')}
-            >
-              Proyectos <Chevron />
-            </button>
-          </li>
-          <li className={s.item} onMouseEnter={() => enter('estudio')}>
-            <button
-              type="button"
-              className={s.trigger}
-              aria-expanded={open === 'estudio'}
-              aria-controls="nav-estudio"
-              data-active={active === 'estudio' || undefined}
-              onClick={() => setOpen(open === 'estudio' ? null : 'estudio')}
-            >
-              Estudio <Chevron />
-            </button>
-          </li>
-          <li className={s.item} onMouseEnter={leave}>
-            <Link
-              href="/fotografia"
-              className={s.trigger}
-              data-active={active === 'fotografia' || undefined}
-              aria-current={pathname === '/fotografia' ? 'page' : undefined}
-              onClick={onNavigate}
-            >
-              Fotografía
-            </Link>
-          </li>
-          <li className={s.item} onMouseEnter={leave}>
-            <Link href="/#contacto" className={s.cta} data-active={active === 'contacto' || undefined} onClick={onNavigate}>
-              Contacto
-            </Link>
-          </li>
+          <li className={s.item} onMouseEnter={()=>enter('proyectos')}><button type="button" className={s.trigger} aria-expanded={open==='proyectos'} aria-controls="nav-proyectos" data-active={active==='proyectos'||undefined} onClick={()=>setOpen(open==='proyectos'?null:'proyectos')}>Proyectos <Chevron/></button></li>
+          <li className={s.item} onMouseEnter={leave}><Link href="/fotografia" className={s.trigger} data-active={active==='fotografia'||undefined} onClick={onNavigate}>Fotografía</Link></li>
+          <li className={s.item} onMouseEnter={()=>enter('estudio')}><button type="button" className={s.trigger} aria-expanded={open==='estudio'} aria-controls="nav-estudio" data-active={active==='estudio'||undefined} onClick={()=>setOpen(open==='estudio'?null:'estudio')}>Estudio <Chevron/></button></li>
+          <li className={s.item} onMouseEnter={()=>enter('formacion')}><button type="button" className={s.trigger} aria-expanded={open==='formacion'} aria-controls="nav-formacion" data-active={active==='formacion'||undefined} onClick={()=>setOpen(open==='formacion'?null:'formacion')}>Formación <Chevron/></button></li>
+          <li className={s.item} onMouseEnter={leave}><Link href="/#contacto" className={s.cta} onClick={onNavigate}>Contacto</Link></li>
         </ul>
 
         <button
@@ -305,10 +273,7 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
               <div className={s.panelLabel}>Obras</div>
               <ul className={s.works}>{OBRAS.map((p) => workItem(p, true))}</ul>
             </div>
-            <div className={s.panelCol}>
-              <div className={s.panelLabel}>Formación</div>
-              <ul className={s.works}>{FORMACION.map((p) => workItem(p, true))}</ul>
-            </div>
+
             <div className={s.panelAside}>
               <Link href="/proyectos" className={s.panelAll} onClick={onNavigate}>
                 Ver todos <em>los proyectos</em>
@@ -321,6 +286,9 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
           </div>
         </div>
 
+        <div id="nav-formacion" className={s.panel} data-open={open==='formacion'||undefined} onMouseEnter={()=>enter('formacion')}>
+          <div className={s.panelInner}><div className={s.panelCol}><div className={s.panelLabel}>Formación</div><ul className={s.works}>{FORMACION.map(p=>workItem(p,true))}</ul></div><div className={s.panelAside}><Link href="/formacion" className={s.panelAll} onClick={onNavigate}>Explorar <em>la formación</em><Arrow/></Link></div></div>
+        </div>
         <div
           id="nav-estudio"
           className={s.panel}
@@ -350,46 +318,11 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
       {/* Menú mobile a pantalla completa */}
       <div id="nav-mobile" className={s.sheet} data-open={mobileOpen || undefined} aria-hidden={!mobileOpen}>
         <div className={s.sheetInner}>
-          <section className={s.sheetGroup}>
-            <Link href="/proyectos" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen ? 0 : -1}>
-              Proyectos
-            </Link>
-            <ul className={s.sheetList}>
-              {WORKS.map((p) => (
-                <li key={p.href}>
-                  <Link href={p.href!} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen ? 0 : -1}>
-                    <span>{p.name}</span>
-                    <span className={s.sheetMeta}>{p.year}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className={s.sheetGroup}>
-            <Link href="/#vision" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen ? 0 : -1}>
-              Estudio
-            </Link>
-            <ul className={s.sheetList}>
-              {ESTUDIO.map((it) => (
-                <li key={it.href}>
-                  <Link href={it.href} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen ? 0 : -1}>
-                    <span>{it.label}</span>
-                    <span className={s.sheetMeta}>{it.meta}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className={s.sheetGroup}>
-            <Link href="/fotografia" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen ? 0 : -1}>
-              Fotografía
-            </Link>
-          </section>
-          <Link href="/#contacto" className={`btn-primary ${s.sheetCta}`} onClick={onNavigate} tabIndex={mobileOpen ? 0 : -1}>
-            Contacto
-            <Arrow />
-          </Link>
-          <div className={s.sheetFoot}>Buenos Aires · Weimar</div>
+          <section className={s.sheetGroup}><Link href="/proyectos" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Proyectos</Link><div className={s.mobileProject}><Link href={OBRAS[mobileProject].href!} onClick={onNavigate} tabIndex={mobileOpen?0:-1}><span>{OBRAS[mobileProject].name}</span><small>{OBRAS[mobileProject].location}</small></Link><div><button aria-label="Proyecto anterior en el menú" tabIndex={mobileOpen?0:-1} onClick={()=>setMobileProject(i=>(i+OBRAS.length-1)%OBRAS.length)}>←</button><span>{mobileProject+1}/{OBRAS.length}</span><button aria-label="Proyecto siguiente en el menú" tabIndex={mobileOpen?0:-1} onClick={()=>setMobileProject(i=>(i+1)%OBRAS.length)}>→</button></div></div></section>
+          <section className={s.sheetGroup}><Link href="/fotografia" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Fotografía</Link></section>
+          <section className={s.sheetGroup}><Link href="/#vision" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Estudio</Link><ul className={s.sheetList}>{ESTUDIO.map(it=><li key={it.href}><Link href={it.href} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>{it.label}</Link></li>)}</ul></section>
+          <section className={s.sheetGroup}><Link href="/formacion" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Formación</Link><ul className={s.sheetList}>{FORMACION.map(p=><li key={p.href}><Link href={p.href!} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>{p.name}</Link></li>)}</ul></section>
+          <Link href="/#contacto" className={s.sheetCta} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Contacto ↗</Link>
         </div>
       </div>
     </>

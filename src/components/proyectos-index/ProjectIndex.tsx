@@ -13,7 +13,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
  * al apuntar (o enfocar con teclado) una fila, su portada se revela por máscara
  * y acompaña al cursor. En pantallas táctiles cada fila muestra su portada.
  */
-export function ProjectIndex() {
+export function ProjectIndex({category='obra'}:{category?:Category}) {
+  const scopedEntries = entries.filter(e => e.category === category);
   const [filter, setFilter] = useState<'all' | Category>('all');
   const [active, setActive] = useState<number | null>(null);
   const [under, setUnder] = useState<number | null>(null);
@@ -28,7 +29,7 @@ export function ProjectIndex() {
   const [shown, setShown] = useState<number | null>(null);
   const shownRef = useRef<number | null>(null);
 
-  const visible = entries
+  const visible = scopedEntries
     .map((e, i) => ({ ...e, i }))
     .filter((e) => filter === 'all' || e.category === filter);
 
@@ -114,8 +115,8 @@ export function ProjectIndex() {
       <div className={s.head}>
         <h2 id="indice-titulo" className={`${s.headLabel} sec-label reveal`}>Índice</h2>
         <div className={`${s.filters} reveal rd1`} role="group" aria-label="Filtrar proyectos">
-          {FILTERS.map((f) => {
-            const count = f.key === 'all' ? entries.length : entries.filter((e) => e.category === f.key).length;
+          {FILTERS.filter(f => f.key === 'all').map((f) => {
+            const count = f.key === 'all' ? scopedEntries.length : scopedEntries.filter((e) => e.category === f.key).length;
             return (
               <button
                 key={f.key}
@@ -188,7 +189,7 @@ export function ProjectIndex() {
 
       <div ref={previewRef} className={s.preview} data-open={active !== null || undefined} aria-hidden="true">
         <div className={s.previewFrame}>
-          {entries.map((p, i) => (
+          {scopedEntries.map((p, i) => (
             <Image
               key={p.href}
               src={p.cover.src}

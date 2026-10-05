@@ -23,7 +23,8 @@ function createBrushTexture(size: number): HTMLCanvasElement {
 
 const TRAIL_DURATION = 600;
 
-export function FachadaReveal() {
+export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }) {
+  const journeyRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef<{
@@ -65,6 +66,13 @@ export function FachadaReveal() {
     const canvas = canvasRef.current;
     if (!section || !canvas) return;
 
+    const updateTitle = () => section.style.setProperty('--title-in', String(Math.min(1, Math.max(0, -(journeyRef.current ?? section).getBoundingClientRect().top / (innerHeight * .32)))));
+    updateTitle();window.addEventListener('scroll', updateTitle, {passive:true});
+    if (window.matchMedia('(pointer: coarse), (prefers-reduced-motion: reduce)').matches) {
+      canvas.style.display = 'none';
+      section.dataset.static = '';
+      return () => { window.removeEventListener('scroll', updateTitle); canvas.style.display = ''; delete section.dataset.static; };
+    }
     const ctx = canvas.getContext('2d')!;
     const s = stateRef.current;
 
@@ -259,6 +267,7 @@ export function FachadaReveal() {
     }
 
     return () => {
+      window.removeEventListener('scroll', updateTitle);
       section.removeEventListener('mousemove', onMouseMove);
       section.removeEventListener('mousedown', onMouseDown);
       section.removeEventListener('mouseleave', onMouseLeave);
@@ -270,21 +279,25 @@ export function FachadaReveal() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <div ref={journeyRef} className={projectHero ? styles.heroJourney : styles.noJourney}><section ref={sectionRef} className={`${styles.section} ${projectHero ? styles.projectHero : ""}`} aria-label={projectHero ? "Casa Ángel: explorar el render" : undefined}>
       <div className={styles.imageLayer}>
         <Image
           src="/images/hero/fachada byn.webp"
-          alt="Plano arquitectónico"
+          alt="Casa Ángel: fachada y paisaje"
           fill
           className={styles.image}
-          loading="lazy"
+          loading={projectHero ? "eager" : "lazy"}
+          priority={projectHero}
         />
       </div>
       <canvas ref={canvasRef} className={styles.revealCanvas} />
+      {projectHero && <div className={styles.projectIntro}><span>Casa Ángel / Proyecto</span><p>Un refugio elevado en el bosque.</p><span className={styles.exploreHint}>Explorá el render con el cursor</span></div>}
       <div className={styles.content}>
-        <div className={`${styles.label} reveal`}>Proyecto Destacado</div>
-        <div className={`${styles.hint} reveal rd1`}>Explorá el render con el cursor</div>
+        {!projectHero && <div className={styles.label}>Proyecto Destacado</div>}
+        {projectHero && <h1 className={styles.projectTitle}>Casa Ángel</h1>}
+        {!projectHero && <div className={styles.hint}>Explorá el render con el cursor</div>}
+        {projectHero && <a className={styles.continue} href="#proceso">Descubrir el proceso ↓</a>}
       </div>
-    </section>
+    </section></div>
   );
 }

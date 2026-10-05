@@ -1,3 +1,4 @@
+import { OtherProjects } from '@/components/other-projects/OtherProjects';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CASE } from '../data';
@@ -49,33 +50,7 @@ export function Cierre() {
         </blockquote>
       </section>
 
-      <section className={s.others} aria-labelledby="ca-others">
-        <div className={s.othersHead}>
-          <div className="sec-label reveal">Seguir recorriendo</div>
-          <h2 id="ca-others" className="sec-title reveal rd1">
-            Otros
-            <br />
-            <em>proyectos</em>
-          </h2>
-        </div>
-        <ul className={s.othersList}>
-          {OTHERS.map((o, i) => (
-            <li key={o.href} className={`reveal rd${i + 1}`}>
-              <Link href={o.href} className={s.otherCard}>
-                <span className={s.otherImg}>
-                  <Image src={o.img.src} alt={o.img.alt} width={o.img.w} height={o.img.h} sizes="(max-width: 768px) 100vw, 45vw" loading="lazy" />
-                </span>
-                <span className={s.otherMeta}>
-                  <span className={s.otherTag}>{o.tag}</span>
-                  <span className={s.otherName}>{o.name}</span>
-                  <span className={s.otherPlace}>{o.place}</span>
-                </span>
-                <span className={s.otherArrow}><Arrow /></span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <OtherProjects current="/proyectos/casa-angel" />
 
       <section className={s.cta}>
         <div>

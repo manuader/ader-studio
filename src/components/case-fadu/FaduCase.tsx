@@ -1,4 +1,5 @@
 'use client';
+import { OtherProjects } from '@/components/other-projects/OtherProjects';
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
@@ -389,38 +390,7 @@ export function FaduCase() {
         </section>
 
         {/* ─── Seguir ─── */}
-        <section className={s.more} data-chapter="Otros proyectos">
-          <div className="sec-label reveal">Seguir recorriendo</div>
-          <div className={s.moreGrid}>
-            {[bauhausWeimar, casaAngel].map((c, i) => {
-              const cover = lineCover(`/proyectos/${c.slug}`);
-              return (
-                <Link key={c.slug} href={`/proyectos/${c.slug}`} className={`${s.card} reveal rd${i + 1}`}>
-                  <span className={s.cardMedia}>
-                    <Image
-                      src={cover.src}
-                      alt={c.title}
-                      width={cover.w}
-                      height={cover.h}
-                      sizes="(max-width: 768px) calc(100vw - 40px), 50vw"
-                      loading="lazy"
-                      className={s.cardImg}
-                    />
-                  </span>
-                  <span className={s.cardMeta}>
-                    <span>{c.tag}</span>
-                    <span>{c.years}</span>
-                  </span>
-                  <span className={s.cardTitle}>
-                    {c.title}
-                    <Arrow />
-                  </span>
-                  <span className={s.cardLoc}>{c.location}</span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
+        <OtherProjects current="/proyectos/fadu" />
 
         <section className={s.cta}>
           <div>

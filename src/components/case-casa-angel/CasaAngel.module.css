@@ -1340,3 +1340,16 @@
     transform: none !important;
   }
 }
+
+/* Anteproyecto y proyecto: dos lecturas del mismo caso. */
+.phaseHead { padding: 100px var(--pad-x); border-top: 1px solid var(--border); }
+.phaseHead p { max-width: 52ch; margin-top: 28px; color: var(--gray1); line-height: 1.7; }
+.stageNav { position: sticky; top: var(--nav-h); z-index: 90; display: flex; overflow-x: auto; background: var(--bg); border-block: 1px solid var(--border); scrollbar-width: none; }
+.stageNav a { flex-shrink: 0; padding: 18px 24px; font-family: var(--font-c); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--gray1); text-decoration: none; border-bottom: 2px solid transparent; }
+.stageNav a[aria-current], .stageNav a:hover { color: var(--white); border-bottom-color: var(--white); }
+.stageNav a span { margin-right: 10px; color: var(--gray2); }
+.anteproyecto section[id] { scroll-margin-top: calc(var(--nav-h) + 60px); }
+.memory { border-top: 1px solid var(--border); margin-top: 24px; padding-top: 18px; }
+.memory summary { font-family: var(--font-c); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+.memory p { margin-top: 16px; }
+@media(max-width:768px) { .phaseHead { padding: 72px 20px; } .stageNav a { padding: 16px; font-size: 12px; } }

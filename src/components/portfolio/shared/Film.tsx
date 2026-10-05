@@ -17,8 +17,7 @@ type Props = {
 export function Film({ name, label, className }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(false);
-  // El video se monta recién cuando la página terminó de cargar: el poster
-  // pinta primero (LCP rápido) y el video no compite con el resto.
+  // El poster aparece primero; el video se monta al acercarse a la pantalla.
   const [armed, setArmed] = useState(false);
   const base = `/videos/portfolio/${name}`;
 
@@ -30,15 +29,15 @@ export function Film({ name, label, className }: Props) {
     return () => mq.removeEventListener('change', apply);
   }, []);
 
+  const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const arm = () => {
-      const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
-      if (idle) idle(() => setArmed(true));
-      else setTimeout(() => setArmed(true), 200);
-    };
-    if (document.readyState === 'complete') arm();
-    else window.addEventListener('load', arm, { once: true });
-    return () => window.removeEventListener('load', arm);
+    const el = container.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setArmed(true); io.disconnect(); }
+    }, { rootMargin: '250px' });
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -54,7 +53,7 @@ export function Film({ name, label, className }: Props) {
   }, [reduced, armed]);
 
   return (
-    <div className={`${s.film} ${className ?? ''}`}>
+    <div ref={container} className={`${s.film} ${className ?? ''}`}>
       <picture className={s.poster}>
         <source media="(max-width: 768px)" srcSet={`${base}-9x16-poster.webp`} type="image/webp" />
         <source srcSet={`${base}-poster.webp`} type="image/webp" />
@@ -62,7 +61,7 @@ export function Film({ name, label, className }: Props) {
         <img src={`${base}-poster.jpg`} alt={label} fetchPriority="high" />
       </picture>
       {!reduced && armed && (
-        <video ref={ref} className={s.video} autoPlay muted loop playsInline preload="auto" aria-label={label}>
+        <video ref={ref} className={s.video} muted loop playsInline preload="metadata" aria-label={label}>
           <source media="(max-width: 768px)" src={`${base}-9x16.webm`} type="video/webm" />
           <source media="(max-width: 768px)" src={`${base}-9x16.mp4`} type="video/mp4" />
           <source src={`${base}-16x9.webm`} type="video/webm" />

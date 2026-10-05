@@ -14,10 +14,10 @@ export function Indice() {
   return (
     <section id="indice" className={s.indice} data-chapter="Casa Angel">
       <div className={s.indiceIntro}>
-        <div className="sec-label reveal">El proyecto</div>
-        <p className={`${s.indiceLede} reveal rd1`}>{CASE.lede}</p>
+        <div className="sec-label reveal">El anteproyecto</div>
+        <p className={`${s.indiceLede} reveal rd1`}>Un refugio elevado en el bosque de Pinamar: del estudio del sitio a la representación de la propuesta.</p>
       </div>
-      <nav aria-label="Etapas del proyecto">
+      <nav aria-label="Etapas del anteproyecto">
         <ol className={s.indiceList}>
           {ROWS.map(({ ch, thumb }, i) => (
             <li key={ch.key} className={`reveal rd${i + 1}`}>

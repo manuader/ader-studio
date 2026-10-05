@@ -55,7 +55,7 @@ export function Vision() {
       <div className={styles.grid}>
         <div className="reveal rd1">
           <div className="sec-title">
-            Diseñamos<br />desde<br /><em>el contexto,</em><br />no desde<br />la forma.
+            Diseñamos desde<br /><em>el contexto,</em><br />no desde la forma.
           </div>
         </div>
         <div className={`${styles.right} reveal rd2`}>

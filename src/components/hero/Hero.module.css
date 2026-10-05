@@ -121,3 +121,5 @@
     padding-right: 20px;
   }
 }
+.hero{height:100svh;min-height:560px;background:#fff;}.compass{position:absolute;left:60%;top:49%;width:min(120vw,1400px);transform:translate(-50%,-50%) rotate(var(--direction,-20deg));opacity:.11;pointer-events:none;mix-blend-mode:multiply;}.compass img{display:block;width:100%;height:auto;}.content{max-width:960px;}@media(max-width:768px){.hero{min-height:0;padding:0 20px 64px;}.compass{width:180vw;left:65%;top:40%;}.headline{font-size:clamp(48px,12vw,72px);}.sub{margin-bottom:28px;font-size:13px;}.eyebrow{font-size:9px;letter-spacing:.16em;}.cta{gap:12px;}.scroll{right:20px;bottom:20px;}}
+.hero{overflow:visible;}.compass{z-index:0;}.hero .content,.hero .scroll{z-index:2;}

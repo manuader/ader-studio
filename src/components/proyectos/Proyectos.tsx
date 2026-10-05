@@ -3,7 +3,8 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import styles from './Proyectos.module.css';
-import { projects } from './projects';
+import { projects as allProjects } from './projects';
+const projects = allProjects.filter(p => !p.tag.includes('Académic'));
 
 export function Proyectos() {
   const trackRef = useRef<HTMLDivElement>(null);

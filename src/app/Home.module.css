@@ -1,0 +1,2 @@
+.home{position:relative;isolation:isolate;background:#fff;}.home>section{position:relative;background:transparent;z-index:1;}
+.home{overflow-x:clip;}

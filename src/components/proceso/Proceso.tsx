@@ -42,6 +42,15 @@ const STEPS = [
   },
 ];
 
+// Register the original sheets to the same lot edge with uniform scaling only.
+const REGISTRATION = [
+ [2400,1532,147/1955*2400,211/1248*1532,1649/1955*2400],
+ [2400,1697,141/1888*2400,273/1334*1697,1593/1888*2400],
+ [2400,1434,155/2048*2400,156/1224*1434,1760/2048*2400],
+ [2400,1607,133/1912*2400,162/1280*1607,1679/1912*2400],
+ [2400,1437,132/2048*2400,130/1226*1437,1786/2048*2400],
+ [2400,1684,125/1869*2400,273/1312*1684,1657/1869*2400],
+];
 const AUTO_ADVANCE_MS = 3000;
 const TICK_MS = 50;
 
@@ -67,7 +76,7 @@ export function Proceso() {
   // Re-runs on every activeStep change (auto or manual click), which naturally
   // resets the progress bar and timer.
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     setProgress(0);
     let startTime = performance.now();
     const id = setInterval(() => {
@@ -83,10 +92,10 @@ export function Proceso() {
   }, [inView, activeStep]);
 
   return (
-    <section id="proceso" ref={sectionRef} className={styles.proceso}>
+    <section id="proceso" ref={sectionRef} className={styles.proceso} data-chapter="Casa Ángel · Proceso">
       <div className={styles.header}>
         <div className="sec-label reveal">Proceso</div>
-        <div className="sec-title reveal rd1">Arquitectura<br /><em>que emerge</em><br />del lugar.</div>
+        <h2 className="sec-title">Arquitectura <em>que emerge del lugar.</em></h2>
       </div>
 
       <div className={`${styles.diagramGrid} reveal`}>
@@ -95,6 +104,7 @@ export function Proceso() {
             <button
               key={step.num}
               className={`${styles.btn} ${activeStep === i ? styles.btnActive : ''}`}
+              aria-pressed={activeStep === i}
               onClick={() => setActiveStep(i)}
             >
               <span className={styles.btnNum}>{step.num} —</span>
@@ -111,18 +121,12 @@ export function Proceso() {
         </div>
 
         <div className={styles.imageWrap}>
-          {STEPS.map((step, i) => (
-            <img
-              key={step.num}
-              src={step.img}
-              alt={step.title}
-              className={styles.image}
-              loading="lazy"
-              decoding="async"
-              style={{ opacity: activeStep === i ? 1 : 0 }}
-              draggable={false}
-            />
-          ))}
+          <svg className={styles.image} viewBox="0 0 2800 2100" role="img" aria-label={STEPS[activeStep].title}>
+          {STEPS.map((step, i) => {
+            const [w,h,x,y,edge]=REGISTRATION[i]; const scale=2200/edge;
+            return <image key={step.num} href={step.img} x={300-x*scale} y={460-y*scale} width={w*scale} height={h*scale} style={{opacity:activeStep===i?1:0,transition:'opacity .45s ease'}}/>;
+          })}
+          </svg>
         </div>
       </div>
     </section>

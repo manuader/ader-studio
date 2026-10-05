@@ -1,40 +1,13 @@
+'use client';
+import { useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
 
 export function Hero() {
+  const hero=useRef<HTMLElement>(null),compass=useRef<HTMLDivElement>(null);
+  useEffect(()=>{const el=hero.current,mark=compass.current;if(!el||!mark||matchMedia('(prefers-reduced-motion: reduce)').matches)return;let raf=0,angle=-20,target=-20,tracking=false,last=0;const move=(e:PointerEvent)=>{const rect=mark.getBoundingClientRect();target=Math.atan2(e.clientY-rect.top-rect.height/2,e.clientX-rect.left-rect.width/2)*180/Math.PI;tracking=true;};const leave=()=>{tracking=false;};const draw=(now:number)=>{const dt=Math.min(50,now-(last||now));last=now;if(tracking){const delta=((target-angle+540)%360)-180;angle+=delta*.055;}else angle+=dt*.002;mark.style.setProperty('--direction',angle+'deg');raf=requestAnimationFrame(draw);};raf=requestAnimationFrame(draw);el.addEventListener('pointermove',move);el.addEventListener('pointerleave',leave);return()=>{cancelAnimationFrame(raf);el.removeEventListener('pointermove',move);el.removeEventListener('pointerleave',leave);};},[]);
   return (
-    <section id="hero" className={styles.hero}>
-      <svg className={styles.decorLines} viewBox="0 0 2000 1000" preserveAspectRatio="none" fill="none">
-        <path stroke="#B8B3AA" strokeWidth="1.2" opacity="0.5">
-          <animate attributeName="d" dur="16s" repeatCount="indefinite" values="
-            M-200,100 C100,-100 400,300 700,100 C1000,-100 1300,300 1600,100 C1900,-100 2200,300 2200,100;
-            M-200,100 C100,300 400,-100 700,100 C1000,300 1300,-100 1600,100 C1900,300 2200,-100 2200,100;
-            M-200,100 C100,-100 400,300 700,100 C1000,-100 1300,300 1600,100 C1900,-100 2200,300 2200,100" />
-        </path>
-        <path stroke="#C8C3BB" strokeWidth="1" opacity="0.45">
-          <animate attributeName="d" dur="20s" repeatCount="indefinite" values="
-            M-100,300 C200,100 500,500 800,300 C1100,100 1400,500 1700,300 C2000,100 2200,500 2200,300;
-            M-100,300 C200,500 500,100 800,300 C1100,500 1400,100 1700,300 C2000,500 2200,100 2200,300;
-            M-100,300 C200,100 500,500 800,300 C1100,100 1400,500 1700,300 C2000,100 2200,500 2200,300" />
-        </path>
-        <path stroke="#ADA8A0" strokeWidth="1.3" opacity="0.5">
-          <animate attributeName="d" dur="18s" repeatCount="indefinite" values="
-            M0,500 C300,300 600,700 900,500 C1200,300 1500,700 1800,500 C2100,300 2200,700 2200,500;
-            M0,500 C300,700 600,300 900,500 C1200,700 1500,300 1800,500 C2100,700 2200,300 2200,500;
-            M0,500 C300,300 600,700 900,500 C1200,300 1500,700 1800,500 C2100,300 2200,700 2200,500" />
-        </path>
-        <path stroke="#C8C3BB" strokeWidth="1" opacity="0.45">
-          <animate attributeName="d" dur="22s" repeatCount="indefinite" values="
-            M-200,700 C100,500 400,900 700,700 C1000,500 1300,900 1600,700 C1900,500 2200,900 2200,700;
-            M-200,700 C100,900 400,500 700,700 C1000,900 1300,500 1600,700 C1900,900 2200,500 2200,700;
-            M-200,700 C100,500 400,900 700,700 C1000,500 1300,900 1600,700 C1900,500 2200,900 2200,700" />
-        </path>
-        <path stroke="#B8B3AA" strokeWidth="1.2" opacity="0.4">
-          <animate attributeName="d" dur="17s" repeatCount="indefinite" values="
-            M-100,900 C200,700 500,1100 800,900 C1100,700 1400,1100 1700,900 C2000,700 2200,1100 2200,900;
-            M-100,900 C200,1100 500,700 800,900 C1100,1100 1400,700 1700,900 C2000,1100 2200,700 2200,900;
-            M-100,900 C200,700 500,1100 800,900 C1100,700 1400,1100 1700,900 C2000,700 2200,1100 2200,900" />
-        </path>
-      </svg>
+    <section ref={hero} id="hero" className={styles.hero}>
+      <div ref={compass} className={styles.compass} aria-hidden="true"><img src="/images/logo-mark.webp" alt=""/></div>
 
       <div className={styles.content}>
         <div className={`${styles.eyebrow} reveal`}>Ader Studio — Buenos Aires, Argentina</div>
@@ -42,7 +15,7 @@ export function Hero() {
           Todos los proyectos tienen un norte.
         </h1>
         <p className={`${styles.sub} reveal rd2`}>
-          Aportando valor arquitectónico a través del diseño contextual, la honestidad material y la precisión tecnológica.
+          Cada proyecto es único, pero todos parten de una misma base: el lugar donde se implantan. Nuestro norte es entender ese lugar y encontrar la mejor respuesta arquitectónica para cada proyecto.
         </p>
         <div className={`${styles.cta} reveal rd3`}>
           <a href="#proyectos" className="btn-ghost">

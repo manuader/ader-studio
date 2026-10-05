@@ -1,4 +1,5 @@
 'use client';
+import { OtherProjects } from '@/components/other-projects/OtherProjects';
 
 import { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
@@ -226,27 +227,7 @@ export function BauhausCase() {
         </section>
 
         {/* ─── CIERRE ───────────────────────────── */}
-        <section className={s.next} data-chapter="Otros proyectos">
-          <div className="sec-label reveal">Formación y obra</div>
-          <h2 className="sec-title reveal rd1">Otros<br /><em>proyectos</em></h2>
-          <div className={s.nextGrid}>
-            {NEXT.map(({ href, c }, i) => (
-              <Link key={href} href={href} className={`${s.card} reveal rd${i + 1}`}>
-                <div className={s.cardImg}>
-                  <Image src={lineCover(href).src} alt={c.title} fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
-                </div>
-                <div className={s.cardMeta}>
-                  <span>{c.tag}</span>
-                  <span>{c.location} · {c.years}</span>
-                </div>
-                <div className={s.cardTitle}>
-                  {c.title}
-                  <Arrow />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        <OtherProjects current="/proyectos/bauhaus-weimar" />
 
         <section className={s.cta}>
           <div>

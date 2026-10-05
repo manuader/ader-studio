@@ -406,3 +406,9 @@
 @media (prefers-reduced-motion: reduce) {
   .panel, .sheet, .contextLabel, .chevron, .trigger::after, .burger i { transition: none; animation: none; }
 }
+
+.panelInner{grid-template-columns:minmax(0,2fr) minmax(220px,1fr);}.panel .works{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}.panel .work{grid-template-columns:1fr;gap:12px;}.panel .workThumb{width:100%;max-width:220px;}.panel .workName{font-size:20px;}.panel .workMeta{font-size:11px;}.panelAside{padding-left:24px;}
+@media(max-width:900px){.sheetInner{padding:16px 20px;min-height:100%;gap:0;}.sheetGroup{padding:14px 0;}.sheetHead{font-size:30px;}.sheetList{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;}.sheetLink{font-size:14px;padding:4px 0;line-height:1.3;}.sheetCta{font-family:var(--font-c);font-size:18px;color:var(--white);text-decoration:none;margin-top:20px;}.mobileProject{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px;}.mobileProject>a{display:grid;gap:6px;text-decoration:none;color:var(--white);font-family:var(--font-c);font-size:20px;}.mobileProject small{font-family:var(--font-b);font-size:11px;color:var(--gray1);}.mobileProject>div{display:flex;align-items:center;gap:8px;font-size:10px;}.mobileProject button{width:32px;height:32px;font-size:20px;border:1px solid var(--border);background:none;color:var(--white);}}
+@media(max-height:700px) and (max-width:900px){.sheetGroup{padding:10px 0;}.sheetHead{font-size:26px;}.sheetInner{padding-top:8px;}.sheetCta{margin-top:12px;}}
+
+@media(max-width:900px){.burger{min-width:44px;min-height:44px;}.mobileProject button{width:44px;height:44px;border-radius:999px;}.sheetLink{min-height:44px;align-items:center;}.sheet{padding-bottom:env(safe-area-inset-bottom);}}

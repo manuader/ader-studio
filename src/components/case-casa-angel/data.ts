@@ -10,7 +10,7 @@ export const [E1, E2, E3, E4] = casaAngel.chapters as [Chapter, Chapter, Chapter
 export function stageName(ch: Chapter): string {
   if (ch.subtitle) return ch.subtitle.split('–').pop()!.trim();
   // La lámina de la etapa 4 no lleva subtítulo; el portfolio la presenta como la representación final.
-  return 'Representación final';
+  return 'Producción gráfica';
 }
 
 const img = (ch: Chapter, i: number) => ch.images[i];

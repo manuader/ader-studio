@@ -1,17 +1,16 @@
 import { LogoIntro } from '@/components/logo-intro/LogoIntro';
 import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Hero } from '@/components/hero/Hero';
-import { FachadaReveal } from '@/components/fachada-reveal/FachadaReveal';
 import { Vision } from '@/components/vision/Vision';
-import { VideoShowcase } from '@/components/vision/VideoShowcase';
 import { Bim } from '@/components/bim/Bim';
 import { RendersGallery } from '@/components/renders-gallery/RendersGallery';
 import { Fotografia } from '@/components/fotografia/Fotografia';
-import { Proceso } from '@/components/proceso/Proceso';
 import { Proyectos } from '@/components/proyectos/Proyectos';
 import { Metodologia } from '@/components/meotodlogia/Metodologia';
 import { Contacto } from '@/components/contacto/Contacto';
 import { Footer } from '@/components/footer/Footer';
+import { HomeCurves } from '@/components/hero/HomeCurves';
+import home from './Home.module.css';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 export default function Home() {
@@ -19,17 +18,14 @@ export default function Home() {
     <>
       <LogoIntro />
       <SiteNav home />
-      <main>
+      <main className={home.home}><HomeCurves />
         <Hero />
-        <FachadaReveal />
         <Vision />
-        <Proceso />
-        <VideoShowcase />
-        <Bim />
-        <Proyectos />
-        <RendersGallery />
-        <Fotografia />
         <Metodologia />
+        <Bim />
+        <RendersGallery />
+        <Proyectos />
+        <Fotografia />
         <Contacto />
       </main>
       <Footer />

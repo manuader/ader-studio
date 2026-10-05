@@ -9,7 +9,7 @@ import { Closing } from '@/components/proyectos-index/Closing';
 export const metadata: Metadata = {
   title: 'Proyectos — Ader Studio',
   description:
-    'Índice de proyectos de Ader Studio: Casa Angel en Pinamar, la Oficina Urbetrack en CABA, la formación en FADU – UBA y el intercambio en la Bauhaus-Universität Weimar.',
+    'Proyectos de Ader Studio: Casa Piaggio, Casa Ángel y Oficina Urbetrack.',
 };
 
 export default function ProyectosPage() {

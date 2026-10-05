@@ -196,4 +196,5 @@
   width: 100%;
   height: auto;
   display: block;
-}
+}.decorLines{display:none;}
+.pinContainer{background:transparent;}.decorLines{display:block;}

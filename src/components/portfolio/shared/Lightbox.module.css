@@ -79,3 +79,5 @@
 @media (prefers-reduced-motion: reduce) {
   .lightbox, .figure { animation: none; }
 }
+
+.close,.arrow{border-radius:999px;}

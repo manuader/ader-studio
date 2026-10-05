@@ -6,7 +6,7 @@ const FICHA = [
   { k: 'Tipología', v: 'Residencial privado' },
   { k: 'Ubicación', v: CASE.location },
   { k: 'Proyecto', v: CASE.years },
-  { k: 'Desarrollo', v: '4 etapas' },
+  { k: 'Contenido', v: 'Anteproyecto + proyecto' },
 ];
 
 export function Hero() {
@@ -27,15 +27,15 @@ export function Hero() {
         </div>
         <div className={s.heroCopy}>
           <p className={s.heroKicker}>
-            <span>Caso de estudio</span>
+            <span>Anteproyecto y proyecto</span>
           </p>
           <h1 id="ca-title" className={s.heroTitle}>
             <span className={s.heroLine}><span>Casa Angel</span></span>
             <span className={s.heroLine}><em>Un refugio elevado en el bosque</em></span>
           </h1>
         </div>
-        <a href="#indice" className={s.heroScroll}>
-          <span>Recorrer el proyecto</span>
+        <a href="#anteproyecto" className={s.heroScroll}>
+          <span>Recorrer Casa Ángel</span>
           <i aria-hidden="true" />
         </a>
       </section>

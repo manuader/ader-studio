@@ -14,19 +14,6 @@ const TOOLS = [
 const STAGES = [
   {
     num: '01',
-    name: 'Arquitectura',
-    desc: 'Diseño integral de proyectos nuevos y renovaciones en tipologías residenciales, comerciales y culturales. Respuesta precisa al contexto y el programa.',
-    icon: (
-      <svg viewBox="0 0 40 40" fill="none" stroke="#1A1917" strokeWidth="1">
-        <rect x="6" y="8" width="28" height="24" strokeOpacity="0.6" />
-        <line x1="6" y1="18" x2="34" y2="18" strokeOpacity="0.4" />
-        <line x1="20" y1="8" x2="20" y2="32" strokeOpacity="0.4" />
-        <rect x="10" y="22" width="6" height="8" strokeOpacity="0.5" />
-      </svg>
-    ),
-  },
-  {
-    num: '02',
     name: 'Anteproyecto',
     desc: 'Desarrollo de la idea arquitectónica: plantas, cortes, fachadas y volumetrías que definen la esencia del proyecto antes de la documentación técnica.',
     icon: (
@@ -37,7 +24,7 @@ const STAGES = [
     ),
   },
   {
-    num: '03',
+    num: '02',
     name: 'Proyecto Ejecutivo',
     desc: 'Documentación técnica completa en BIM: planos de arquitectura, estructura, instalaciones y legajo municipal. Todo coordinado en un modelo único.',
     icon: (
@@ -51,7 +38,7 @@ const STAGES = [
     ),
   },
   {
-    num: '04',
+    num: '03',
     name: 'Dirección de Obra',
     desc: 'Supervisión y conducción técnica durante la construcción. Garantizamos que el proyecto construido sea fiel a la intención del diseño, hasta el último detalle.',
     icon: (
@@ -69,7 +56,6 @@ const STAGES = [
 export function Metodologia() {
   return (
     <section id="metodologia" className={styles.metodologia}>
-      <div className="sec-label reveal">Lo que hacemos</div>
       <div className="sec-title reveal rd1" style={{ marginBottom: 0 }}>Metodologia de trabajo</div>
       <div className={styles.grid}>
         {STAGES.map((stage, i) => (
@@ -81,26 +67,26 @@ export function Metodologia() {
           </div>
         ))}
       </div>
+      <WorkTools />
+    </section>
+  );
+}
 
-      <div className={`${styles.carousel} reveal`}>
-        <div className={styles.carouselLabel}>Herramientas de trabajo</div>
+export function WorkTools(){return <section id="herramientas" className={styles.tools}><header><div className="sec-label">Tecnología aplicada</div><h2 className="sec-title">Herramientas<br/><em>de trabajo.</em></h2></header>      <div className={`${styles.carousel} reveal`}>
         <div className={styles.carouselTrack}>
           <div className={styles.carouselSlide}>
             {TOOLS.map((logo, i) => (
               <div key={i} className={styles.carouselItem}>
-                <Image src={logo.src} alt={logo.alt} width={180} height={72} className={styles.carouselImg} />
+                <Image src={logo.src} alt={logo.alt} width={180} height={72} loading="eager" unoptimized className={styles.carouselImg} />
               </div>
             ))}
           </div>
           <div className={styles.carouselSlide} aria-hidden="true">
             {TOOLS.map((logo, i) => (
               <div key={`dup-${i}`} className={styles.carouselItem}>
-                <Image src={logo.src} alt={logo.alt} width={180} height={72} className={styles.carouselImg} />
+                <Image src={logo.src} alt={logo.alt} width={180} height={72} loading="eager" unoptimized className={styles.carouselImg} />
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </div></section>;}

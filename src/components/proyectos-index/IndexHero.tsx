@@ -31,8 +31,7 @@ export function IndexHero() {
           </h1>
         </div>
         <p className={s.lede}>
-          Obras del estudio y la formación que las precede: FADU – UBA en Buenos Aires y
-          el intercambio en la Bauhaus-Universität Weimar.
+          Casa Piaggio, Casa Ángel y Oficina Urbetrack: tres proyectos, tres formas de responder al lugar.
         </p>
       </div>
 

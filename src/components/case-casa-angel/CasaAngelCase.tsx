@@ -1,30 +1,29 @@
 import { SiteNav } from '@/components/site-nav/SiteNav';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Hero } from './sections/Hero';
-import { Indice } from './sections/Indice';
-import { Etapa1 } from './sections/Etapa1';
-import { Etapa2 } from './sections/Etapa2';
-import { Etapa3 } from './sections/Etapa3';
-import { Etapa4 } from './sections/Etapa4';
 import { Cierre } from './sections/Cierre';
+import { FachadaReveal } from '@/components/fachada-reveal/FachadaReveal';
+import { VideoShowcase } from '@/components/vision/VideoShowcase';
+import { Proceso } from '@/components/proceso/Proceso';
+import { AnteproyectoExplorer } from './AnteproyectoExplorer';
 import s from './CasaAngel.module.css';
-
+import { ElevatorJourney } from './ElevatorJourney';
+import { CurrentRenders, ProjectDevelopment } from './CurrentRenders';
 export function CasaAngelCase() {
-  return (
-    <>
-      <SiteNav initialContext="Casa Angel" />
-      <main className={s.page}>
-        <Hero />
-        <Indice />
-        <Etapa1 />
-        <Etapa2 />
-        <Etapa3 />
-        <Etapa4 />
-        <Cierre />
-      </main>
-      <Footer />
-      <ScrollReveal />
-    </>
-  );
+  return <>
+    <SiteNav initialContext="Casa Ángel" />
+    <main className={s.page}>
+      <section id="proyecto" aria-label="Proyecto de Casa Ángel" data-chapter="Casa Ángel · Proyecto">
+        <FachadaReveal projectHero />
+        <Proceso />
+        <VideoShowcase />
+      </section>
+      <CurrentRenders />
+      <ElevatorJourney />
+      <AnteproyectoExplorer />
+      <ProjectDevelopment />
+      <Cierre />
+    </main>
+    <Footer /><ScrollReveal />
+  </>;
 }

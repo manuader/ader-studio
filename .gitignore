@@ -48,3 +48,13 @@ brag-films/*/assets/
 brag-films/*/out/
 brag-films/*/node_modules
 brag-films/*/poster-*.png
+
+
+# Local previews and working files
+/.next-backup-*/
+/tmp/
+*.tsbuildinfo
+*.lnk
+/public/prueba-*.html
+/public/videos/*-original.mp4
+/public/videos/casa-piaggio-recorrido-v1.mp4

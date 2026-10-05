@@ -34,3 +34,5 @@
     align-items: flex-start;
   }
 }
+
+@media(max-width:768px){.footer{padding:24px 20px;}.links{width:100%;flex-wrap:wrap;gap:6px 18px;}.links a{display:inline-flex;align-items:center;min-height:44px;}}
