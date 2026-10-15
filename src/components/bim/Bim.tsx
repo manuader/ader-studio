@@ -127,7 +127,7 @@ export function Bim() {
       <div className={styles.header}>
         <div>
           <div className="sec-label reveal">Metodología</div>
-          <div className="sec-title reveal rd1">BIM<br /><em>Integration</em></div>
+          <div className="sec-title reveal rd1">BIM{' '}<br /><em>Integration</em></div>
         </div>
         <p className={`${styles.desc} reveal rd2`}>
           La metodología BIM (Building Information Modeling) es el núcleo de nuestro proceso. Un modelo digital único que integra arquitectura, estructura e instalaciones — eliminando interferencias, reduciendo errores y optimizando costos de construcción.

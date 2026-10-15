@@ -51,7 +51,7 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
   const [homeGroup, setHomeGroup] = useState<Group | null>(null);
   const [open, setOpen] = useState<'proyectos' | 'estudio' | 'formacion' | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileProject, setMobileProject] = useState(0);
+  const [projectsExpanded, setProjectsExpanded] = useState(false);
 
   useCompassLogo(logoRef);
 
@@ -318,10 +318,15 @@ export function SiteNav({ home = false, initialContext = '' }: Props) {
       {/* Menú mobile a pantalla completa */}
       <div id="nav-mobile" className={s.sheet} data-open={mobileOpen || undefined} aria-hidden={!mobileOpen}>
         <div className={s.sheetInner}>
-          <section className={s.sheetGroup}><Link href="/proyectos" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Proyectos</Link><div className={s.mobileProject}><Link href={OBRAS[mobileProject].href!} onClick={onNavigate} tabIndex={mobileOpen?0:-1}><span>{OBRAS[mobileProject].name}</span><small>{OBRAS[mobileProject].location}</small></Link><div><button aria-label="Proyecto anterior en el menú" tabIndex={mobileOpen?0:-1} onClick={()=>setMobileProject(i=>(i+OBRAS.length-1)%OBRAS.length)}>←</button><span>{mobileProject+1}/{OBRAS.length}</span><button aria-label="Proyecto siguiente en el menú" tabIndex={mobileOpen?0:-1} onClick={()=>setMobileProject(i=>(i+1)%OBRAS.length)}>→</button></div></div></section>
-          <section className={s.sheetGroup}><Link href="/fotografia" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Fotografía</Link></section>
           <section className={s.sheetGroup}><Link href="/#vision" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Estudio</Link><ul className={s.sheetList}>{ESTUDIO.map(it=><li key={it.href}><Link href={it.href} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>{it.label}</Link></li>)}</ul></section>
           <section className={s.sheetGroup}><Link href="/formacion" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Formación</Link><ul className={s.sheetList}>{FORMACION.map(p=><li key={p.href}><Link href={p.href!} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>{p.name}</Link></li>)}</ul></section>
+          <section className={s.sheetGroup}><Link href="/fotografia" className={s.sheetHead} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Fotografía</Link></section>
+          <section className={s.sheetGroup}>
+            <button type="button" className={s.sheetHead} aria-expanded={projectsExpanded} aria-controls="mobile-project-list" onClick={() => setProjectsExpanded(value => !value)} tabIndex={mobileOpen ? 0 : -1}>Proyectos</button>
+            <ul id="mobile-project-list" className={s.sheetList} hidden={!projectsExpanded}>
+              {OBRAS.map(p => <li key={p.href}><Link href={p.href!} className={s.sheetLink} onClick={onNavigate} tabIndex={mobileOpen && projectsExpanded ? 0 : -1}>{p.name}</Link></li>)}
+            </ul>
+          </section>
           <Link href="/#contacto" className={s.sheetCta} onClick={onNavigate} tabIndex={mobileOpen?0:-1}>Contacto ↗</Link>
         </div>
       </div>

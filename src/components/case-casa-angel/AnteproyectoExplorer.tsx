@@ -34,7 +34,7 @@ export function AnteproyectoExplorer(){
   };
   const chapter=chapters[stage];
   return <section id="anteproyecto" className={s.section} data-chapter="Casa Ángel · Anteproyecto" aria-labelledby="angel-decisions">
-    <div className={s.decisionsFrame}><header className={s.heading}><div className="sec-label">Anteproyecto / Las decisiones</div><h2 id="angel-decisions" className="sec-title">La vida arriba.<br/><em>El paisaje adentro.</em></h2><p>Dos decisiones que conectan la organización de la casa con la experiencia de habitarla.</p></header>
+    <div className={s.decisionsFrame}><header className={s.heading}><div className="sec-label">Anteproyecto / Las decisiones</div><h2 id="angel-decisions" className="sec-title">La vida arriba.{' '}<br/><em>El paisaje adentro.</em></h2><p>Dos decisiones que conectan la organización de la casa con la experiencia de habitarla.</p></header>
     <div ref={decisionsRef} className={s.decisions}>{decisions.map((d,i)=><article key={d.title} className={s.decision}>
       <button className={s.imageButton} onClick={()=>setViewer({items:[d.image],index:0})} aria-label={'Ampliar: '+d.image.alt}><Image src={d.image.src} alt={d.image.alt} width={d.image.w} height={d.image.h} sizes="(max-width:768px) 90vw, 46vw"/></button>
       <span className={s.number}>0{i+1}</span><h3>{d.title}</h3><p>{d.text}</p>

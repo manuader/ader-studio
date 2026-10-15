@@ -99,3 +99,5 @@
 .heroJourney .projectHero{position:sticky;top:0;height:100svh;min-height:0;}
 .projectIntro p{opacity:var(--title-in,0);transform:translateY(calc((1 - var(--title-in,0))*24px));transition:opacity .15s linear,transform .15s linear;}
 @media(prefers-reduced-motion:reduce){.heroJourney{height:auto;}.heroJourney .projectHero{position:relative;}.projectIntro p{opacity:1;transform:none;transition:none;}}
+
+.touchHint{display:none;}@media(pointer:coarse){.desktopHint{display:none;}.touchHint{display:inline;}}
