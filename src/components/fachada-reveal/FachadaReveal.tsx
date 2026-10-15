@@ -203,6 +203,10 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
     let ignoreMouseUntil = 0;
     function onMouseMove(e: { clientX: number; clientY: number }) {
       if (performance.now() < ignoreMouseUntil) return;
+      revealAt(e);
+    }
+
+    function revealAt(e: { clientX: number; clientY: number }) {
       const rect = section!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -247,14 +251,44 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
     });
     ro.observe(section);
 
-    // Hold reveals the full render; release restores the drawing.
-    const onTouchStart = () => { ignoreMouseUntil = Infinity; s.trail = []; s.isClicking = true; };
-    const onTouchEnd = () => { ignoreMouseUntil = performance.now() + 800; onMouseLeave(); s.trail = []; };
+    // Touch uses the brush; a deliberate stationary hold reveals the full render.
+    let holdTimeout: ReturnType<typeof setTimeout> | undefined;
+    let touchOrigin: { clientX: number; clientY: number } | null = null;
+    const onTouchStart = (e: TouchEvent) => {
+      clearTimeout(holdTimeout);
+      const touch = e.touches[0];
+      if (!touch) return;
+      ignoreMouseUntil = Infinity;
+      s.trail = [];
+      s.isClicking = false;
+      touchOrigin = { clientX: touch.clientX, clientY: touch.clientY };
+      revealAt(touch);
+      holdTimeout = setTimeout(() => { s.isClicking = true; }, 2500);
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      if (touchOrigin && Math.hypot(touch.clientX - touchOrigin.clientX, touch.clientY - touchOrigin.clientY) > 12) {
+        clearTimeout(holdTimeout);
+        s.isClicking = false;
+      }
+      revealAt(touch);
+    };
+    const onTouchEnd = () => {
+      clearTimeout(holdTimeout);
+      touchOrigin = null;
+      ignoreMouseUntil = performance.now() + 800;
+      onMouseLeave();
+      s.trail = [];
+    };
     section.addEventListener('touchstart', onTouchStart, { passive: true });
+    section.addEventListener('touchmove', onTouchMove, { passive: true });
     section.addEventListener('touchend', onTouchEnd);
     section.addEventListener('touchcancel', onTouchEnd);
 
     return () => {
+      clearTimeout(holdTimeout);
+      section.removeEventListener('touchmove', onTouchMove);
       section.removeEventListener('touchstart', onTouchStart);
       section.removeEventListener('touchend', onTouchEnd);
       section.removeEventListener('touchcancel', onTouchEnd);
@@ -282,11 +316,11 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
         />
       </div>
       <canvas ref={canvasRef} className={styles.revealCanvas} />
-      {projectHero && <div className={styles.projectIntro}><span>Casa Ángel / Proyecto</span><p>Un refugio elevado en el bosque.</p><span className={styles.exploreHint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Mantené presionado para revelar el render</span></span></div>}
+      {projectHero && <div className={styles.projectIntro}><span>Casa Ángel / Proyecto</span><p>Un refugio elevado en el bosque.</p><span className={styles.exploreHint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Deslizá para explorar · Mantené 2,5 s para revelar todo</span></span></div>}
       <div className={styles.content}>
         {!projectHero && <div className={styles.label}>Proyecto Destacado</div>}
         {projectHero && <h1 className={styles.projectTitle}>Casa Ángel</h1>}
-        {!projectHero && <div className={styles.hint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Mantené presionado para revelar el render</span></div>}
+        {!projectHero && <div className={styles.hint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Deslizá para explorar · Mantené 2,5 s para revelar todo</span></div>}
         {projectHero && <a className={styles.continue} href="#proceso">Descubrir el proceso ↓</a>}
       </div>
     </section></div>
