@@ -101,3 +101,7 @@
 @media(prefers-reduced-motion:reduce){.heroJourney{height:auto;}.heroJourney .projectHero{position:relative;}.projectIntro p{opacity:1;transform:none;transition:none;}}
 
 .touchHint{display:none;}@media(pointer:coarse){.desktopHint{display:none;}.touchHint{display:inline;}}
+
+@media (pointer: coarse) {
+  .section { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+}

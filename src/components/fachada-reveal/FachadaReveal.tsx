@@ -79,7 +79,6 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
     s.brushTexture = createBrushTexture(128);
 
     function resize() {
-      if (performance.now() < ignoreMouseUntil) return;
       const rect = section!.getBoundingClientRect();
       const newW = Math.round(rect.width);
       const newH = Math.round(rect.height);
