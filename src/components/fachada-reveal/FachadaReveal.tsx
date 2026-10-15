@@ -79,6 +79,7 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
     s.brushTexture = createBrushTexture(128);
 
     function resize() {
+      if (performance.now() < ignoreMouseUntil) return;
       const rect = section!.getBoundingClientRect();
       const newW = Math.round(rect.width);
       const newH = Math.round(rect.height);
@@ -200,7 +201,9 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
 
     s.rafId = requestAnimationFrame(renderFrame);
 
+    let ignoreMouseUntil = 0;
     function onMouseMove(e: { clientX: number; clientY: number }) {
+      if (performance.now() < ignoreMouseUntil) return;
       const rect = section!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -218,6 +221,7 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
     }
 
     function onMouseDown() {
+      if (performance.now() < ignoreMouseUntil) return;
       s.isClicking = true;
     }
 
@@ -244,19 +248,17 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
     });
     ro.observe(section);
 
-    // Touch reveals the same brush trail while vertical scrolling remains available.
-    const onTouchStart = (e: TouchEvent) => { const touch = e.touches[0]; if (touch) onMouseMove(touch); };
-    const onTouchMove = (e: TouchEvent) => { const touch = e.touches[0]; if (touch) onMouseMove(touch); };
+    // Hold reveals the full render; release restores the drawing.
+    const onTouchStart = () => { ignoreMouseUntil = Infinity; s.trail = []; s.isClicking = true; };
+    const onTouchEnd = () => { ignoreMouseUntil = performance.now() + 800; onMouseLeave(); s.trail = []; };
     section.addEventListener('touchstart', onTouchStart, { passive: true });
-    section.addEventListener('touchmove', onTouchMove, { passive: true });
-    section.addEventListener('touchend', onMouseLeave);
-    section.addEventListener('touchcancel', onMouseLeave);
+    section.addEventListener('touchend', onTouchEnd);
+    section.addEventListener('touchcancel', onTouchEnd);
 
     return () => {
       section.removeEventListener('touchstart', onTouchStart);
-      section.removeEventListener('touchmove', onTouchMove);
-      section.removeEventListener('touchend', onMouseLeave);
-      section.removeEventListener('touchcancel', onMouseLeave);
+      section.removeEventListener('touchend', onTouchEnd);
+      section.removeEventListener('touchcancel', onTouchEnd);
       window.removeEventListener('scroll', updateTitle);
       section.removeEventListener('mousemove', onMouseMove);
       section.removeEventListener('mousedown', onMouseDown);
@@ -281,11 +283,11 @@ export function FachadaReveal({ projectHero = false }: { projectHero?: boolean }
         />
       </div>
       <canvas ref={canvasRef} className={styles.revealCanvas} />
-      {projectHero && <div className={styles.projectIntro}><span>Casa Ángel / Proyecto</span><p>Un refugio elevado en el bosque.</p><span className={styles.exploreHint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Tocá y deslizá para explorar el render</span></span></div>}
+      {projectHero && <div className={styles.projectIntro}><span>Casa Ángel / Proyecto</span><p>Un refugio elevado en el bosque.</p><span className={styles.exploreHint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Mantené presionado para revelar el render</span></span></div>}
       <div className={styles.content}>
         {!projectHero && <div className={styles.label}>Proyecto Destacado</div>}
         {projectHero && <h1 className={styles.projectTitle}>Casa Ángel</h1>}
-        {!projectHero && <div className={styles.hint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Tocá y deslizá para explorar el render</span></div>}
+        {!projectHero && <div className={styles.hint}><span className={styles.desktopHint}>Explorá el render con el cursor</span><span className={styles.touchHint}>Mantené presionado para revelar el render</span></div>}
         {projectHero && <a className={styles.continue} href="#proceso">Descubrir el proceso ↓</a>}
       </div>
     </section></div>
